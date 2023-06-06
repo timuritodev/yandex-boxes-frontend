@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/yandex-boxes-frontend/static/css/main.01fb53f8.css",
-    "main.js": "/yandex-boxes-frontend/static/js/main.88a93ba9.js",
+    "main.js": "/yandex-boxes-frontend/static/js/main.ecefbca9.js",
     "index.html": "/yandex-boxes-frontend/index.html",
     "main.01fb53f8.css.map": "/yandex-boxes-frontend/static/css/main.01fb53f8.css.map",
-    "main.88a93ba9.js.map": "/yandex-boxes-frontend/static/js/main.88a93ba9.js.map"
+    "main.ecefbca9.js.map": "/yandex-boxes-frontend/static/js/main.ecefbca9.js.map"
   },
   "entrypoints": [
     "static/css/main.01fb53f8.css",
-    "static/js/main.88a93ba9.js"
+    "static/js/main.ecefbca9.js"
   ]
 }
