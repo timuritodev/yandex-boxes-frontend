@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
+import Problempage from "../Problempage/Problempage";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="main" element={<Main />} />
-        <Route path="problem" element={<h2>компонент есть проблема</h2>} />
+        <Route path="problempage" element={<Problempage />} />
         <Route path="*" element={<h2>Страницы не существует</h2>} />
       </Routes>
     </div>
