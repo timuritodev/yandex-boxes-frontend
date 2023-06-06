@@ -1,4 +1,4 @@
-.scans__container {
+.orderInformation__container {
   display: flex;
   flex-direction: column;
   width: 453px;
@@ -8,7 +8,7 @@
   position: fixed;
 }
 
-.scans__title {
+.orderInformation__title {
   margin: 0;
   padding: 0;
   font-family: 'Yandex Sans Display';
@@ -19,14 +19,14 @@
   color: #212121;
 }
 
-.scans__sub-container {
+.orderInformation__sub-container {
   border: 1px solid #212121;
   border-radius: 100px;
   height: 48px;
   width: 295px;
 }
 
-.scans__text {
+.orderInformation__text {
   margin: 11px 0 0 24px;
   font-family: Yandex Sans Text;
   font-size: 24px;
