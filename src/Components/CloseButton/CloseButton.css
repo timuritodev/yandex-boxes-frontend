@@ -1,0 +1,14 @@
+.closeButton {
+  position: fixed;
+  width: 296px;
+  height: 662px;
+  margin: 104px 0 0 1600px;
+  background-color: #fed42b;
+  border-radius: 24px;
+  border: none;
+  font-family: "Yandex Sans Display";
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 58px;
+  color: #212121;
+}
