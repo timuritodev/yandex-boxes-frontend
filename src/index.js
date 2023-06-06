@@ -6,7 +6,7 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/yandex-boxes-frontend">
     <React.StrictMode>
       <App />
     </React.StrictMode>
