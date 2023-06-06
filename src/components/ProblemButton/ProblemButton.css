@@ -1,0 +1,16 @@
+.problemButton {
+  height: 331px;
+  width: 296px;
+  margin: 427px 0 0 24px;
+  position: fixed;
+  background-color: #F3F0E9;
+  border-radius: 24px;
+  border: none;
+  font-family: 'Yandex Sans Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 60px;
+  text-align: center;
+  color: #212121;
+}
