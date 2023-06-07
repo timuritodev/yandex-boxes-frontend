@@ -1,0 +1,8 @@
+.boxes {
+  width: 926px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 49px auto 40px;
+  justify-content: space-between;
+}
