@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/yandex-boxes-frontend/static/css/main.67145a1d.css",
-    "main.js": "/yandex-boxes-frontend/static/js/main.23331c1b.js",
+    "main.js": "/yandex-boxes-frontend/static/js/main.a69194b0.js",
     "static/media/speaker.svg": "/yandex-boxes-frontend/static/media/speaker.2f3c35525bca58c500ef9ec2d920191e.svg",
     "static/media/YandexSansText-RegularItalic.eot": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.8b47e91a40261bb8aca9.eot",
     "static/media/YandexSansText-RegularItalic.ttf": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.40ab454b96e2fe420bfd.ttf",
@@ -57,10 +57,10 @@
     "static/media/barcode.svg": "/yandex-boxes-frontend/static/media/barcode.431056cf9d4cf377f004aaba72e12e0d.svg",
     "static/media/burger.svg": "/yandex-boxes-frontend/static/media/burger.26d2f2c51be20074dbb8.svg",
     "main.67145a1d.css.map": "/yandex-boxes-frontend/static/css/main.67145a1d.css.map",
-    "main.23331c1b.js.map": "/yandex-boxes-frontend/static/js/main.23331c1b.js.map"
+    "main.a69194b0.js.map": "/yandex-boxes-frontend/static/js/main.a69194b0.js.map"
   },
   "entrypoints": [
     "static/css/main.67145a1d.css",
-    "static/js/main.23331c1b.js"
+    "static/js/main.a69194b0.js"
   ]
 }
