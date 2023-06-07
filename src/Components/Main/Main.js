@@ -1,8 +1,8 @@
 import "../App/App.css";
 import OrderInformation from "../OrderInformation/OrderInformation";
 import ProblemButton from "../ProblemButton/ProblemButton";
-import CloseButton from "../CloseButton/CloseButton";
 import Footer from "../Footer/Footer";
+import UniButton from "../UniButton/UniButton";
 
 function Main() {
   return (
@@ -10,7 +10,7 @@ function Main() {
       <main className="main">
         <OrderInformation />
         <ProblemButton />
-        <CloseButton />
+        <UniButton currentPage="main"/>
       </main>
       <Footer />
     </>
