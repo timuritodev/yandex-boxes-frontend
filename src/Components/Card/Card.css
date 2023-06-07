@@ -1,0 +1,79 @@
+.card__container {
+  display: flex;
+  flex-direction: row;
+  width: 926px;
+  height: 204px;
+  border: 5px solid #F3F0E9;
+  border-radius: 13px;
+  align-items: center;
+}
+
+.img__card {
+  width: 187px;
+  height: 187px;
+  background: #F9F7F3;
+  border-radius: 16px;
+  margin: 0 20px 0 20px;
+}
+
+.name__container {
+  height: 147.88px;
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 31px 0 25.12px 0;
+}
+
+.name__title {
+  margin: 0;
+  font-family: 'Yandex Sans Text';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+  color: #212121;
+}
+
+.barcode__container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.barcode__text {
+  margin: 0;
+  font-family: 'Yandex Sans Text';
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+  color: #0044EE;
+}
+
+.box__container {
+  height: 147.88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 24px 0 36px 34px;
+}
+
+.box__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFECCC;
+  border-radius: 12px;
+  width: 205px;
+  height: 48px;
+  margin: 0;
+}
+
+.box__amount {
+  margin: 0;
+  font-family: Yandex Sans Text;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
