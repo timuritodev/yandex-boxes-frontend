@@ -10,7 +10,7 @@ const data = [
     barcode: 1232973912,
     picture: corgi,
     id: 1,
-    packageType: "Коробка",
+    packageType: "Пакет",
     amount: 2,
   },
   {
@@ -18,7 +18,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 2,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 3,
   },
   {
@@ -26,7 +26,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 3,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Стрейтч-плёнка",
     amount: 1,
   },
   {
@@ -34,7 +34,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 4,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 1,
   },
   {
@@ -42,7 +42,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 5,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 1,
   },
   {
@@ -50,7 +50,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 6,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 1,
   },
 ];
