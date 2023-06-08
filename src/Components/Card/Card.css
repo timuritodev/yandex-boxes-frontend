@@ -3,15 +3,16 @@
   flex-direction: row;
   width: 926px;
   height: 204px;
-  border: 5px solid #F3F0E9;
+  border: 5px solid #f3f0e9;
   border-radius: 13px;
   align-items: center;
+  position: relative;
 }
 
 .img__card {
   width: 187px;
   height: 187px;
-  background: #F9F7F3;
+  background: #f9f7f3;
   border-radius: 16px;
   margin: 0 20px 0 20px;
 }
@@ -27,7 +28,7 @@
 
 .name__title {
   margin: 0;
-  font-family: 'Yandex Sans Text';
+  font-family: "Yandex Sans Text";
   font-weight: 400;
   font-size: 24px;
   line-height: 26px;
@@ -42,11 +43,11 @@
 
 .barcode__text {
   margin: 0;
-  font-family: 'Yandex Sans Text';
+  font-family: "Yandex Sans Text";
   font-weight: 400;
   font-size: 24px;
   line-height: 26px;
-  color: #0044EE;
+  color: #0044ee;
 }
 
 .box__container {
@@ -61,7 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFECCC;
+  background: #ffeccc;
   border-radius: 12px;
   width: 205px;
   height: 48px;
@@ -76,4 +77,15 @@
   line-height: 26px;
   letter-spacing: -0.01em;
   text-align: center;
+}
+
+.expand__button {
+  position: absolute;
+  bottom: 8px;
+  right: 50%;
+  transform: rotate(0);
+}
+
+.expanded__button_open {
+  transform: rotate(180deg);
 }
