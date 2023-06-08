@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
 
@@ -5,16 +6,15 @@ import "./Card.css";
 import { useState } from "react";
 import barcodepic from "../../images/barcode.svg";
 
-function Card({ name, barcode, picture, packageType, amount }) {
+function Card({ name, barcode, picture, packageType, amount, result }) {
   const [expanded, setExpanded] = useState(false);
-
   const handleExpand = () => {
     setExpanded(!expanded);
   };
 
   return (
     <section className="card">
-      <div className="card__container">
+      <div className={`card__container ${result == barcode ? "card__container_green" : "" }`}>
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
           <p className="name__title">{name}</p>
@@ -56,6 +56,7 @@ function Card({ name, barcode, picture, packageType, amount }) {
               picture={null}
               packageType={packageType}
               amount={1}
+              result={result}
             />
           ))}
         </div>

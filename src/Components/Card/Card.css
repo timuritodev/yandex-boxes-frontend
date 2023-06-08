@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.card__container_green {
+  border: 5px solid #2AAD2E;
+}
+
 .img__card {
   width: 187px;
   height: 187px;

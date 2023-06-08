@@ -54,7 +54,7 @@ const data = [
   },
 ];
 
-function CardList() {
+function CardList({ result }) {
   return (
     <section className="cardList">
       {data.map((item) => (
@@ -65,6 +65,7 @@ function CardList() {
           picture={item.picture}
           packageType={item.packageType}
           amount={item.amount}
+          result={result}
         />
       ))}
     </section>
