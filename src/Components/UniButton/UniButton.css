@@ -1,7 +1,6 @@
 .uniButton {
   width: 296px;
   height: 662px;
-  margin: 104px 0 0 177px;
   background-color: #fed42b;
   border-radius: 24px;
   border: none;
@@ -10,4 +9,12 @@
   font-size: 50px;
   line-height: 58px;
   color: #212121;
+}
+
+.uniButton__home {
+  margin: 104px 24px 0 0;
+}
+
+.uniButton__main {
+  margin: 104px 0 0 188px;
 }
