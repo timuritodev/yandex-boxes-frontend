@@ -12,7 +12,7 @@ function App() {
   const [KeyboardResult, setKeyboardResult] = useState("");
 
   const handleKeyboardResult = (value) => {
-    console.log(value);
+    // console.log(value);
     setKeyboardResult(value);
   };
 
@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="main" element={<Main />} />
+        <Route path="main" element={<Main result={KeyboardResult}/>} />
         <Route path="problempage" element={<Problempage />} />
         <Route
           path="keyboardpage"

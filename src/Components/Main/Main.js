@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 
-function Main() {
+function Main({result}) {
   return (
     <>
       <main className="main">
@@ -13,7 +13,7 @@ function Main() {
           <OrderInformation />
           <ProblemButton />
         </div>
-          <CardList />
+          <CardList result={result}/>
           <UniButton currentPage="main" />
       </main>
       <Footer />
