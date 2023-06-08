@@ -1,8 +1,6 @@
 .problemButton {
   height: 331px;
   width: 296px;
-  margin: 427px 0 0 24px;
-  position: fixed;
   background-color: #f3f0e9;
   border-radius: 24px;
   border: none;
@@ -13,4 +11,12 @@
   line-height: 60px;
   text-align: center;
   color: #212121;
+}
+
+.problemButton__home {
+  margin: 427px 0 0 24px;
+}
+
+.problemButton__main {
+  margin: 127px 0 0 24px;
 }
