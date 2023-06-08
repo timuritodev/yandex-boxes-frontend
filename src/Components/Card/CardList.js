@@ -54,7 +54,7 @@ const data = [
   },
 ];
 
-function Boxes() {
+function CardList() {
   return (
     <section className="cardList">
       {data.map((item) => (
@@ -71,4 +71,4 @@ function Boxes() {
   );
 }
 
-export default Boxes;
+export default CardList;
