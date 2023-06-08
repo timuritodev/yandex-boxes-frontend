@@ -21,7 +21,7 @@ function Box({ name }) {
       textColor: "box__name_lightblue",
     },
     "Коробка YMF": { boxColor: "box_orange", textColor: "box__name_orange" },
-    "Коробка MYF": { boxColor: "box__purple", textColor: "box__name_purple" },
+    "Коробка MYF": { boxColor: "box_purple", textColor: "box__name_purple" },
     "Пакет MYA": { boxColor: "box_red", textColor: "box__name_red" },
     "Пакет MYD": { boxColor: "box_gray", textColor: "box__name_gray" },
     "Пакет MYB": { boxColor: "box_darkred", textColor: "box__name_darkred" },

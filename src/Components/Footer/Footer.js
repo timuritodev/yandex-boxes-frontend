@@ -10,7 +10,10 @@ function Footer() {
           <Link className="footer__button footer__button_composition" to="{#}">
             <p className="footer__button-text">Изменить состав</p>
           </Link>
-          <Link className="footer__button footer__button_keyboard" to="{#}">
+          <Link
+            className="footer__button footer__button_keyboard"
+            to="/keyboardpage"
+          >
             <p className="footer__button-text footer__button-text_keyboard">
               Ввести с клавиатуры
             </p>
