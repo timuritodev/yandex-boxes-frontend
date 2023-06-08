@@ -49,6 +49,16 @@
   position: absolute;
   right: 24px;
   top: 216px;
+  background-color: #fed42b;
+  border-radius: 24px;
+  border: none;
+  font-family: "Yandex Sans Display";
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 58px;
+  color: #212121;
+  width: 296px;
+  height: 662px;
 }
 
 .keyboard__button {

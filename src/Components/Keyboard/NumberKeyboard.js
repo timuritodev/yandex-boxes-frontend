@@ -1,11 +1,13 @@
 import "./NumberKeyboard.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NdaBox from "../Footer/NdaBox/NdaFox";
 
 const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
 
 function NumberKeyboard({ onResult }) {
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
   const handleButtonClick = (value) => {
     setInputValue((prevValue) => prevValue + value);
@@ -22,6 +24,7 @@ function NumberKeyboard({ onResult }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onResult(inputValue);
+    navigate("/main");
   };
 
   return (
@@ -76,7 +79,7 @@ function NumberKeyboard({ onResult }) {
             </div>
           </div>
           <button className="keyboard__submit-button" type="submit">
-            Submit
+            Готово
           </button>
         </form>
       </main>
