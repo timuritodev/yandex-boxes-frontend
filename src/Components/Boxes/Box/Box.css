@@ -1,0 +1,106 @@
+.box {
+  width: 295px;
+  height: 97px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #16523b;
+  border-radius: 100px;
+  box-sizing: border-box;
+}
+
+.box__name {
+  display: block;
+  font-family: "Yandex Sans Text";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  font-feature-settings: "pnum" on, "lnum" on;
+  margin: 0;
+  color: #16523b;
+}
+
+/*вариации цветов*/
+
+.box_blue {
+  border-color: #0044ee;
+  background-color: white;
+}
+
+.box_green {
+  border-color: #16523b;
+  background-color: white;
+}
+
+.box_lightblue {
+  border-color: #25add6;
+  background-color: white;
+}
+
+.box_orange {
+  border-color: #f29a00;
+  background-color: white;
+}
+
+.box_purple {
+  border-color: #8a35b3;
+  background-color: white;
+}
+
+.box_red {
+  border-color: #f73e47;
+  background-color: white;
+}
+
+.box_gray {
+  border-color: #545554;
+  background-color: white;
+}
+
+.box_darkred {
+  border-color: #a7070f;
+  background-color: white;
+}
+
+.box_darkyellow {
+  border-color: #5d4a00;
+  background-color: white;
+}
+
+.box__name_blue {
+  color: #0044ee;
+}
+
+.box__name_green {
+  color: #16523b;
+}
+
+.box__name_lightblue {
+  color: #25add6;
+}
+
+.box__name_orange {
+  color: #f29a00;
+}
+
+.box__name_purple {
+  color: #8a35b3;
+}
+
+.box__name_red {
+  color: #f73e47;
+}
+
+.box__name_gray {
+  color: #545554;
+}
+
+.box__name_darkred {
+  color: #a7070f;
+}
+
+.box__name_darkyellow {
+  color: #5d4a00;
+}
