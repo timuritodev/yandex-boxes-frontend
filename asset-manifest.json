@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/yandex-boxes-frontend/static/css/main.edc80405.css",
-    "main.js": "/yandex-boxes-frontend/static/js/main.01e53ea1.js",
+    "main.css": "/yandex-boxes-frontend/static/css/main.39484b16.css",
+    "main.js": "/yandex-boxes-frontend/static/js/main.d4b0cfd6.js",
     "static/media/speaker.svg": "/yandex-boxes-frontend/static/media/speaker.2f3c35525bca58c500ef9ec2d920191e.svg",
     "static/media/YandexSansText-RegularItalic.eot": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.8b47e91a40261bb8aca9.eot",
     "static/media/YandexSansText-RegularItalic.ttf": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.40ab454b96e2fe420bfd.ttf",
@@ -51,16 +51,17 @@
     "static/media/Efficiency.svg": "/yandex-boxes-frontend/static/media/Efficiency.ef4016b45297c641bc6c.svg",
     "static/media/logo.svg": "/yandex-boxes-frontend/static/media/logo.61beab14681678aea648.svg",
     "static/media/keyboardIcon.svg": "/yandex-boxes-frontend/static/media/keyboardIcon.3b4a0529de1f0ef09f40.svg",
+    "static/media/keyboard_delete_icon.svg": "/yandex-boxes-frontend/static/media/keyboard_delete_icon.457bfdf1793de6301de1.svg",
     "index.html": "/yandex-boxes-frontend/index.html",
     "static/media/button.svg": "/yandex-boxes-frontend/static/media/button.dcf5b156c25d3b6873ad.svg",
     "static/media/editIcon.svg": "/yandex-boxes-frontend/static/media/editIcon.b0e6eebc9786085121c4.svg",
     "static/media/barcode.svg": "/yandex-boxes-frontend/static/media/barcode.431056cf9d4cf377f004aaba72e12e0d.svg",
     "static/media/burger.svg": "/yandex-boxes-frontend/static/media/burger.26d2f2c51be20074dbb8.svg",
-    "main.edc80405.css.map": "/yandex-boxes-frontend/static/css/main.edc80405.css.map",
-    "main.01e53ea1.js.map": "/yandex-boxes-frontend/static/js/main.01e53ea1.js.map"
+    "main.39484b16.css.map": "/yandex-boxes-frontend/static/css/main.39484b16.css.map",
+    "main.d4b0cfd6.js.map": "/yandex-boxes-frontend/static/js/main.d4b0cfd6.js.map"
   },
   "entrypoints": [
-    "static/css/main.edc80405.css",
-    "static/js/main.01e53ea1.js"
+    "static/css/main.39484b16.css",
+    "static/js/main.d4b0cfd6.js"
   ]
 }
