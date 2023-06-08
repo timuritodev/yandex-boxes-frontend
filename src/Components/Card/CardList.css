@@ -1,3 +1,5 @@
 .cardList {
   margin: 48px 0 0;
+  height: 900px;
+  overflow: scroll;
 }
