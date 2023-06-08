@@ -67,11 +67,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffeccc;
   border-radius: 12px;
   width: 205px;
   height: 48px;
   margin: 0;
+}
+
+.box__name_bag {
+  background:#FFECCC;
+}
+
+.box__name_buble {
+  background:#CEE4FF;
+}
+
+.box__name_stretch {
+  background:#FEE374;
 }
 
 .box__amount {

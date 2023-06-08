@@ -11,34 +11,44 @@ function Card({ name, barcode, picture, packageType, amount, result, cardContain
     setExpanded(!expanded);
   };
 
+  // меняем цвет упаковки для каждого товара
+  let boxName = "";
+  if (packageType === "Пакет") {
+    boxName += "box__name_bag";
+  } else if (packageType === "Пузырчатая плёнка") {
+    boxName += " box__name_buble";
+  } else {
+    boxName += " box__name_stretch";
+  }
+
   return (
     <section className="card">
-      <div className={`card__container ${cardContainerGreen ? "card__container_green" : "" }`}>
+      <div className={`card__container ${cardContainerGreen ? "card__container_green" : ""}`}>
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
           <p className="name__title">{name}</p>
-          <div className="barcode__container">
-            <img className="barcode__img" alt="" src={barcodepic} />
-            <p className="barcode__text">{barcode}</p>
-          </div>
+          {amount === 1 && (
+            <div className="barcode__container">
+              <img className="barcode__img" alt="" src={barcodepic} />
+              <p className="barcode__text">{barcode}</p>
+            </div>
+          )}
         </div>
         <div className="box__container">
-          <p className="box__name">{packageType}</p>
+          <p className={`box__name ${boxName}`}>{packageType}</p>
           <p className="box__amount">{amount}шт.</p>
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${
-              expanded ? "expanded__button_open" : ""
-            }`}
+            className={`expand__button ${expanded ? "expanded__button_open" : ""
+              }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${
-                expanded ? "expanded__button_icon_open" : ""
-              }`}
+              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
+                }`}
             >
               ▼
             </span>

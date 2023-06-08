@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Card from "./Card";
 import "./CardList.css";
 import speaker from "../../images/speaker.svg";
@@ -9,7 +10,7 @@ const data = [
     barcode: 1232973912,
     picture: corgi,
     id: 1,
-    packageType: "Коробка",
+    packageType: "Пакет",
     amount: 2,
   },
   {
@@ -17,7 +18,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 2,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 3,
   },
   {
@@ -25,7 +26,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 3,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Стрейтч-плёнка",
     amount: 1,
   },
   {
@@ -33,7 +34,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 4,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 1,
   },
   {
@@ -41,7 +42,7 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 5,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 1,
   },
   {
@@ -49,12 +50,13 @@ const data = [
     barcode: 1237871234,
     picture: speaker,
     id: 6,
-    packageType: "Пузырчатая пеленка",
+    packageType: "Пузырчатая плёнка",
     amount: 1,
   },
 ];
 
-function CardList({ result }) {
+// сохранения отсканированного товара в localstorage
+function CardList({ result, onItemCountChange }) {
   const saveCardContainerGreenToLocalStorage = (barcode, value) => {
     localStorage.setItem(`cardContainerGreen_${barcode}`, String(value));
   };
@@ -63,6 +65,12 @@ function CardList({ result }) {
     const value = localStorage.getItem(`cardContainerGreen_${barcode}`);
     return value === "true";
   };
+
+// подсчет кол-ва товара
+  const itemCount = data.length;
+  useEffect(() => {
+    onItemCountChange(itemCount);
+  }, [itemCount, onItemCountChange]);
 
   return (
     <section className="cardList">
