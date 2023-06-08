@@ -1,6 +1,6 @@
 import "./NumberKeyboard.css";
-
 import { useState } from "react";
+import NdaBox from "../Footer/NdaBox/NdaFox";
 
 const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
 
@@ -25,34 +25,63 @@ function NumberKeyboard({ onResult }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <div>
-        {[...Array(10)].map((_, index) => {
-          const key = generateUniqueKey();
-          return (
-            <button
-              key={key}
-              type="button"
-              onClick={() => handleButtonClick(index)}
-            >
-              {index}
-            </button>
-          );
-        })}
-        <button type="button" onClick={handleBackspaceClick}>
-          Backspace
-        </button>
-        <button type="button" onClick={handleDeleteClick}>
-          &#10005;
-        </button>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <main className="keyboard">
+        <h2 className="keyboard__title">Введите штрихкод товара</h2>
+        <form className="keyboard__form-box" onSubmit={handleSubmit}>
+          <input
+            className="keyboard__input"
+            type="number"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+          <div className="keyboard__buttons-box">
+            <div className="keyboard__buttons-numbers">
+              {[...Array(9)].map((_, index) => {
+                const key = generateUniqueKey();
+                return (
+                  <button
+                    className="keyboard__button"
+                    key={key}
+                    type="button"
+                    onClick={() => handleButtonClick(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="keyboard__buttons-options">
+              <button
+                className="keyboard__button"
+                type="button"
+                onClick={handleDeleteClick}
+              >
+                х
+              </button>
+              <button
+                className="keyboard__button"
+                type="button"
+                onClick={() => handleButtonClick(0)}
+              >
+                0
+              </button>
+              <button
+                className="keyboard__button"
+                type="button"
+                onClick={handleBackspaceClick}
+              >
+                <div className="keyboard__button_backspace-icon" />
+              </button>
+            </div>
+          </div>
+          <button className="keyboard__submit-button" type="submit">
+            Submit
+          </button>
+        </form>
+      </main>
+      <NdaBox />
+    </>
   );
 }
 
