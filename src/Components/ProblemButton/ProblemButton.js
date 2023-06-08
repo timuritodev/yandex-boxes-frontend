@@ -1,8 +1,9 @@
 import "./ProblemButton.css";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function HelpButton() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = () => {
     navigate('/problempage');
@@ -10,7 +11,7 @@ function HelpButton() {
   return (
     <div className="">
       <button
-        className="button problemButton"
+        className={`button problemButton ${location.pathname === "/" ? "problemButton__home" : "problemButton__main"}`}
         type="button"
         aria-label="button"
         onClick={handleClick}

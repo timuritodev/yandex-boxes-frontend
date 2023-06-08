@@ -1,8 +1,10 @@
 import "./UniButton.css";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Button({ currentPage }) {
   const navigate = useNavigate();
+  const location = useLocation();
+
 
   const handleClick = () => {
     navigate('/main');
@@ -19,7 +21,7 @@ function Button({ currentPage }) {
 
   return (
     <div className="">
-      <button className="button uniButton" type="button" aria-label="button" onClick={handleClick}>
+      <button  className={`button uniButton ${location.pathname === "/" ? "uniButton__home" : "uniButton__main"}`} type="button" aria-label="button" onClick={handleClick}>
         {getText()}
       </button>
     </div>
