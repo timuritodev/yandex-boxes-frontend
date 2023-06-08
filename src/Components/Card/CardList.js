@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Card from "./Card";
 import "./CardList.css";
 import speaker from "../../images/speaker.svg";
@@ -54,7 +55,8 @@ const data = [
   },
 ];
 
-function CardList({ result }) {
+// сохранения отсканированного товара в localstorage
+function CardList({ result, onItemCountChange }) {
   const saveCardContainerGreenToLocalStorage = (barcode, value) => {
     localStorage.setItem(`cardContainerGreen_${barcode}`, String(value));
   };
@@ -63,6 +65,12 @@ function CardList({ result }) {
     const value = localStorage.getItem(`cardContainerGreen_${barcode}`);
     return value === "true";
   };
+
+// подсчет кол-ва товара
+  const itemCount = data.length;
+  useEffect(() => {
+    onItemCountChange(itemCount);
+  }, [itemCount, onItemCountChange]);
 
   return (
     <section className="cardList">
