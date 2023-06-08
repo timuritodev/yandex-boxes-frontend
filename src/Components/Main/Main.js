@@ -1,4 +1,4 @@
-import "../App/App.css";
+import "./Main.css";
 import OrderInformation from "../OrderInformation/OrderInformation";
 import ProblemButton from "../ProblemButton/ProblemButton";
 import Footer from "../Footer/Footer";
@@ -9,10 +9,12 @@ function Main() {
   return (
     <>
       <main className="main">
-        <OrderInformation />
-        <ProblemButton />
-        <CardList />
-        <UniButton currentPage="main"/>
+        <div>
+          <OrderInformation />
+          <ProblemButton />
+        </div>
+          <CardList />
+          <UniButton currentPage="main" />
       </main>
       <Footer />
     </>

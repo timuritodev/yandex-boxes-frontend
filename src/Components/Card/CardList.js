@@ -20,6 +20,14 @@ const data = [
     packageType: 'Пузырчатая пеленка',
     amount: 2,
   },
+  {
+    name: 'Умная колонка Яндекс Станция Лайт, ультрафиолет',
+    barcode: 1237871234,
+    picture: speaker,
+    id: 2,
+    packageType: 'Пузырчатая пеленка',
+    amount: 2,
+  },
 ];
 
 function Boxes() {
