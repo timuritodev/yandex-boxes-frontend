@@ -1,9 +1,9 @@
 import "./NumberKeyboard.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NdaBox from "../Footer/NdaBox/NdaFox";
+import Footer from "../Footer/Footer";
 
-const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
+import { generateUniqueKey } from "../../utils/utils";
 
 function NumberKeyboard({ onResult }) {
   const [inputValue, setInputValue] = useState("");
@@ -30,7 +30,7 @@ function NumberKeyboard({ onResult }) {
   return (
     <>
       <main className="keyboard">
-        <h2 className="keyboard__title">Введите штрихкод товара</h2>
+        <h2 className="keyboard__title">Введите штрихкод</h2>
         <form className="keyboard__form-box" onSubmit={handleSubmit}>
           <input
             className="keyboard__input"
@@ -83,7 +83,7 @@ function NumberKeyboard({ onResult }) {
           </button>
         </form>
       </main>
-      <NdaBox />
+      <Footer />
     </>
   );
 }

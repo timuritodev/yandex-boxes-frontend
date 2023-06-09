@@ -5,8 +5,9 @@ import ProblemButton from "../ProblemButton/ProblemButton";
 import Footer from "../Footer/Footer";
 import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
+import Boxes from "../Boxes/Boxes";
 
-function Main({result}) {
+function Main({ result, boxData }) {
   // подсчет кол-ва товара
   const [itemCount, setItemCount] = React.useState(0);
 
@@ -18,11 +19,14 @@ function Main({result}) {
     <>
       <main className="main">
         <div>
-          <OrderInformation itemCount={itemCount}/>
+          <OrderInformation itemCount={itemCount} />
           <ProblemButton />
         </div>
-          <CardList result={result} onItemCountChange={handleItemCountChange}/>
-          <UniButton currentPage="main" />
+        <div>
+          <Boxes boxData={boxData} />
+          <CardList result={result} onItemCountChange={handleItemCountChange} />
+        </div>
+        <UniButton currentPage="main" />
       </main>
       <Footer />
     </>

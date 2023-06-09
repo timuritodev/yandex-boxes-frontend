@@ -6,13 +6,20 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
+import { convertToBoxArray } from "../../utils/utils";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
 
+  const boxesForRendering = convertToBoxArray({
+    order_id: 54574564,
+    carton: 6666,
+    items: [],
+  });
+
   const handleKeyboardResult = (value) => {
-    // console.log(value);
+    console.log(value);
     setKeyboardResult(value);
   };
 
@@ -21,7 +28,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="main" element={<Main result={KeyboardResult}/>} />
+        <Route
+          path="main"
+          element={<Main result={KeyboardResult} boxData={boxesForRendering} />}
+        />
         <Route path="problempage" element={<Problempage />} />
         <Route
           path="keyboardpage"
