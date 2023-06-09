@@ -28,7 +28,7 @@ function App() {
   // массив коробок которые были проверены — для отправки бекам
   const checkedBoxes = [];
 
-  function boxesGo(value) {
+  function checkBoxes(value) {
     const foundItem = boxes.find((item) => Number(item) === Number(value));
     if (foundItem) {
       setOrderBoxBarcode(+foundItem);
@@ -47,7 +47,7 @@ function App() {
 
   const handleKeyboardResult = (value) =>
     boxesBarcodes.includes(Number(value))
-      ? boxesGo(value)
+      ? checkBoxes(value)
       : setKeyboardResult(value);
 
   return (
