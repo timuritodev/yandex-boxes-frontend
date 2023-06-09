@@ -6,31 +6,44 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
-import { convertToBoxArray, convertToBarcodeArray } from "../../utils/utils";
+// eslint-disable-next-line no-unused-vars
+import {
+  convertToBoxArray,
+  generateUniqueKey,
+  getBoxNameByBarcode,
+  // eslint-disable-next-line no-unused-vars
+} from "../../utils/utils";
 import { hardcodeData } from "../../utils/constants";
+
+const boxesList = convertToBoxArray(hardcodeData.carton);
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [OrderBoxBarcode, setOrderBoxBarcode] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [boxes, setBoxes] = useState(boxesList);
 
   // массив коробок которые были проверены — для отправки бекам
   const checkedBoxes = [];
 
-  console.log(convertToBoxArray(hardcodeData.carton));
-
   const handleKeyboardResult = (value) => {
     // это все в случае коробки — для карточек нужна другая ветка сценария, можно их отделить друг от друга с помощью проверки, входит ли value в список штрихкодов, которые есть у коробок
-    const foundItem = convertToBarcodeArray(hardcodeData).find(
-      (item) => Number(item) === Number(value),
-    );
+    const foundItem = boxes.find((item) => Number(item) === Number(value));
     if (foundItem) {
       setOrderBoxBarcode(+foundItem);
       checkedBoxes.push(+foundItem);
+    } else {
+      // здесь нужна проверка есть ли вообще указанный штрих код в массиве со штрих кодами
+      const newBox = {
+        id: generateUniqueKey(),
+        name: getBoxNameByBarcode(+value),
+        barcode: +value,
+      };
+      setBoxes([newBox, ...boxes]);
+      checkedBoxes.push(+value);
     }
-    convertToBoxArray(+value);
-    checkedBoxes.push(+value);
   };
 
   return (
@@ -43,7 +56,7 @@ function App() {
           element={
             <Main
               result={KeyboardResult}
-              boxData={convertToBoxArray(hardcodeData.carton)}
+              boxes={boxes}
               OrderBoxBarcode={OrderBoxBarcode}
             />
           }
