@@ -13,7 +13,7 @@ import {
   getBoxNameByBarcode,
   // eslint-disable-next-line no-unused-vars
 } from "../../utils/utils";
-import { hardcodeData } from "../../utils/constants";
+import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
@@ -28,8 +28,7 @@ function App() {
   // массив коробок которые были проверены — для отправки бекам
   const checkedBoxes = [];
 
-  const handleKeyboardResult = (value) => {
-    // это все в случае коробки — для карточек нужна другая ветка сценария, можно их отделить друг от друга с помощью проверки, входит ли value в список штрихкодов, которые есть у коробок
+  function boxesGo(value) {
     const foundItem = boxes.find((item) => Number(item) === Number(value));
     if (foundItem) {
       setOrderBoxBarcode(+foundItem);
@@ -44,7 +43,12 @@ function App() {
       setBoxes([newBox, ...boxes]);
       checkedBoxes.push(+value);
     }
-  };
+  }
+
+  const handleKeyboardResult = (value) =>
+    boxesBarcodes.includes(Number(value))
+      ? boxesGo(value)
+      : setKeyboardResult(value);
 
   return (
     <div className="App">

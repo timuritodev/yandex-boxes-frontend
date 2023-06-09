@@ -30,49 +30,51 @@ const boxData = [
   {
     id: 1,
     name: "Коробка YMA",
-    barcode: 444,
+    barcode: 111,
   },
   {
     id: 2,
     name: "Коробка YMC",
-    barcode: 5555,
+    barcode: 222,
   },
   {
     id: 3,
     name: "Пакет MYC",
-    barcode: 6666,
+    barcode: 333,
   },
   {
     id: 4,
     name: "Коробка YMF",
-    barcode: 777,
+    barcode: 444,
   },
   {
     id: 5,
     name: "Коробка MYF",
-    barcode: 888,
+    barcode: 555,
   },
   {
     id: 6,
     name: "Пакет MYA",
-    barcode: 999,
+    barcode: 666,
   },
   {
     id: 7,
     name: "Пакет MYD",
-    barcode: 344,
+    barcode: 777,
   },
   {
     id: 8,
     name: "Пакет MYB",
-    barcode: 56565,
+    barcode: 888,
   },
   {
     id: 9,
     name: "Пакет MYE",
-    barcode: 6756,
+    barcode: 999,
   },
 ];
+
+const boxesBarcodes = [111, 222, 333, 444, 555, 666, 777, 888, 999];
 
 const styleBoxesMap = {
   "Коробка YMA": { boxColor: "carton_blue", textColor: "carton__name_blue" },
@@ -102,4 +104,4 @@ const styleBoxesMap = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export { boxData, styleBoxesMap, hardcodeData };
+export { boxData, styleBoxesMap, hardcodeData, boxesBarcodes };
