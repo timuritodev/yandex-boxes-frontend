@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 
-const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
+import { generateUniqueKey } from "../../utils/utils";
 
 function NumberKeyboard({ onResult }) {
   const [inputValue, setInputValue] = useState("");

@@ -6,63 +6,20 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
+import { convertToBoxArray } from "../../utils/utils";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
 
-  console.log(KeyboardResult);
-
-  const boxData = [
-    {
-      id: 1,
-      name: "Коробка YMA",
-      barcode: 444,
-    },
-    {
-      id: 2,
-      name: "Коробка YMC",
-      barcode: 5555,
-    },
-    {
-      id: 3,
-      name: "Пакет MYC",
-      barcode: 6666,
-    },
-    {
-      id: 4,
-      name: "Коробка YMF",
-      barcode: 777,
-    },
-    {
-      id: 5,
-      name: "Коробка MYF",
-      barcode: 888,
-    },
-    {
-      id: 6,
-      name: "Пакет MYA",
-      barcode: 999,
-    },
-    {
-      id: 7,
-      name: "Пакет MYD",
-      barcode: 344,
-    },
-    {
-      id: 8,
-      name: "Пакет MYB",
-      barcode: 56565,
-    },
-    {
-      id: 9,
-      name: "Пакет MYE",
-      barcode: 6756,
-    },
-  ];
+  const boxesForRendering = convertToBoxArray({
+    order_id: 54574564,
+    carton: 6666,
+    items: [],
+  });
 
   const handleKeyboardResult = (value) => {
-    // console.log(value);
+    console.log(value);
     setKeyboardResult(value);
   };
 
@@ -73,7 +30,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route
           path="main"
-          element={<Main result={KeyboardResult} boxData={boxData} />}
+          element={<Main result={KeyboardResult} boxData={boxesForRendering} />}
         />
         <Route path="problempage" element={<Problempage />} />
         <Route
