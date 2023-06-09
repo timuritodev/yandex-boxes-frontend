@@ -1,3 +1,31 @@
+const hardcodeData = {
+  order_id: 54574564,
+  carton: 444,
+  items: [
+    {
+      name: "Очень важная собака, которая улыбается",
+      barcode: 1232973912,
+      id: 1,
+      packageType: "Пакет",
+      amount: 2,
+    },
+    {
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871234,
+      id: 2,
+      packageType: "Пузырчатая плёнка",
+      amount: 3,
+    },
+    {
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 4444,
+      id: 2,
+      packageType: "Пузырчатая плёнка",
+      amount: 1,
+    },
+  ],
+};
+
 const boxData = [
   {
     id: 1,
@@ -74,4 +102,4 @@ const styleBoxesMap = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export { boxData, styleBoxesMap };
+export { boxData, styleBoxesMap, hardcodeData };

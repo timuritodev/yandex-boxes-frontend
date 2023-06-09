@@ -37,4 +37,22 @@ const convertToBoxArray = (data) => {
   return boxData;
 };
 
-export { getBoxNameByBarcode, convertToBoxArray, generateUniqueKey };
+function convertToBarcodeArray(data) {
+  const boxes = [];
+  if (typeof data.carton === "number") {
+    boxes.push(data.carton);
+  }
+  data.items.forEach((item) => {
+    if (typeof item.barcode === "number" && item.amount >= 1) {
+      boxes.push(...Array(item.amount).fill(item.barcode));
+    }
+  });
+  return boxes;
+}
+
+export {
+  getBoxNameByBarcode,
+  convertToBoxArray,
+  generateUniqueKey,
+  convertToBarcodeArray,
+};
