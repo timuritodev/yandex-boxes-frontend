@@ -79,3 +79,16 @@
   top: 12px;
   left: -55px;
 }
+
+.footer__button-text_back:before {
+  background: url(../../images/arrow_icon_footer.svg);
+  width: 21.12px;
+  height: 21.12px;
+  background-repeat: no-repeat;
+  top: 25.5px;
+  left: -38.45px;
+}
+
+.footer__button_back {
+  width: 453px;
+}

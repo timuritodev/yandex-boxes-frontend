@@ -1,4 +1,4 @@
-.box {
+.carton {
   width: 295px;
   height: 97px;
   display: flex;
@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-.box__name {
+.carton__name {
   display: block;
   font-family: "Yandex Sans Text";
   font-style: normal;
@@ -24,83 +24,163 @@
 
 /*вариации цветов*/
 
-.box_blue {
+.carton_blue {
   border-color: #0044ee;
   background-color: white;
 }
 
-.box_green {
+.carton_green {
   border-color: #16523b;
   background-color: white;
 }
 
-.box_lightblue {
+.carton_lightblue {
   border-color: #25add6;
   background-color: white;
 }
 
-.box_orange {
+.carton_orange {
   border-color: #f29a00;
   background-color: white;
 }
 
-.box_purple {
+.carton_purple {
   border-color: #8a35b3;
   background-color: white;
 }
 
-.box_red {
+.carton_red {
   border-color: #f73e47;
   background-color: white;
 }
 
-.box_gray {
+.carton_gray {
   border-color: #545554;
   background-color: white;
 }
 
-.box_darkred {
+.carton_darkred {
   border-color: #a7070f;
   background-color: white;
 }
 
-.box_darkyellow {
+.carton_darkyellow {
   border-color: #5d4a00;
   background-color: white;
 }
 
-.box__name_blue {
+.carton__name_blue {
   color: #0044ee;
 }
 
-.box__name_green {
+.carton__name_green {
   color: #16523b;
 }
 
-.box__name_lightblue {
+.carton__name_lightblue {
   color: #25add6;
 }
 
-.box__name_orange {
+.carton__name_orange {
   color: #f29a00;
 }
 
-.box__name_purple {
+.carton__name_purple {
   color: #8a35b3;
 }
 
-.box__name_red {
+.carton__name_red {
   color: #f73e47;
 }
 
-.box__name_gray {
+.carton__name_gray {
   color: #545554;
 }
 
-.box__name_darkred {
+.carton__name_darkred {
   color: #a7070f;
 }
 
-.box__name_darkyellow {
+.carton__name_darkyellow {
   color: #5d4a00;
+}
+
+.carton_blue_active {
+  background: #0044ee;
+}
+
+.carton_green_active {
+  background: #16523b;
+}
+
+.carton__name_blue_active {
+  color: white;
+}
+
+.carton__name_green_active {
+  color: white;
+}
+
+.carton_lightblue_active {
+  background: #25add6;
+}
+
+.carton_orange_active {
+  background: #f29a00;
+}
+
+.carton_purple_active {
+  background: #8a35b3;
+}
+
+.carton_red_active {
+  background: #f73e47;
+}
+
+.carton_gray_active {
+  background: #545554;
+}
+
+.carton_darkred_active {
+  background: #a7070f;
+}
+
+.carton_darkyellow_active {
+  background: #5d4a00;
+}
+
+.carton__name_blue_active {
+  color: white;
+}
+
+.carton__name_green_active {
+  color: white;
+}
+
+.carton__name_lightblue_active {
+  color: white;
+}
+
+.carton__name_orange_active {
+  color: white;
+}
+
+.carton__name_purple_active {
+  color: white;
+}
+
+.carton__name_red_active {
+  color: white;
+}
+
+.carton__name_gray_active {
+  color: white;
+}
+
+.carton__name_darkred_active {
+  color: white;
+}
+
+.carton__name_darkyellow_active {
+  color: white;
 }

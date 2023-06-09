@@ -1,41 +1,48 @@
-/* import "./Box.css";
-
-function Box({ name }) {
-  return (
-    <div className="box">
-      <p className="box__name">{name}</p>
-    </div>
-  );
-}
-
-export default Box; */
-
 import "./Box.css";
 
 function Box({ name }) {
   const styleMap = {
-    "Коробка YMA": { boxColor: "box_blue", textColor: "box__name_blue" },
-    "Коробка YMC": { boxColor: "box_green", textColor: "box__name_green" },
-    "Пакет MYC": {
-      boxColor: "box_lightblue",
-      textColor: "box__name_lightblue",
+    "Коробка YMA": {
+      boxColor: "carton_blue",
+      textColor: "carton__name_blue",
     },
-    "Коробка YMF": { boxColor: "box_orange", textColor: "box__name_orange" },
-    "Коробка MYF": { boxColor: "box_purple", textColor: "box__name_purple" },
-    "Пакет MYA": { boxColor: "box_red", textColor: "box__name_red" },
-    "Пакет MYD": { boxColor: "box_gray", textColor: "box__name_gray" },
-    "Пакет MYB": { boxColor: "box_darkred", textColor: "box__name_darkred" },
+    "Коробка YMC": {
+      boxColor: "carton_green",
+      textColor: "carton__name_green",
+    },
+    "Пакет MYC": {
+      boxColor: "carton_lightblue",
+      textColor: "carton__name_lightblue",
+    },
+    "Коробка YMF": {
+      boxColor: "carton_orange",
+      textColor: "carton__name_orange",
+    },
+    "Коробка MYF": {
+      boxColor: "carton_purple",
+      textColor: "carton__name_purple",
+    },
+    "Пакет MYA": { boxColor: "carton_red", textColor: "carton__name_red" },
+    "Пакет MYD": { boxColor: "carton_gray", textColor: "carton__name_gray" },
+    "Пакет MYB": {
+      boxColor: "carton_darkred",
+      textColor: "carton__name_darkred",
+    },
     "Пакет MYE": {
-      boxColor: "box_darkyellow",
-      textColor: "box__name_darkyellow",
+      boxColor: "carton_darkyellow",
+      textColor: "carton__name_darkyellow",
     },
   };
 
   const { boxColor, textColor } = styleMap[name] || {};
 
+  const boxClasses = `carton ${boxColor}`;
+
+  const textClasses = `carton__name ${textColor}`;
+
   return (
-    <div className={`box ${boxColor}`}>
-      <p className={`box__name ${textColor}`}>{name}</p>
+    <div className={boxClasses}>
+      <p className={textClasses}>{name}</p>
     </div>
   );
 }
