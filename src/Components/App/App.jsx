@@ -8,8 +8,17 @@ import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import { convertToBoxArray } from "../../utils/utils";
 
+// объявление функций для сохранения и получения данных из localStorage
+const saveCardContainerGreenToLocalStorage = (barcode, value) => {
+  localStorage.setItem(`cardContainerGreen_${barcode}`, String(value));
+};
+
+const getCardContainerGreenFromLocalStorage = (barcode) => {
+  const value = localStorage.getItem(`cardContainerGreen_${barcode}`);
+  return value === "true";
+};
+
 function App() {
-  // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
 
   const boxesForRendering = convertToBoxArray({
@@ -30,7 +39,14 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route
           path="main"
-          element={<Main result={KeyboardResult} boxData={boxesForRendering} />}
+          element={
+            <Main
+              result={KeyboardResult}
+              boxData={boxesForRendering}
+              saveToLocalStorage={saveCardContainerGreenToLocalStorage}
+              getFromLocalStorage={getCardContainerGreenFromLocalStorage}
+            />
+          }
         />
         <Route path="problempage" element={<Problempage />} />
         <Route

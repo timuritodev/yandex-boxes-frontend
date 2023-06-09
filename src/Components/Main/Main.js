@@ -7,7 +7,7 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ result, boxData }) {
+function Main({ result, boxData, getFromLocalStorage, saveToLocalStorage}) {
   // подсчет кол-ва товара
   const [itemCount, setItemCount] = React.useState(0);
 
@@ -24,7 +24,7 @@ function Main({ result, boxData }) {
         </div>
         <div>
           <Boxes boxData={boxData} />
-          <CardList result={result} onItemCountChange={handleItemCountChange} />
+          <CardList result={result} onItemCountChange={handleItemCountChange} getFromLocalStorage={getFromLocalStorage} saveToLocalStorage={saveToLocalStorage}/>
         </div>
         <UniButton currentPage="main" />
       </main>

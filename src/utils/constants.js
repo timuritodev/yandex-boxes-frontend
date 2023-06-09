@@ -1,3 +1,6 @@
+import speaker from "../images/speaker.svg";
+import corgi from "../images/test.jpg";
+
 const boxData = [
   {
     id: 1,
@@ -73,5 +76,56 @@ const styleBoxesMap = {
   },
 };
 
+const cardsData = [
+  {
+    name: "Очень важная собака, которая улыбается",
+    barcode: 1232973912,
+    picture: corgi,
+    id: 1,
+    packageType: "Пакет",
+    amount: 2,
+  },
+  {
+    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+    barcode: 1237871234,
+    picture: speaker,
+    id: 2,
+    packageType: "Пузырчатая плёнка",
+    amount: 3,
+  },
+  {
+    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+    barcode: 1237871234,
+    picture: speaker,
+    id: 3,
+    packageType: "Стрейтч-плёнка",
+    amount: 1,
+  },
+  {
+    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+    barcode: 1237871234,
+    picture: speaker,
+    id: 4,
+    packageType: "Пузырчатая плёнка",
+    amount: 1,
+  },
+  {
+    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+    barcode: 1237871234,
+    picture: speaker,
+    id: 5,
+    packageType: "Пузырчатая плёнка",
+    amount: 1,
+  },
+  {
+    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+    barcode: 1237871234,
+    picture: speaker,
+    id: 6,
+    packageType: "Пузырчатая плёнка",
+    amount: 1,
+  },
+];
+
 // eslint-disable-next-line import/prefer-default-export
-export { boxData, styleBoxesMap };
+export { boxData, styleBoxesMap, cardsData };
