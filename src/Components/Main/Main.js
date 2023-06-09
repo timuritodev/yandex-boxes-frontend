@@ -7,7 +7,7 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ result, boxes, OrderBoxBarcode }) {
+function Main({ result, boxes, boxBarcode, checkedBoxes }) {
   // подсчет кол-ва товара
   const [itemCount, setItemCount] = React.useState(0);
 
@@ -23,7 +23,11 @@ function Main({ result, boxes, OrderBoxBarcode }) {
           <ProblemButton />
         </div>
         <div>
-          <Boxes boxes={boxes} OrderBoxBarcode={OrderBoxBarcode} />
+          <Boxes
+            boxes={boxes}
+            boxBarcode={boxBarcode}
+            checkedBoxes={checkedBoxes}
+          />
           <CardList result={result} onItemCountChange={handleItemCountChange} />
         </div>
         <UniButton currentPage="main" />

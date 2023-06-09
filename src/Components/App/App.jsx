@@ -21,27 +21,38 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [OrderBoxBarcode, setOrderBoxBarcode] = useState(0);
+  const [boxBarcode, setBoxBarcode] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [boxes, setBoxes] = useState(boxesList);
+  const [checkedBoxes, setCheckedBoxes] = useState([]);
 
   // массив коробок которые были проверены — для отправки бекам
-  const checkedBoxes = [];
+  // const checkedBoxes = [];
 
   function checkBoxes(value) {
-    const foundItem = boxes.find((item) => Number(item) === Number(value));
+    // определяем является ли отсканированная только что коробка той что была порекомендована системой
+    const foundItem = boxes.find((item) => item.barcode === Number(value));
+    // если да то
     if (foundItem) {
-      setOrderBoxBarcode(+foundItem);
-      checkedBoxes.push(+foundItem);
+      // отправляем штрих код в ребенка для выбора цвета коробки
+      setBoxBarcode(foundItem.barcode);
+      // добавляем штрих код в список отсканированных
+      // checkedBoxes.push(+foundItem);
+      setCheckedBoxes([foundItem.barcode, ...checkedBoxes]);
+      // если нет то
     } else {
-      // здесь нужна проверка есть ли вообще указанный штрих код в массиве со штрих кодами
+      // записываем введенный штрих код для выбора цвета коробки
+      setBoxBarcode(+value);
+      // если коробка пришла от упаковщика, добалвяем ее в массив
       const newBox = {
         id: generateUniqueKey(),
         name: getBoxNameByBarcode(+value),
         barcode: +value,
       };
       setBoxes([newBox, ...boxes]);
-      checkedBoxes.push(+value);
+      // и добавляем ее в массив отсканированных
+      // checkedBoxes.push(+value);
+      setCheckedBoxes([+value, ...checkedBoxes]);
     }
   }
 
@@ -61,7 +72,8 @@ function App() {
             <Main
               result={KeyboardResult}
               boxes={boxes}
-              OrderBoxBarcode={OrderBoxBarcode}
+              boxBarcode={boxBarcode}
+              checkedBoxes={checkedBoxes}
             />
           }
         />
