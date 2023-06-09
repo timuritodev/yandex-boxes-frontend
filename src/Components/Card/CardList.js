@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
 import { cardsData } from '../../utils/constants';
 import Card from "./Card";
 import "./CardList.css";
 
-function CardList({ result, onItemCountChange, getFromLocalStorage, saveToLocalStorage }) {
-// подсчет кол-ва товара
-  const itemCount = cardsData.length;
-  useEffect(() => {
-    onItemCountChange(itemCount);
-  }, [itemCount, onItemCountChange]);
-
+function CardList({ result, getFromLocalStorage, saveToLocalStorage }) {
   return (
     <section className="cardList">
       {cardsData.map((item) => {

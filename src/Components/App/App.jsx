@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { cardsData } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
@@ -20,6 +21,7 @@ const getCardContainerGreenFromLocalStorage = (barcode) => {
 
 function App() {
   const [KeyboardResult, setKeyboardResult] = useState("");
+  const goodsCount = cardsData.length;
 
   const boxesForRendering = convertToBoxArray({
     order_id: 54574564,
@@ -43,6 +45,7 @@ function App() {
             <Main
               result={KeyboardResult}
               boxData={boxesForRendering}
+              goodsCount={goodsCount}
               saveToLocalStorage={saveCardContainerGreenToLocalStorage}
               getFromLocalStorage={getCardContainerGreenFromLocalStorage}
             />

@@ -1,4 +1,3 @@
-import React from "react";
 import "./Main.css";
 import OrderInformation from "../OrderInformation/OrderInformation";
 import ProblemButton from "../ProblemButton/ProblemButton";
@@ -7,24 +6,17 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ result, boxData, getFromLocalStorage, saveToLocalStorage}) {
-  // подсчет кол-ва товара
-  const [itemCount, setItemCount] = React.useState(0);
-
-  const handleItemCountChange = (count) => {
-    setItemCount(count);
-  };
-
+function Main({ result, boxData, goodsCount, getFromLocalStorage, saveToLocalStorage}) {
   return (
     <>
       <main className="main">
         <div>
-          <OrderInformation itemCount={itemCount} />
+          <OrderInformation goodsCount={goodsCount} />
           <ProblemButton />
         </div>
         <div>
           <Boxes boxData={boxData} />
-          <CardList result={result} onItemCountChange={handleItemCountChange} getFromLocalStorage={getFromLocalStorage} saveToLocalStorage={saveToLocalStorage}/>
+          <CardList result={result} getFromLocalStorage={getFromLocalStorage} saveToLocalStorage={saveToLocalStorage}/>
         </div>
         <UniButton currentPage="main" />
       </main>
