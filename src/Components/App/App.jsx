@@ -17,17 +17,20 @@ import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
+// отпочковать массив товаров из данных от бека
+// const itemList = hardcodeData.item.
+
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
   // eslint-disable-next-line no-unused-vars
+  // штрих код который отправляется в компонент коробки для выбора стиля
   const [boxBarcode, setBoxBarcode] = useState(0);
   // eslint-disable-next-line no-unused-vars
+  // список всех коробок
   const [boxes, setBoxes] = useState(boxesList);
+  // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
-
-  // массив коробок которые были проверены — для отправки бекам
-  // const checkedBoxes = [];
 
   function checkBoxes(value) {
     // определяем является ли отсканированная только что коробка той что была порекомендована системой
@@ -57,9 +60,12 @@ function App() {
   }
 
   const handleKeyboardResult = (value) =>
+    // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
-      ? checkBoxes(value)
-      : setKeyboardResult(value);
+      ? // если да то, выполняется функция checkBoxes
+        checkBoxes(value)
+      : // если нет то выполняется код ниже (тут будет вызов функции тимура)
+        setKeyboardResult(value);
 
   return (
     <div className="App">
