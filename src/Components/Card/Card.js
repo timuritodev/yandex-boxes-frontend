@@ -5,6 +5,7 @@
 import "./Card.css";
 import { useState } from "react";
 import barcodepic from "../../images/barcode.svg";
+import Progressbar from "../Progressbar/Progressbar";
 
 function Card({ name, barcode, picture, packageType, amount, cardBarcode, checkedCards }) {
   const [expanded, setExpanded] = useState(false);
@@ -39,7 +40,10 @@ function Card({ name, barcode, picture, packageType, amount, cardBarcode, checke
         </div>
         <div className="box__container">
           <p className={`box__name ${boxName}`}>{packageType}</p>
-          <p className="box__amount">{amount}шт.</p>
+          <div>
+            <p className="box__amount">{amount}шт.</p>
+            <Progressbar amount={amount} />
+          </div>
         </div>
         {amount > 1 && (
           <div
