@@ -6,22 +6,66 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
-import { convertToBoxArray } from "../../utils/utils";
+// eslint-disable-next-line no-unused-vars
+import {
+  convertToBoxArray,
+  generateUniqueKey,
+  getBoxNameByBarcode,
+  // eslint-disable-next-line no-unused-vars
+} from "../../utils/utils";
+import { hardcodeData, boxesBarcodes } from "../../utils/constants";
+
+const boxesList = convertToBoxArray(hardcodeData.carton);
+
+// отпочковать массив товаров из данных от бека
+// const itemList = hardcodeData.item.
 
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  // штрих код который отправляется в компонент коробки для выбора стиля
+  const [boxBarcode, setBoxBarcode] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  // список всех коробок
+  const [boxes, setBoxes] = useState(boxesList);
+  // список отсканированных коробок
+  const [checkedBoxes, setCheckedBoxes] = useState([]);
 
-  const boxesForRendering = convertToBoxArray({
-    order_id: 54574564,
-    carton: 6666,
-    items: [],
-  });
+  function checkBoxes(value) {
+    // определяем является ли отсканированная только что коробка той что была порекомендована системой
+    const foundItem = boxes.find((item) => item.barcode === Number(value));
+    // если да то
+    if (foundItem) {
+      // отправляем штрих код в ребенка для выбора цвета коробки
+      setBoxBarcode(foundItem.barcode);
+      // добавляем штрих код в список отсканированных
+      // checkedBoxes.push(+foundItem);
+      setCheckedBoxes([foundItem.barcode, ...checkedBoxes]);
+      // если нет то
+    } else {
+      // записываем введенный штрих код для выбора цвета коробки
+      setBoxBarcode(+value);
+      // если коробка пришла от упаковщика, добалвяем ее в массив
+      const newBox = {
+        id: generateUniqueKey(),
+        name: getBoxNameByBarcode(+value),
+        barcode: +value,
+      };
+      setBoxes([newBox, ...boxes]);
+      // и добавляем ее в массив отсканированных
+      // checkedBoxes.push(+value);
+      setCheckedBoxes([+value, ...checkedBoxes]);
+    }
+  }
 
-  const handleKeyboardResult = (value) => {
-    console.log(value);
-    setKeyboardResult(value);
-  };
+  const handleKeyboardResult = (value) =>
+    // относится ли штрих код к коробкам
+    boxesBarcodes.includes(Number(value))
+      ? // если да то, выполняется функция checkBoxes
+        checkBoxes(value)
+      : // если нет то выполняется код ниже (тут будет вызов функции тимура)
+        setKeyboardResult(value);
 
   return (
     <div className="App">
@@ -30,7 +74,14 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route
           path="main"
-          element={<Main result={KeyboardResult} boxData={boxesForRendering} />}
+          element={
+            <Main
+              result={KeyboardResult}
+              boxes={boxes}
+              boxBarcode={boxBarcode}
+              checkedBoxes={checkedBoxes}
+            />
+          }
         />
         <Route path="problempage" element={<Problempage />} />
         <Route
