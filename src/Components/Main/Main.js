@@ -6,7 +6,7 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ result, boxes, boxBarcode, checkedBoxes, cards }) {
+function Main({ boxes, boxBarcode, checkedBoxes, cards, cardBarcode, checkedCards }) {
   return (
     <>
       <main className="main">
@@ -20,7 +20,11 @@ function Main({ result, boxes, boxBarcode, checkedBoxes, cards }) {
             boxBarcode={boxBarcode}
             checkedBoxes={checkedBoxes}
           />
-          <CardList result={result} cards={cards} />
+          <CardList
+            cards={cards}
+            cardBarcode={cardBarcode}
+            checkedCards={checkedCards}
+          />
         </div>
         <UniButton currentPage="main" />
       </main>

@@ -1,5 +1,7 @@
+/* eslint-disable prefer-object-spread */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
+
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -8,17 +10,14 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
-// eslint-disable-next-line no-unused-vars
 import {
   convertToBoxArray,
   generateUniqueKey,
   getBoxNameByBarcode,
-  // eslint-disable-next-line no-unused-vars
 } from "../../utils/utils";
 import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
 // отпочковать массив товаров из данных от бека
-// eslint-disable-next-line prefer-object-spread
 const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
 
@@ -46,11 +45,8 @@ function App() {
         const newCheckedCards = [...checkedCards, item];
         setCheckedCards(newCheckedCards);
         setCardBarcode(newCardBarcode);
-        return true;
       }
     });
-
-    return false;
   }
 
   function checkBoxes(value) {
@@ -88,8 +84,6 @@ function App() {
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
       checkCards(value);
 
-  console.log(checkedCards);
-  console.log(cardBarcode);
   return (
     <div className="App">
       <Header />
@@ -99,11 +93,12 @@ function App() {
           path="main"
           element={
             <Main
-              result={KeyboardResult}
               boxes={boxes}
               boxBarcode={boxBarcode}
               checkedBoxes={checkedBoxes}
               cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
             />
           }
         />

@@ -23,7 +23,7 @@ const hardcodeData = {
     },
     {
       name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871234,
+      barcode: 1237871212,
       picture: speaker,
       id: 3,
       packageType: "Стрейтч-плёнка",
@@ -31,7 +31,7 @@ const hardcodeData = {
     },
     {
       name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871234,
+      barcode: 1237871278,
       picture: speaker,
       id: 4,
       packageType: "Пузырчатая плёнка",
@@ -39,7 +39,7 @@ const hardcodeData = {
     },
     {
       name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871234,
+      barcode: 1237871290,
       picture: speaker,
       id: 5,
       packageType: "Пузырчатая плёнка",
@@ -47,7 +47,7 @@ const hardcodeData = {
     },
     {
       name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871234,
+      barcode: 1237871261,
       picture: speaker,
       id: 6,
       packageType: "Пузырчатая плёнка",

@@ -1,7 +1,7 @@
 import Card from "./Card";
 import "./CardList.css";
 
-function CardList({ result, cards }) {
+function CardList({ cards, cardBarcode, checkedCards }) {
   return (
     <section className="cardList">
       {cards.map((item) =>
@@ -13,7 +13,8 @@ function CardList({ result, cards }) {
           picture={item.picture}
           packageType={item.packageType}
           amount={item.amount}
-          result={result}
+          cardBarcode={cardBarcode}
+          checkedCards={checkedCards}
         />
       )
       )}
