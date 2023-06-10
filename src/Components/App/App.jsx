@@ -26,6 +26,8 @@ function App() {
 
   // eslint-disable-next-line no-unused-vars
   const [cards, setCards] = useState(cardList)
+  // eslint-disable-next-line no-unused-vars
+  const [checkedCards, setCheckedCards] = useState([]);
 
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
@@ -37,6 +39,20 @@ function App() {
   const [boxes, setBoxes] = useState(boxesList);
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
+
+  // eslint-disable-next-line no-unused-vars
+  function checkCards(value) {
+    // eslint-disable-next-line consistent-return
+    cardList.forEach((item) => {
+      if (item.barcode === Number(value)) {
+        const newCheckedCards = [...checkedCards, item.barcode];
+        setCheckedCards(newCheckedCards);
+        return true;
+      }
+    });
+
+    return false;
+  }
 
   function checkBoxes(value) {
     // определяем является ли отсканированная только что коробка той что была порекомендована системой
@@ -71,7 +87,9 @@ function App() {
       ? // если да то, выполняется функция checkBoxes
       checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-      setKeyboardResult(value);
+      checkCards(value);
+
+  console.log(checkedCards);
 
   return (
     <div className="App">
