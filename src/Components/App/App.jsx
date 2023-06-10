@@ -20,6 +20,7 @@ import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 // отпочковать массив товаров из данных от бека
 const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
+const cardListLength = cardList.length;
 
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
@@ -93,6 +94,7 @@ function App() {
           path="main"
           element={
             <Main
+              cardListLength={cardListLength}
               boxes={boxes}
               boxBarcode={boxBarcode}
               checkedBoxes={checkedBoxes}
