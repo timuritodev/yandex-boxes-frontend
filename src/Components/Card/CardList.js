@@ -1,62 +1,12 @@
-import { useEffect } from 'react';
 import Card from "./Card";
 import "./CardList.css";
-import speaker from "../../images/speaker.svg";
-import corgi from "../../images/test.jpg";
+import { hardcodeData } from '../../utils/constants';
 
-const data = [
-  {
-    name: "Очень важная собака, которая улыбается",
-    barcode: 1232973912,
-    picture: corgi,
-    id: 1,
-    packageType: "Пакет",
-    amount: 2,
-  },
-  {
-    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    barcode: 1237871234,
-    picture: speaker,
-    id: 2,
-    packageType: "Пузырчатая плёнка",
-    amount: 3,
-  },
-  {
-    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    barcode: 1237871234,
-    picture: speaker,
-    id: 3,
-    packageType: "Стрейтч-плёнка",
-    amount: 1,
-  },
-  {
-    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    barcode: 1237871234,
-    picture: speaker,
-    id: 4,
-    packageType: "Пузырчатая плёнка",
-    amount: 1,
-  },
-  {
-    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    barcode: 1237871234,
-    picture: speaker,
-    id: 5,
-    packageType: "Пузырчатая плёнка",
-    amount: 1,
-  },
-  {
-    name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    barcode: 1237871234,
-    picture: speaker,
-    id: 6,
-    packageType: "Пузырчатая плёнка",
-    amount: 1,
-  },
-];
-
+// eslint-disable-next-line prefer-object-spread
+const clonedData = Object.assign({}, hardcodeData);
+const data = clonedData.items;
 // сохранения отсканированного товара в localstorage
-function CardList({ result, onItemCountChange }) {
+function CardList({ result }) {
   const saveCardContainerGreenToLocalStorage = (barcode, value) => {
     localStorage.setItem(`cardContainerGreen_${barcode}`, String(value));
   };
@@ -67,11 +17,6 @@ function CardList({ result, onItemCountChange }) {
   };
 
 // подсчет кол-ва товара
-  const itemCount = data.length;
-  useEffect(() => {
-    onItemCountChange(itemCount);
-  }, [itemCount, onItemCountChange]);
-
   return (
     <section className="cardList">
       {data.map((item) => {
