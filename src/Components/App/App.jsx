@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -24,29 +26,26 @@ const boxesList = convertToBoxArray(hardcodeData.carton);
 
 function App() {
 
-  // eslint-disable-next-line no-unused-vars
   const [cards, setCards] = useState(cardList)
-  // eslint-disable-next-line no-unused-vars
+  const [cardBarcode, setCardBarcode] = useState([]);
   const [checkedCards, setCheckedCards] = useState([]);
 
-  // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
-  // eslint-disable-next-line no-unused-vars
+
   // штрих код который отправляется в компонент коробки для выбора стиля
   const [boxBarcode, setBoxBarcode] = useState(0);
-  // eslint-disable-next-line no-unused-vars
   // список всех коробок
   const [boxes, setBoxes] = useState(boxesList);
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
 
-  // eslint-disable-next-line no-unused-vars
   function checkCards(value) {
-    // eslint-disable-next-line consistent-return
     cardList.forEach((item) => {
       if (item.barcode === Number(value)) {
-        const newCheckedCards = [...checkedCards, item.barcode];
+        const newCardBarcode = [...cardBarcode, item.barcode];
+        const newCheckedCards = [...checkedCards, item];
         setCheckedCards(newCheckedCards);
+        setCardBarcode(newCardBarcode);
         return true;
       }
     });
@@ -90,7 +89,7 @@ function App() {
       checkCards(value);
 
   console.log(checkedCards);
-
+  console.log(cardBarcode);
   return (
     <div className="App">
       <Header />
