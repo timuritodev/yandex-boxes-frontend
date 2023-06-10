@@ -1,4 +1,3 @@
-import React from "react";
 import "./Main.css";
 import OrderInformation from "../OrderInformation/OrderInformation";
 import ProblemButton from "../ProblemButton/ProblemButton";
@@ -7,19 +6,12 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ result, boxes, boxBarcode, checkedBoxes }) {
-  // подсчет кол-ва товара
-  const [itemCount, setItemCount] = React.useState(0);
-
-  const handleItemCountChange = (count) => {
-    setItemCount(count);
-  };
-
+function Main({ result, boxes, boxBarcode, checkedBoxes, cards }) {
   return (
     <>
       <main className="main">
         <div>
-          <OrderInformation itemCount={itemCount} />
+          <OrderInformation />
           <ProblemButton />
         </div>
         <div>
@@ -28,7 +20,7 @@ function Main({ result, boxes, boxBarcode, checkedBoxes }) {
             boxBarcode={boxBarcode}
             checkedBoxes={checkedBoxes}
           />
-          <CardList result={result} onItemCountChange={handleItemCountChange} />
+          <CardList result={result} cards={cards} />
         </div>
         <UniButton currentPage="main" />
       </main>

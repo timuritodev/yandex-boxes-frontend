@@ -15,12 +15,18 @@ import {
 } from "../../utils/utils";
 import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
+// отпочковать массив товаров из данных от бека
+// eslint-disable-next-line prefer-object-spread
+const clonedCardList = Object.assign({}, hardcodeData);
+const cardList = clonedCardList.items;
+
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
-// отпочковать массив товаров из данных от бека
-// const itemList = hardcodeData.item.
-
 function App() {
+
+  // eslint-disable-next-line no-unused-vars
+  const [cards, setCards] = useState(cardList)
+
   // eslint-disable-next-line no-unused-vars
   const [KeyboardResult, setKeyboardResult] = useState("");
   // eslint-disable-next-line no-unused-vars
@@ -63,9 +69,9 @@ function App() {
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
       ? // если да то, выполняется функция checkBoxes
-        checkBoxes(value)
+      checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-        setKeyboardResult(value);
+      setKeyboardResult(value);
 
   return (
     <div className="App">
@@ -80,6 +86,7 @@ function App() {
               boxes={boxes}
               boxBarcode={boxBarcode}
               checkedBoxes={checkedBoxes}
+              cards={cards}
             />
           }
         />
