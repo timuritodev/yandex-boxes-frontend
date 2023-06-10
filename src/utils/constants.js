@@ -1,3 +1,6 @@
+import speaker from "../images/speaker.svg";
+import corgi from "../images/test.jpg";
+
 const hardcodeData = {
   order_id: 54574564,
   carton: 444,
@@ -5,6 +8,7 @@ const hardcodeData = {
     {
       name: "Очень важная собака, которая улыбается",
       barcode: 1232973912,
+      picture: corgi,
       id: 1,
       packageType: "Пакет",
       amount: 2,
@@ -12,14 +16,40 @@ const hardcodeData = {
     {
       name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
       barcode: 1237871234,
+      picture: speaker,
       id: 2,
       packageType: "Пузырчатая плёнка",
       amount: 3,
     },
     {
       name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 4444,
-      id: 2,
+      barcode: 1237871212,
+      picture: speaker,
+      id: 3,
+      packageType: "Стрейтч-плёнка",
+      amount: 1,
+    },
+    {
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871278,
+      picture: speaker,
+      id: 4,
+      packageType: "Пузырчатая плёнка",
+      amount: 1,
+    },
+    {
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871290,
+      picture: speaker,
+      id: 5,
+      packageType: "Пузырчатая плёнка",
+      amount: 1,
+    },
+    {
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871261,
+      picture: speaker,
+      id: 6,
       packageType: "Пузырчатая плёнка",
       amount: 1,
     },

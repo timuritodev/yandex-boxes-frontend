@@ -1,3 +1,7 @@
+/* eslint-disable prefer-object-spread */
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
+
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -6,31 +10,44 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
-// eslint-disable-next-line no-unused-vars
 import {
   convertToBoxArray,
   generateUniqueKey,
   getBoxNameByBarcode,
-  // eslint-disable-next-line no-unused-vars
 } from "../../utils/utils";
 import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
+// отпочковать массив товаров из данных от бека
+const clonedCardList = Object.assign({}, hardcodeData);
+const cardList = clonedCardList.items;
+
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
-// отпочковать массив товаров из данных от бека
-// const itemList = hardcodeData.item.
-
 function App() {
-  // eslint-disable-next-line no-unused-vars
+
+  const [cards, setCards] = useState(cardList)
+  const [cardBarcode, setCardBarcode] = useState([]);
+  const [checkedCards, setCheckedCards] = useState([]);
+
   const [KeyboardResult, setKeyboardResult] = useState("");
-  // eslint-disable-next-line no-unused-vars
+
   // штрих код который отправляется в компонент коробки для выбора стиля
   const [boxBarcode, setBoxBarcode] = useState(0);
-  // eslint-disable-next-line no-unused-vars
   // список всех коробок
   const [boxes, setBoxes] = useState(boxesList);
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
+
+  function checkCards(value) {
+    cardList.forEach((item) => {
+      if (item.barcode === Number(value)) {
+        const newCardBarcode = [...cardBarcode, item.barcode];
+        const newCheckedCards = [...checkedCards, item];
+        setCheckedCards(newCheckedCards);
+        setCardBarcode(newCardBarcode);
+      }
+    });
+  }
 
   function checkBoxes(value) {
     // определяем является ли отсканированная только что коробка той что была порекомендована системой
@@ -63,9 +80,9 @@ function App() {
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
       ? // если да то, выполняется функция checkBoxes
-        checkBoxes(value)
+      checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-        setKeyboardResult(value);
+      checkCards(value);
 
   return (
     <div className="App">
@@ -76,10 +93,12 @@ function App() {
           path="main"
           element={
             <Main
-              result={KeyboardResult}
               boxes={boxes}
               boxBarcode={boxBarcode}
               checkedBoxes={checkedBoxes}
+              cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
             />
           }
         />
