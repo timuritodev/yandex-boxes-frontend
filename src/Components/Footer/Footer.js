@@ -1,44 +1,71 @@
-import "./Footer.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+/* import "./Footer.css";
+import { useLocation } from "react-router-dom";
 import NdaBox from "./NdaBox/NdaFox";
+import ChangeCompositionButton from "./ChangeСompositionButton/ChangeCompositionButton";
+import KeyboardButton from "./KeyboardButton/KeyboardButton";
+import BackButton from "./BackButton/BackButton";
 
 function Footer() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   return (
-    <footer className="footer">
+    <footer
+      className={`footer ${
+        location.pathname === "/problempage" ? "footer__anomaly" : ""
+      }`}
+    >
       <div className="footer__box">
         <div className="button__box">
           {location.pathname === "/main" && (
             <>
-              <Link
-                className="footer__button footer__button_composition"
-                to="{#}"
-              >
-                <p className="footer__button-text">Изменить состав</p>
-              </Link>
-              <Link
-                className="footer__button footer__button_keyboard"
-                to="/keyboardpage"
-              >
-                <p className="footer__button-text footer__button-text_keyboard">
-                  Ввести с клавиатуры
-                </p>
-              </Link>
+              <ChangeCompositionButton />
+              <KeyboardButton />
             </>
           )}
-          {location.pathname === "/keyboardpage" && (
-            <button
-              type="button"
-              className="footer__button footer__button_back"
-              onClick={() => navigate(-1)}
-            >
-              <p className="footer__button-text footer__button-text_back">
-                Назад
-              </p>
-            </button>
+          {(location.pathname === "/keyboardpage" ||
+            location.pathname === "/problempage") && <BackButton />}
+        </div>
+      </div>
+      <NdaBox />
+    </footer>
+  );
+}
+
+export default Footer; */
+
+import "./Footer.css";
+// import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import NdaBox from "./NdaBox/NdaFox";
+import ChangeCompositionButton from "./ChangeСompositionButton/ChangeCompositionButton";
+import KeyboardButton from "./KeyboardButton/KeyboardButton";
+import BackButton from "./BackButton/BackButton";
+
+function Footer({ IsKeyboardButtonActive }) {
+  const location = useLocation();
+  // const [keyboardActive, setkeyboardActive] = useState(false);
+
+  return (
+    <footer
+      className={`footer ${
+        location.pathname === "/problempage" ? "footer__anomaly" : ""
+      }`}
+    >
+      <div className="footer__box">
+        <div className="button__box">
+          {location.pathname === "/main" && (
+            <>
+              <ChangeCompositionButton />
+              <KeyboardButton />
+            </>
           )}
+          {location.pathname === "/keyboardpage" ||
+          location.pathname === "/problempage" ? (
+            <>
+              <BackButton />
+              {IsKeyboardButtonActive && <KeyboardButton />}
+            </>
+          ) : null}
         </div>
       </div>
       <NdaBox />
