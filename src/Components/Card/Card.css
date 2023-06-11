@@ -69,6 +69,13 @@
 }
 
 .box__name {
+  font-family: "Yandex Sans Text";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.01em;
+  color: #212121;
   display: flex;
   align-items: center;
   justify-content: center;
