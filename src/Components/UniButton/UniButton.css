@@ -21,6 +21,12 @@
 .uniButton__main {
 }
 
+.uniButton__ready {
+  position: absolute;
+  right: 24px;
+  top: 216px;
+}
+
 .uniButton__text {
   width: 64.4%;
   margin: 0;

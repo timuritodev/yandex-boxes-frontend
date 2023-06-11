@@ -10,6 +10,7 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
+import ReadyPage from "../ReadyPage/ReadyPage";
 import {
   convertToBoxArray,
   generateUniqueKey,
@@ -25,8 +26,7 @@ const cardListLength = cardList.length;
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
 function App() {
-
-  const [cards, setCards] = useState(cardList)
+  const [cards, setCards] = useState(cardList);
   const [cardBarcode, setCardBarcode] = useState([]);
   const [checkedCards, setCheckedCards] = useState([]);
 
@@ -83,9 +83,9 @@ function App() {
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
       ? // если да то, выполняется функция checkBoxes
-      checkBoxes(value)
+        checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-      checkCards(value);
+        checkCards(value);
 
   return (
     <div className="App">
@@ -107,6 +107,7 @@ function App() {
           }
         />
         <Route path="problempage" element={<Problempage />} />
+        <Route path="readypage" element={<ReadyPage />} />
         <Route
           path="keyboardpage"
           element={<NumberKeyboard onResult={handleKeyboardResult} />}
