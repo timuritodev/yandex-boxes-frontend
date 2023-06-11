@@ -25,15 +25,15 @@ const getBoxNameByBarcode = (barcode) => {
 
 const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
 
-const boxData = [];
+const recommendedBoxes = [];
 
 const convertToBoxArray = (barcodeData) => {
-  boxData.push({
+  recommendedBoxes.push({
     id: generateUniqueKey(),
     name: getBoxNameByBarcode(barcodeData),
     barcode: barcodeData,
   });
-  return boxData;
+  return recommendedBoxes;
 };
 
 function convertToBarcodeArray(data) {
@@ -54,4 +54,5 @@ export {
   convertToBoxArray,
   generateUniqueKey,
   convertToBarcodeArray,
+  recommendedBoxes,
 };

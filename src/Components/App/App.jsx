@@ -15,6 +15,7 @@ import {
   convertToBoxArray,
   generateUniqueKey,
   getBoxNameByBarcode,
+  recommendedBoxes,
 } from "../../utils/utils";
 import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
@@ -52,7 +53,9 @@ function App() {
 
   function checkBoxes(value) {
     // определяем является ли отсканированная только что коробка той что была порекомендована системой
-    const foundItem = boxes.find((item) => item.barcode === Number(value));
+    const foundItem = recommendedBoxes.find(
+      (item) => item.barcode === Number(value),
+    );
     // если да то
     if (foundItem) {
       // отправляем штрих код в ребенка для выбора цвета коробки
@@ -77,11 +80,19 @@ function App() {
     }
   }
 
-  console.log(checkedBoxes);
+  console.log(cards);
+  console.log(checkedCards);
+
+  const CardsArraysIsEqual = (a, b) =>
+    a.length === b.length &&
+    a.every((item, index) =>
+      Object.keys(item).every((key) => item[key] === b[index][key]),
+    );
 
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
-    boxesBarcodes.includes(Number(value))
+    boxesBarcodes.includes(Number(value)) &&
+    CardsArraysIsEqual(cards, checkedCards)
       ? // если да то, выполняется функция checkBoxes
         checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
