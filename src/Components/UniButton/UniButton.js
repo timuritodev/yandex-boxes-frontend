@@ -6,7 +6,16 @@ function Button({ currentPage }) {
   const location = useLocation();
 
   const handleClick = () => {
-    navigate("/main");
+    if (currentPage === "homepage") {
+      navigate("/main");
+    }
+    if (currentPage === "main") {
+      navigate("/readypage");
+    }
+    if (currentPage === "readypage") {
+      navigate("/");
+    }
+    return null;
   };
 
   const getText = () => {
@@ -16,14 +25,22 @@ function Button({ currentPage }) {
     if (currentPage === "main") {
       return "Закрыть заказ";
     }
-    return "";
+    return "Готово";
+  };
+
+  const getButtonClass = () => {
+    if (location.pathname === "/") {
+      return "uniButton__home";
+    }
+    if (location.pathname === "/main") {
+      return "uniButton__main";
+    }
+    return "uniButton__ready";
   };
 
   return (
     <button
-      className={`button uniButton ${
-        location.pathname === "/" ? "uniButton__home" : "uniButton__main"
-      }`}
+      className={`button uniButton ${getButtonClass()}`}
       type="button"
       aria-label="button"
       onClick={handleClick}

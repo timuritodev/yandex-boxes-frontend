@@ -7,7 +7,15 @@ import { useState } from "react";
 import barcodepic from "../../images/barcode.svg";
 import Progressbar from "../Progressbar/Progressbar";
 
-function Card({ name, barcode, picture, packageType, amount, cardBarcode, checkedCards }) {
+function Card({
+  name,
+  barcode,
+  picture,
+  packageType,
+  amount,
+  cardBarcode,
+  checkedCards,
+}) {
   const [expanded, setExpanded] = useState(false);
   const handleExpand = () => {
     setExpanded(!expanded);
@@ -27,7 +35,11 @@ function Card({ name, barcode, picture, packageType, amount, cardBarcode, checke
 
   return (
     <section className="card">
-      <div className={`card__container ${isBarcodeMatched ? "card__container_green" : ""}`}>
+      <div
+        className={`card__container ${
+          isBarcodeMatched ? "card__container_green" : ""
+        }`}
+      >
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
           <p className="name__title">{name}</p>
@@ -40,22 +52,24 @@ function Card({ name, barcode, picture, packageType, amount, cardBarcode, checke
         </div>
         <div className="box__container">
           <p className={`box__name ${boxName}`}>{packageType}</p>
-          <div>
+          <div className="box__progress-container">
             <p className="box__amount">{amount}шт.</p>
             <Progressbar amount={amount} />
           </div>
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${expanded ? "expanded__button_open" : ""
-              }`}
+            className={`expand__button ${
+              expanded ? "expanded__button_open" : ""
+            }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
-                }`}
+              className={`expand__button_icon ${
+                expanded ? "expanded__button_icon_open" : ""
+              }`}
             >
               ▼
             </span>
