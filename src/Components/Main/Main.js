@@ -18,11 +18,11 @@ function Main({ result, boxes, boxBarcode, checkedBoxes }) {
   return (
     <>
       <main className="main">
-        <div>
+        <div className="main__left-column">
           <OrderInformation itemCount={itemCount} />
           <ProblemButton />
         </div>
-        <div>
+        <div className="main__center-column">
           <Boxes
             boxes={boxes}
             boxBarcode={boxBarcode}
@@ -30,7 +30,9 @@ function Main({ result, boxes, boxBarcode, checkedBoxes }) {
           />
           <CardList result={result} onItemCountChange={handleItemCountChange} />
         </div>
-        <UniButton currentPage="main" />
+        <div className="main__right-column">
+          <UniButton currentPage="main" />
+        </div>
       </main>
       <Footer />
     </>

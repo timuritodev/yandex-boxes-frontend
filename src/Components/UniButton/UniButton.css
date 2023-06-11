@@ -1,6 +1,7 @@
 .uniButton {
   width: 296px;
-  height: 662px;
+  /* width: 64.4%; */
+  padding: 273px 16px;
   background-color: #fed42b;
   border-radius: 24px;
   border: none;
@@ -9,12 +10,19 @@
   font-size: 50px;
   line-height: 58px;
   color: #212121;
+  text-align: center;
 }
 
 .uniButton__home {
-  margin: 104px 24px 0 0;
+  padding: 302px 16px;
+  height: 662px;
 }
 
 .uniButton__main {
-  margin: 104px 0 0 188px;
+}
+
+.uniButton__text {
+  width: 64.4%;
+  margin: 0;
+  text-align: center;
 }

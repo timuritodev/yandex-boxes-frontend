@@ -59,6 +59,8 @@ function App() {
     }
   }
 
+  console.log(checkedBoxes);
+
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
