@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
 
 import "./Card.css";
 import { useState } from "react";
 import barcodepic from "../../images/barcode.svg";
+import Progressbar from "../Progressbar/Progressbar";
 
-function Card({ name, barcode, picture, packageType, amount, result, cardContainerGreen }) {
+function Card({ name, barcode, picture, packageType, amount, cardBarcode, checkedCards }) {
   const [expanded, setExpanded] = useState(false);
   const handleExpand = () => {
     setExpanded(!expanded);
@@ -21,9 +23,11 @@ function Card({ name, barcode, picture, packageType, amount, result, cardContain
     boxName += " box__name_stretch";
   }
 
+  const isBarcodeMatched = cardBarcode.includes(barcode);
+
   return (
     <section className="card">
-      <div className={`card__container ${cardContainerGreen ? "card__container_green" : ""}`}>
+      <div className={`card__container ${isBarcodeMatched ? "card__container_green" : ""}`}>
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
           <p className="name__title">{name}</p>
@@ -36,7 +40,10 @@ function Card({ name, barcode, picture, packageType, amount, result, cardContain
         </div>
         <div className="box__container">
           <p className={`box__name ${boxName}`}>{packageType}</p>
-          <p className="box__amount">{amount}шт.</p>
+          <div>
+            <p className="box__amount">{amount}шт.</p>
+            <Progressbar amount={amount} />
+          </div>
         </div>
         {amount > 1 && (
           <div
@@ -65,8 +72,8 @@ function Card({ name, barcode, picture, packageType, amount, result, cardContain
               picture={null}
               packageType={packageType}
               amount={1}
-              result={result}
-              cardContainerGreen={cardContainerGreen}
+              cardBarcode={cardBarcode}
+              checkedCards={checkedCards}
             />
           ))}
         </div>

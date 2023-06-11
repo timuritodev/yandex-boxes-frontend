@@ -61,6 +61,7 @@
 }
 
 .box__container {
+  width: 215px;
   height: 147.88px;
   display: flex;
   flex-direction: column;

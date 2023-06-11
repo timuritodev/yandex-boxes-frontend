@@ -1,4 +1,3 @@
-import React from "react";
 import "./Main.css";
 import OrderInformation from "../OrderInformation/OrderInformation";
 import ProblemButton from "../ProblemButton/ProblemButton";
@@ -7,19 +6,16 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ result, boxes, boxBarcode, checkedBoxes }) {
-  // подсчет кол-ва товара
-  const [itemCount, setItemCount] = React.useState(0);
-
-  const handleItemCountChange = (count) => {
-    setItemCount(count);
-  };
+function Main({ cardListLength, boxes, boxBarcode, checkedBoxes, cards, cardBarcode, checkedCards }) {
+  function isUniButtonActive() {
+    return cardListLength === checkedCards.length;
+  }
 
   return (
     <>
       <main className="main">
         <div className="main__left-column">
-          <OrderInformation itemCount={itemCount} />
+          <OrderInformation cardListLength={cardListLength} />
           <ProblemButton />
         </div>
         <div className="main__center-column">
@@ -28,10 +24,13 @@ function Main({ result, boxes, boxBarcode, checkedBoxes }) {
             boxBarcode={boxBarcode}
             checkedBoxes={checkedBoxes}
           />
-          <CardList result={result} onItemCountChange={handleItemCountChange} />
+          <CardList 
+            cards={cards}
+            cardBarcode={cardBarcode}
+            checkedCards={checkedCards} />
         </div>
         <div className="main__right-column">
-          <UniButton currentPage="main" />
+        {isUniButtonActive() ? <UniButton currentPage="main"/> : ''}
         </div>
       </main>
       <Footer />
@@ -40,3 +39,4 @@ function Main({ result, boxes, boxBarcode, checkedBoxes }) {
 }
 
 export default Main;
+
