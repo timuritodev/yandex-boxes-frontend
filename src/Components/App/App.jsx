@@ -104,7 +104,16 @@ function App() {
             />
           }
         />
-        <Route path="problempage" element={<Problempage />} />
+        <Route
+          path="problempage"
+          element={
+            <Problempage
+              cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
+            />
+          }
+        />
         <Route
           path="keyboardpage"
           element={<NumberKeyboard onResult={handleKeyboardResult} />}

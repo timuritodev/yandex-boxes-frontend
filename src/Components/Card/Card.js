@@ -28,8 +28,7 @@ function Card({ name, barcode, picture, packageType, amount, cardBarcode, checke
   if (isBarcodeMatched){
     count+=1;
   }
-  console.log(amount);
-  console.log(count);
+
   return (
     <section className="card">
       <div className={`card__container ${isBarcodeMatched ? "card__container_green" : ""}`}>
