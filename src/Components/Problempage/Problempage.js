@@ -2,8 +2,11 @@
 import { useState } from "react";
 import CardList from "../Card/CardList";
 import "./Problempage.css";
+import Footer from "../Footer/Footer";
 
 function Problempage({cards, cardBarcode, checkedCards}) {
+  const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
+  
   const [isDefectiveButtonActive, setIsDefectiveButtonActive] = useState(false);
   const [isCallBrigButtonActive, setIsCallBrigButtonActive] = useState(false);
 
@@ -44,6 +47,7 @@ function Problempage({cards, cardBarcode, checkedCards}) {
         </>
       )}
     </div>
+    <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
   );
 }
 

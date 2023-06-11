@@ -6,7 +6,15 @@ import UniButton from "../UniButton/UniButton";
 import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
-function Main({ cardListLength, boxes, boxBarcode, checkedBoxes, cards, cardBarcode, checkedCards }) {
+function Main({
+  cardListLength,
+  boxes,
+  boxBarcode,
+  checkedBoxes,
+  cards,
+  cardBarcode,
+  checkedCards,
+}) {
   function isUniButtonActive() {
     return cardListLength === checkedCards.length;
   }
@@ -14,23 +22,33 @@ function Main({ cardListLength, boxes, boxBarcode, checkedBoxes, cards, cardBarc
   return (
     <>
       <main className="main">
-        <div>
+        <div className="main__left-column">
           <OrderInformation cardListLength={cardListLength} />
           <ProblemButton />
         </div>
-        <div>
-          <Boxes
-            boxes={boxes}
-            boxBarcode={boxBarcode}
-            checkedBoxes={checkedBoxes}
-          />
+        <div className="main__center-column">
+          {isUniButtonActive() ? (
+            <Boxes
+              boxes={boxes}
+              boxBarcode={boxBarcode}
+              checkedBoxes={checkedBoxes}
+            />
+          ) : (
+            ""
+          )}
           <CardList
             cards={cards}
             cardBarcode={cardBarcode}
             checkedCards={checkedCards}
           />
         </div>
-        {isUniButtonActive() ? <UniButton currentPage="main"/> : ''}
+        <div className="main__right-column">
+          {isUniButtonActive() && checkedBoxes.length >= 1 ? (
+            <UniButton currentPage="main" />
+          ) : (
+            ""
+          )}
+        </div>
       </main>
       <Footer />
     </>

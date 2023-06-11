@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable prefer-object-spread */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
@@ -10,10 +11,13 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
+import ReadyPage from "../ReadyPage/ReadyPage";
+import InfoToolTip from "../InfoTooltip/InfoTooltip";
 import {
   convertToBoxArray,
   generateUniqueKey,
   getBoxNameByBarcode,
+  recommendedBoxes,
 } from "../../utils/utils";
 import { hardcodeData, boxesBarcodes } from "../../utils/constants";
 
@@ -25,10 +29,14 @@ const cardListLength = cardList.length;
 const boxesList = convertToBoxArray(hardcodeData.carton);
 
 function App() {
-
-  const [cards, setCards] = useState(cardList)
+  const [cards, setCards] = useState(cardList);
   const [cardBarcode, setCardBarcode] = useState([]);
   const [checkedCards, setCheckedCards] = useState([]);
+
+  const [InfoTooltipText, setInfoTooltipText] = useState(
+    "Сканируйте маркировку",
+  );
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
   const [KeyboardResult, setKeyboardResult] = useState("");
 
@@ -52,7 +60,9 @@ function App() {
 
   function checkBoxes(value) {
     // определяем является ли отсканированная только что коробка той что была порекомендована системой
-    const foundItem = boxes.find((item) => item.barcode === Number(value));
+    const foundItem = recommendedBoxes.find(
+      (item) => item.barcode === Number(value),
+    );
     // если да то
     if (foundItem) {
       // отправляем штрих код в ребенка для выбора цвета коробки
@@ -61,6 +71,9 @@ function App() {
       // checkedBoxes.push(+foundItem);
       setCheckedBoxes([foundItem.barcode, ...checkedBoxes]);
       // если нет то
+    } else if (checkedBoxes.length > 8) {
+      setIsInfoTooltipPopupOpen(true);
+      setInfoTooltipText("нельзя отсканировать больше 9 коробок");
     } else {
       // записываем введенный штрих код для выбора цвета коробки
       setBoxBarcode(+value);
@@ -77,13 +90,24 @@ function App() {
     }
   }
 
+  function closePopup() {
+    setIsInfoTooltipPopupOpen(false);
+  }
+
+  const CardsArraysIsEqual = (a, b) =>
+    a.length === b.length &&
+    a.every((item, index) =>
+      Object.keys(item).every((key) => item[key] === b[index][key]),
+    );
+
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
-    boxesBarcodes.includes(Number(value))
+    boxesBarcodes.includes(Number(value)) &&
+    CardsArraysIsEqual(cards, checkedCards)
       ? // если да то, выполняется функция checkBoxes
-      checkBoxes(value)
+        checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-      checkCards(value);
+        checkCards(value);
 
   return (
     <div className="App">
@@ -114,12 +138,18 @@ function App() {
             />
           }
         />
+        <Route path="readypage" element={<ReadyPage />} />
         <Route
           path="keyboardpage"
           element={<NumberKeyboard onResult={handleKeyboardResult} />}
         />
         <Route path="*" element={<h2>Страницы не существует</h2>} />
       </Routes>
+      <InfoToolTip
+        onClose={closePopup}
+        isOpen={isInfoTooltipPopupOpen}
+        text={InfoTooltipText}
+      />
     </div>
   );
 }
