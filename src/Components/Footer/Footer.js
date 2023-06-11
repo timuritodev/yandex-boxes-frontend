@@ -1,9 +1,10 @@
 import "./Footer.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NdaBox from "./NdaBox/NdaFox";
 
 function Footer() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <footer className="footer">
@@ -28,11 +29,15 @@ function Footer() {
             </>
           )}
           {location.pathname === "/keyboardpage" && (
-            <Link className="footer__button footer__button_back" to="/main">
+            <button
+              type="button"
+              className="footer__button footer__button_back"
+              onClick={() => navigate(-1)}
+            >
               <p className="footer__button-text footer__button-text_back">
                 Назад
               </p>
-            </Link>
+            </button>
           )}
         </div>
       </div>

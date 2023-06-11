@@ -31,6 +31,7 @@
   height: 74px;
   width: 455px;
   box-sizing: border-box;
+  border: none;
 }
 
 .footer__button:hover {

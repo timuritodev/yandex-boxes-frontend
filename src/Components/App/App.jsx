@@ -36,7 +36,7 @@ function App() {
   const [InfoTooltipText, setInfoTooltipText] = useState(
     "Сканируйте маркировку",
   );
-  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(true);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
   const [KeyboardResult, setKeyboardResult] = useState("");
 
