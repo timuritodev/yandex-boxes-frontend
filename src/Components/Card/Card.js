@@ -22,9 +22,14 @@ function Card({ name, barcode, picture, packageType, amount, cardBarcode, checke
   } else {
     boxName += " box__name_stretch";
   }
-
+  let count=0;
   const isBarcodeMatched = cardBarcode.includes(barcode);
 
+  if (isBarcodeMatched){
+    count+=1;
+  }
+  console.log(amount);
+  console.log(count);
   return (
     <section className="card">
       <div className={`card__container ${isBarcodeMatched ? "card__container_green" : ""}`}>
@@ -42,7 +47,7 @@ function Card({ name, barcode, picture, packageType, amount, cardBarcode, checke
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div>
             <p className="box__amount">{amount}шт.</p>
-            <Progressbar amount={amount} />
+            <Progressbar count={count} amount={amount} />
           </div>
         </div>
         {amount > 1 && (
