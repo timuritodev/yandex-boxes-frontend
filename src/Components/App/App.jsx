@@ -128,7 +128,16 @@ function App() {
             />
           }
         />
-        <Route path="problempage" element={<Problempage />} />
+        <Route
+          path="problempage"
+          element={
+            <Problempage
+              cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
+            />
+          }
+        />
         <Route path="readypage" element={<ReadyPage />} />
         <Route
           path="keyboardpage"

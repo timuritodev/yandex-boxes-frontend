@@ -30,8 +30,12 @@ function Card({
   } else {
     boxName += " box__name_stretch";
   }
-
+  let count=0;
   const isBarcodeMatched = cardBarcode.includes(barcode);
+
+  if (isBarcodeMatched){
+    count+=1;
+  }
 
   return (
     <section className="card">
@@ -54,7 +58,7 @@ function Card({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount}шт.</p>
-            <Progressbar amount={amount} />
+            <Progressbar count={count} amount={amount} />
           </div>
         </div>
         {amount > 1 && (
