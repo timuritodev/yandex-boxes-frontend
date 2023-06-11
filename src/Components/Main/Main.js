@@ -14,23 +14,24 @@ function Main({ cardListLength, boxes, boxBarcode, checkedBoxes, cards, cardBarc
   return (
     <>
       <main className="main">
-        <div>
+        <div className="main__left-column">
           <OrderInformation cardListLength={cardListLength} />
           <ProblemButton />
         </div>
-        <div>
+        <div className="main__center-column">
           <Boxes
             boxes={boxes}
             boxBarcode={boxBarcode}
             checkedBoxes={checkedBoxes}
           />
-          <CardList
+          <CardList 
             cards={cards}
             cardBarcode={cardBarcode}
-            checkedCards={checkedCards}
-          />
+            checkedCards={checkedCards} />
         </div>
+        <div className="main__right-column">
         {isUniButtonActive() ? <UniButton currentPage="main"/> : ''}
+        </div>
       </main>
       <Footer />
     </>
@@ -38,3 +39,4 @@ function Main({ cardListLength, boxes, boxBarcode, checkedBoxes, cards, cardBarc
 }
 
 export default Main;
+

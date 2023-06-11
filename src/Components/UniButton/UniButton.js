@@ -1,30 +1,35 @@
 import "./UniButton.css";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Button({ currentPage }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   const handleClick = () => {
-    navigate('/main');
+    navigate("/main");
   };
 
   const getText = () => {
     if (currentPage === "homepage") {
       return "Начать";
-    } if (currentPage === "main") {
+    }
+    if (currentPage === "main") {
       return "Закрыть заказ";
     }
-      return "";
+    return "";
   };
 
   return (
-    <div className="">
-      <button  className={`button uniButton ${location.pathname === "/" ? "uniButton__home" : "uniButton__main"}`} type="button" aria-label="button" onClick={handleClick}>
-        {getText()}
-      </button>
-    </div>
+    <button
+      className={`button uniButton ${
+        location.pathname === "/" ? "uniButton__home" : "uniButton__main"
+      }`}
+      type="button"
+      aria-label="button"
+      onClick={handleClick}
+    >
+      {getText()}
+    </button>
   );
 }
 
