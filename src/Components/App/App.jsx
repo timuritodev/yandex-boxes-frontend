@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable prefer-object-spread */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
@@ -11,6 +12,7 @@ import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import ReadyPage from "../ReadyPage/ReadyPage";
+import InfoToolTip from "../InfoTooltip/InfoTooltip";
 import {
   convertToBoxArray,
   generateUniqueKey,
@@ -30,6 +32,11 @@ function App() {
   const [cards, setCards] = useState(cardList);
   const [cardBarcode, setCardBarcode] = useState([]);
   const [checkedCards, setCheckedCards] = useState([]);
+
+  const [InfoTooltipText, setInfoTooltipText] = useState(
+    "Сканируйте маркировку",
+  );
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(true);
 
   const [KeyboardResult, setKeyboardResult] = useState("");
 
@@ -64,6 +71,9 @@ function App() {
       // checkedBoxes.push(+foundItem);
       setCheckedBoxes([foundItem.barcode, ...checkedBoxes]);
       // если нет то
+    } else if (checkedBoxes.length > 8) {
+      setIsInfoTooltipPopupOpen(true);
+      setInfoTooltipText("нельзя отсканировать больше 9 коробок");
     } else {
       // записываем введенный штрих код для выбора цвета коробки
       setBoxBarcode(+value);
@@ -80,8 +90,9 @@ function App() {
     }
   }
 
-  console.log(cards);
-  console.log(checkedCards);
+  function closePopup() {
+    setIsInfoTooltipPopupOpen(false);
+  }
 
   const CardsArraysIsEqual = (a, b) =>
     a.length === b.length &&
@@ -125,6 +136,11 @@ function App() {
         />
         <Route path="*" element={<h2>Страницы не существует</h2>} />
       </Routes>
+      <InfoToolTip
+        onClose={closePopup}
+        isOpen={isInfoTooltipPopupOpen}
+        text={InfoTooltipText}
+      />
     </div>
   );
 }
