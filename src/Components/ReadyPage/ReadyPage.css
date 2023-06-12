@@ -16,4 +16,5 @@
   align-items: baseline;
   /* margin-top: 298px; */
   padding: 0 24px;
+  justify-content: space-between;
 }
