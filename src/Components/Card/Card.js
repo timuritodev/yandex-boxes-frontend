@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
 
 import "./Card.css";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import barcodepic from "../../images/barcode.svg";
 import Progressbar from "../Progressbar/Progressbar";
 
@@ -16,7 +18,18 @@ function Card({
   cardBarcode,
   checkedCards,
 }) {
+  const location = useLocation();
+
   const [expanded, setExpanded] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    if (location.pathname === "/nogoodspage") {
+      setIsClicked(!isClicked);
+    }
+  };
+
+
   const handleExpand = () => {
     setExpanded(!expanded);
   };
@@ -32,19 +45,18 @@ function Card({
   }
 
   // проверка для progressbar;
-  let count=0;
+  let count = 0;
   const isBarcodeMatched = cardBarcode.includes(barcode);
 
-  if (isBarcodeMatched){
-    count+=1;
+  if (isBarcodeMatched) {
+    count += 1;
   }
 
   return (
-    <section className="card">
+    <section className={`card ${isClicked ? "card__container_green" : ""}`} onClick={handleClick}>
       <div
-        className={`card__container ${
-          isBarcodeMatched ? "card__container_green" : ""
-        }`}
+        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""
+          }`}
       >
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
@@ -65,17 +77,15 @@ function Card({
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${
-              expanded ? "expanded__button_open" : ""
-            }`}
+            className={`expand__button ${expanded ? "expanded__button_open" : ""
+              }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${
-                expanded ? "expanded__button_icon_open" : ""
-              }`}
+              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
+                }`}
             >
               ▼
             </span>

@@ -13,7 +13,9 @@ function Problempage({ cards, cardBarcode, checkedCards }) {
   const [isDefectiveButtonActive, setIsDefectiveButtonActive] = useState(false);
   const [isCallBrigButtonActive, setIsCallBrigButtonActive] = useState(false);
 
-  cardBarcode= [];
+  const handleNoGoodsButton = () => {
+    navigate("/nogoodspage")
+  };
 
   const handleDefectiveButton = () => {
     // setIsDefectiveButtonActive(true);
@@ -27,22 +29,30 @@ function Problempage({ cards, cardBarcode, checkedCards }) {
   return (
     <>
       <div className="problempage__container">
-            <button
-              className="button problempage__button"
-              type="button"
-              aria-label="button"
-              onClick={handleDefectiveButton}
-            >
-              Товар бракованный
-            </button>
-            <button
-              className="button problempage__button"
-              type="button"
-              aria-label="button"
-              onClick={handleCallBrigButton}
-            >
-              Позвать бригадира
-            </button>
+        <button
+          className="button problempage__button"
+          type="button"
+          aria-label="button"
+          onClick={handleNoGoodsButton}
+        >
+          Нет товара
+        </button>
+        <button
+          className="button problempage__button"
+          type="button"
+          aria-label="button"
+          onClick={handleDefectiveButton}
+        >
+          Товар бракованный
+        </button>
+        <button
+          className="button problempage__button"
+          type="button"
+          aria-label="button"
+          onClick={handleCallBrigButton}
+        >
+          Позвать бригадира
+        </button>
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
     </>

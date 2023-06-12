@@ -11,6 +11,7 @@ import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
 import Defectpage from "../Defectpage/Defectpage";
+import NoGoodspage from "../NoGoodspage/NoGoodspage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import ReadyPage from "../ReadyPage/ReadyPage";
 import InfoToolTip from "../InfoTooltip/InfoTooltip";
@@ -147,6 +148,16 @@ function App() {
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
               setCardBarcode={setCardBarcode}
+            />
+          }
+        />
+        <Route
+          path="nogoodspage"
+          element={
+            <NoGoodspage
+              cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
             />
           }
         />
