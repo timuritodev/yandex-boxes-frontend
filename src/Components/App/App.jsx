@@ -49,9 +49,9 @@ function App() {
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
 
-    function handleButtonClick() {
-      setCardBarcode([]);
-    }
+  function handleButtonClick() {
+    setCardBarcode([]);
+  }
 
   function checkCards(value) {
     cardList.forEach((item) => {
@@ -109,11 +109,11 @@ function App() {
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value)) &&
-      CardsArraysIsEqual(cards, checkedCards)
+    CardsArraysIsEqual(cards, checkedCards)
       ? // если да то, выполняется функция checkBoxes
-      checkBoxes(value)
+        checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-      checkCards(value);
+        checkCards(value);
 
   return (
     <div className="App">
