@@ -10,7 +10,7 @@ import UniButton from "../UniButton/UniButton";
 function NoGoodspage({ cards, cardBarcode, checkedCards }) {
   const navigate = useNavigate();
 
-  const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
+  const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
 
   return (
     <>
@@ -21,7 +21,7 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
           cardBarcode={cardBarcode}
           checkedCards={checkedCards}
         />
-        {cardBarcode.length !== 0 && <UniButton currentPage="defectpage"/>}
+        {cardBarcode.length !== 0 && <UniButton currentPage="defectpage" />}
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
     </>
@@ -29,4 +29,3 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
 }
 
 export default NoGoodspage;
-

@@ -3,6 +3,7 @@
   flex-direction: column;
   min-height: culc(100vh - 112px - 28px);
   max-height: culc(100vh - 112px - 28px);
+  margin-bottom: 137px;
 }
 
 .keyboard__title {

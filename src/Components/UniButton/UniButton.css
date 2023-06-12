@@ -22,9 +22,10 @@
 } */
 
 .uniButton__ready {
-  position: absolute;
+  /* position: absolute;
   right: 24px;
-  top: 216px;
+  top: 216px; */
+  width: 296px;
 }
 
 .uniButton__text {
