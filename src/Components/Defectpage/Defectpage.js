@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 
 function Defectpage({ cards, cardBarcode, checkedCards, setCardBarcode }) {
-
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
 
   console.log(cardBarcode);
@@ -14,11 +13,13 @@ function Defectpage({ cards, cardBarcode, checkedCards, setCardBarcode }) {
   return (
     <>
       <div className="defectpage__container">
-        <CardList
-          cards={cards}
-          cardBarcode={cardBarcode}
-          checkedCards={checkedCards}
-        />
+        <div className="main__center-column">
+          <CardList
+            cards={cards}
+            cardBarcode={cardBarcode}
+            checkedCards={checkedCards}
+          />
+        </div>
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
     </>
@@ -26,7 +27,6 @@ function Defectpage({ cards, cardBarcode, checkedCards, setCardBarcode }) {
 }
 
 export default Defectpage;
-
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -69,4 +69,3 @@ export default Defectpage;
 // }
 
 // export default Defectpage;
-

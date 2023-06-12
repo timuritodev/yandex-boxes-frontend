@@ -16,11 +16,13 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
     <>
       <div className="nogoods__container">
         <h2 className="nogoods__title">Какого товара нет?</h2>
-        <CardList
-          cards={cards}
-          cardBarcode={cardBarcode}
-          checkedCards={checkedCards}
-        />
+        <div className="main__center-column">
+          <CardList
+            cards={cards}
+            cardBarcode={cardBarcode}
+            checkedCards={checkedCards}
+          />
+        </div>
         {cardBarcode.length !== 0 && <UniButton currentPage="defectpage" />}
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
