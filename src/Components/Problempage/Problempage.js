@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Problempage.css";
 import Footer from "../Footer/Footer";
 
-function Problempage({ cards, cardBarcode, checkedCards }) {
+function Problempage({ cards, cardBarcode, checkedCards, handleButtonClick }) {
   const navigate = useNavigate();
 
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
@@ -19,6 +19,7 @@ function Problempage({ cards, cardBarcode, checkedCards }) {
 
   const handleDefectiveButton = () => {
     // setIsDefectiveButtonActive(true);
+    handleButtonClick();
     navigate("/defectpage")
   };
 

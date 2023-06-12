@@ -49,6 +49,10 @@ function App() {
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
 
+    function handleButtonClick() {
+      setCardBarcode([]);
+    }
+
   function checkCards(value) {
     cardList.forEach((item) => {
       if (item.barcode === Number(value)) {
@@ -137,6 +141,7 @@ function App() {
               cards={cards}
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
+              handleButtonClick={handleButtonClick}
             />
           }
         />

@@ -44,6 +44,14 @@ function Card({
     boxName += " box__name_stretch";
   }
 
+  // if (location.pathname === "/defectpage") {
+  //   const isBarcodeMatched = checkedCards.barcode.includes(barcode);
+  //   return isBarcodeMatched;
+  // } else {
+  //   const isBarcodeMatched = cardBarcode.includes(barcode);
+  //   return isBarcodeMatched;
+  // }
+
   // проверка для progressbar;
   let count = 0;
   const isBarcodeMatched = cardBarcode.includes(barcode);
