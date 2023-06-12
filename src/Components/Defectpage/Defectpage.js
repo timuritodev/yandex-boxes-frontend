@@ -5,10 +5,7 @@ import "./Defectpage.css";
 import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 
-function Defectpage({ cards,
-  cardBarcode,
-  cardBarcodeDefect,
-  checkedCards, }) {
+function Defectpage({ cards, cardBarcode, cardBarcodeDefect, checkedCards }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
 
   return (

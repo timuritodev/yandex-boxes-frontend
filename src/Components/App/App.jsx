@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable prefer-object-spread */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 
 import "./App.css";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -32,8 +33,8 @@ const boxesList = convertToBoxArray(hardcodeData.carton);
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
 
+  // работа с карточками(товарами)
   const [cards, setCards] = useState(cardList);
   const [cardBarcode, setCardBarcode] = useState([]);
   const [checkedCards, setCheckedCards] = useState([]);
@@ -55,55 +56,20 @@ function App() {
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
 
+  // переменные для отслеживания страницы
+  const [currentPath, setCurrentPath] = useState(null);
+  const [previousPath, setPreviousPath] = useState(null);
 
-  // function checkCards(value) {
-  //   cardList.forEach((item) => {
-  //     if (location.pathname === "/defectpage") {
-  //       if (item.barcode === Number(value)) {
-  //         const newCardBarcodeDefect = [...cardBarcodeDefect, item.barcode];
-  //         const newCheckedCardsDefect = [...checkedCardsDefect, item];
-  //         setCheckedCardsDefeсt(newCheckedCardsDefect);
-  //         setCardBarcodeDefect(newCardBarcodeDefect);
-  //       }
-  //     } else if (item.barcode === Number(value)) {
-  //       const newCardBarcode = [...cardBarcode, item.barcode];
-  //       const newCheckedCards = [...checkedCards, item];
-  //       setCheckedCards(newCheckedCards);
-  //       setCardBarcode(newCardBarcode);
-  //     }
-  //   });
-  // }
-
-  const [flag, setFlag] = useState(false);
-
-   useEffect(() => {
-    if (location.pathname === "/main"){
-      setFlag(true);
+  useEffect(() => {
+    if (location.pathname !== currentPath) {
+      setPreviousPath(currentPath);
+      setCurrentPath(location.pathname);
     }
-    else {
-      setFlag(false);
-    }
-  }, [location]);
-
-
-
-  console.log("1",flag)
-
-  // const [previousPage, setPreviousPage] = useState(null);
-
-  // useEffect(() => {
-  //   setPreviousPage(location.pathname);
-  // }, [location]);
-
-  // console.log(previousPage)
-  // console.log(location.pathname)
-  // console.log(cardBarcode)
-  // console.log(cardBarcodeDefect)
+  }, [location.pathname]);
 
   function checkCards(value) {
-    console.log("2",flag)
     cardList.forEach((item) => {
-      if ( flag ) {
+      if ( previousPath === "/main" ) {
         if (item.barcode === Number(value)) {
           const newCardBarcode = [...cardBarcode, item.barcode];
           const newCheckedCards = [...checkedCards, item];
@@ -119,17 +85,6 @@ function App() {
       }
     });
   }
-
-  // function checkCards(value) {
-  //   cardList.forEach((item) => {
-  //     if (item.barcode === Number(value)) {
-  //       const newCardBarcode = [...cardBarcode, item.barcode];
-  //       const newCheckedCards = [...checkedCards, item];
-  //       setCheckedCards(newCheckedCards);
-  //       setCardBarcode(newCardBarcode);
-  //     }
-  //   });
-  // }
 
   function checkBoxes(value) {
     // определяем является ли отсканированная только что коробка той что была порекомендована системой
