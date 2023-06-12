@@ -30,6 +30,8 @@ function Card({
   } else {
     boxName += " box__name_stretch";
   }
+
+  // проверка для progressbar;
   let count=0;
   const isBarcodeMatched = cardBarcode.includes(barcode);
 
