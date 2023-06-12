@@ -13,6 +13,7 @@ function Main({
   checkedBoxes,
   cards,
   cardBarcode,
+  cardBarcodeDefect,
   checkedCards,
 }) {
   function isUniButtonActive() {
@@ -39,6 +40,7 @@ function Main({
           <CardList
             cards={cards}
             cardBarcode={cardBarcode}
+            cardBarcodeDefect={cardBarcodeDefect}
             checkedCards={checkedCards}
           />
         </div>

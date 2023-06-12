@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -16,6 +17,7 @@ function Card({
   packageType,
   amount,
   cardBarcode,
+  cardBarcodeDefect,
   checkedCards,
 }) {
   const location = useLocation();
@@ -54,7 +56,14 @@ function Card({
 
   // проверка для progressbar;
   let count = 0;
-  const isBarcodeMatched = cardBarcode.includes(barcode);
+  // const isBarcodeMatched = cardBarcode.includes(barcode);
+  let isBarcodeMatched = false; // Объявление переменной с начальным значением
+
+  if (location.pathname === "/defectpage") {
+    isBarcodeMatched = cardBarcodeDefect.includes(barcode);
+  } else {
+    isBarcodeMatched = cardBarcode.includes(barcode);
+  }
 
   if (isBarcodeMatched) {
     count += 1;
@@ -111,6 +120,7 @@ function Card({
               packageType={packageType}
               amount={1}
               cardBarcode={cardBarcode}
+              cardBarcodeDefect={cardBarcodeDefect}
               checkedCards={checkedCards}
             />
           ))}

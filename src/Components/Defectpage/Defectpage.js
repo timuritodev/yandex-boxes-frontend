@@ -5,10 +5,11 @@ import "./Defectpage.css";
 import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 
-function Defectpage({ cards, cardBarcode, checkedCards, setCardBarcode }) {
+function Defectpage({ cards,
+  cardBarcode,
+  cardBarcodeDefect,
+  checkedCards, }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
-
-  console.log(cardBarcode);
 
   return (
     <>
@@ -17,6 +18,7 @@ function Defectpage({ cards, cardBarcode, checkedCards, setCardBarcode }) {
           <CardList
             cards={cards}
             cardBarcode={cardBarcode}
+            cardBarcodeDefect={cardBarcodeDefect}
             checkedCards={checkedCards}
           />
         </div>
