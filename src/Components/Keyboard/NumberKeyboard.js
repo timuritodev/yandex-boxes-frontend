@@ -24,7 +24,7 @@ function NumberKeyboard({ onResult }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onResult(inputValue);
-    navigate("/main");
+    navigate(-1);
   };
 
   return (

@@ -25,6 +25,9 @@ function Button({ currentPage }) {
     if (currentPage === "main") {
       return "Закрыть заказ";
     }
+    if (currentPage === "defectpage") {
+      return "Далее";
+    }
     return "Готово";
   };
 

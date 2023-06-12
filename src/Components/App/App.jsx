@@ -10,6 +10,8 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Homepage from "../Homepage/Homepage";
 import Problempage from "../Problempage/Problempage";
+import Defectpage from "../Defectpage/Defectpage";
+import NoGoodspage from "../NoGoodspage/NoGoodspage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import ReadyPage from "../ReadyPage/ReadyPage";
 import InfoToolTip from "../InfoTooltip/InfoTooltip";
@@ -46,6 +48,10 @@ function App() {
   const [boxes, setBoxes] = useState(boxesList);
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
+
+    function handleButtonClick() {
+      setCardBarcode([]);
+    }
 
   function checkCards(value) {
     cardList.forEach((item) => {
@@ -103,11 +109,11 @@ function App() {
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value)) &&
-    CardsArraysIsEqual(cards, checkedCards)
+      CardsArraysIsEqual(cards, checkedCards)
       ? // если да то, выполняется функция checkBoxes
-        checkBoxes(value)
+      checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-        checkCards(value);
+      checkCards(value);
 
   return (
     <div className="App">
@@ -132,6 +138,28 @@ function App() {
           path="problempage"
           element={
             <Problempage
+              cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
+              handleButtonClick={handleButtonClick}
+            />
+          }
+        />
+        <Route
+          path="defectpage"
+          element={
+            <Defectpage
+              cards={cards}
+              checkedCards={checkedCards}
+              cardBarcode={cardBarcode}
+              setCardBarcode={setCardBarcode}
+            />
+          }
+        />
+        <Route
+          path="nogoodspage"
+          element={
+            <NoGoodspage
               cards={cards}
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
