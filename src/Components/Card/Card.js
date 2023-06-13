@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+/* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -16,7 +18,10 @@ function Card({
   packageType,
   amount,
   cardBarcode,
+  cardBarcodeDefect,
   checkedCards,
+  selectedCards,
+  setSelectedCards
 }) {
   const location = useLocation();
 
@@ -26,6 +31,13 @@ function Card({
   const handleClick = () => {
     if (location.pathname === "/nogoodspage") {
       setIsClicked(!isClicked);
+      setSelectedCards((prevSelectedCards) => {
+        if (prevSelectedCards.includes(barcode)) {
+          return prevSelectedCards.filter((card) => card !== barcode);
+        } else {
+          return [...prevSelectedCards, barcode];
+        }
+      });
     }
   };
 
@@ -44,18 +56,16 @@ function Card({
     boxName += " box__name_stretch";
   }
 
-  // if (location.pathname === "/defectpage") {
-  //   const isBarcodeMatched = checkedCards.barcode.includes(barcode);
-  //   return isBarcodeMatched;
-  // } else {
-  //   const isBarcodeMatched = cardBarcode.includes(barcode);
-  //   return isBarcodeMatched;
-  // }
+  let isBarcodeMatched = false;
+
+  if (location.pathname === "/defectpage") {
+    isBarcodeMatched = cardBarcodeDefect.includes(barcode);
+  } else {
+    isBarcodeMatched = cardBarcode.includes(barcode);
+  }
 
   // проверка для progressbar;
   let count = 0;
-  const isBarcodeMatched = cardBarcode.includes(barcode);
-
   if (isBarcodeMatched) {
     count += 1;
   }
@@ -111,7 +121,10 @@ function Card({
               packageType={packageType}
               amount={1}
               cardBarcode={cardBarcode}
+              cardBarcodeDefect={cardBarcodeDefect}
               checkedCards={checkedCards}
+              selectedCards={selectedCards}
+              setSelectedCards={setSelectedCards}
             />
           ))}
         </div>

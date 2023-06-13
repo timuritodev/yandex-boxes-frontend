@@ -11,6 +11,7 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
   const navigate = useNavigate();
 
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
+  const [selectedCards, setSelectedCards] = useState([]);
 
   return (
     <>
@@ -21,9 +22,11 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
             cards={cards}
             cardBarcode={cardBarcode}
             checkedCards={checkedCards}
+            selectedCards={selectedCards}
+            setSelectedCards={setSelectedCards}
           />
         </div>
-        {cardBarcode.length !== 0 && <UniButton currentPage="defectpage" />}
+        <UniButton />
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
     </>
