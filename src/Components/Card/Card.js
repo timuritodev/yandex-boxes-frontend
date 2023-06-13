@@ -72,14 +72,10 @@ function Card({
   }
 
   return (
-    <section
-      className={`card ${isClicked ? "card__container_green" : ""}`}
-      onClick={handleClick}
-    >
+    <section className="card">
       <div
-        className={`card__container ${
-          isBarcodeMatched ? "card__container_green" : ""
-        }`}
+        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""} ${isClicked ? "card__container_green" : ""}`}
+        onClick={handleClick}
       >
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
@@ -128,23 +124,10 @@ function Card({
               packageType={packageType}
               amount={1}
               cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcode}
+              cardBarcodeDefect={cardBarcodeDefect}
               selectedCards={selectedCards}
               setSelectedCards={setSelectedCards}
             />
-            /* <Card
-              key={index}
-              name={name}
-              barcode={multiplyBarcodes[index]}
-              picture={null}
-              packageType={packageType}
-              amount={1}
-              cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcode}
-              checkedCards={checkedCards}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            /> */
           ))}
         </div>
       )}

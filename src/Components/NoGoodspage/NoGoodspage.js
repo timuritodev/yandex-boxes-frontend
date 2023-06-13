@@ -1,5 +1,5 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./NoGoodspage.css";
@@ -8,10 +8,19 @@ import CardList from "../Card/CardList";
 import UniButton from "../UniButton/UniButton";
 
 function NoGoodspage({ cards, cardBarcode, checkedCards }) {
-  const navigate = useNavigate();
-
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
+  const [fakeCards, setFakeCards] = useState(cards);
+
+
+  console.log(selectedCards)
+  const handleNext = () => {
+    // Обновляем пропс cards на selectedCards
+
+    // console.log(123)
+    // Другие действия при нажатии на кнопку "Далее"
+    // ...
+  };
 
   return (
     <>
@@ -20,7 +29,7 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
         <div className="main__center-column">
           <h2 className="nogoods__title">Какого товара нет?</h2>
           <CardList
-            cards={cards}
+            cards={fakeCards}
             cardBarcode={cardBarcode}
             checkedCards={checkedCards}
             selectedCards={selectedCards}
@@ -28,7 +37,7 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
           />
         </div>
         <div className="main__right-column">
-          <UniButton currentPage="nogoodspage" name="Далее" />
+          <UniButton currentPage="nogoodspage" name="Далее" onClick={handleNext} />
         </div>
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />

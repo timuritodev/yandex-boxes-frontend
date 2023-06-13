@@ -13,7 +13,7 @@ function Defectpage({ cards, cardBarcode, cardBarcodeDefect, checkedCards }) {
   const [isDefectProcessingFinished, setIsDefectProcessingFinished] =
     useState(false);
 
-  console.log(cardBarcodeDefect.length);
+  // console.log(cardBarcodeDefect.length);
 
   function finishDefectprocessing() {
     setIsDefectProcessingFinished(true);

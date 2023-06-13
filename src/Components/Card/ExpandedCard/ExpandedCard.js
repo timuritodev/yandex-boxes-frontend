@@ -55,17 +55,11 @@ function ExpandedCard({
     count += 1;
   }
 
-  console.log(cardBarcode);
-
   return (
-    <section
-      className={`card ${isClicked ? "card__container_green" : ""}`}
-      onClick={handleClick}
-    >
+    <section className="card">
       <div
-        className={`card__container ${
-          isBarcodeMatched ? "card__container_green" : ""
-        }`}
+        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""} ${isClicked ? "card__container_green" : ""}`}
+        onClick={handleClick}
       >
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
