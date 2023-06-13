@@ -22,14 +22,21 @@ import {
   getBoxNameByBarcode,
   recommendedBoxes,
 } from "../../utils/utils";
-import { hardcodeData, boxesBarcodes } from "../../utils/constants";
+import {
+  hardcodeData,
+  newHardcodeData,
+  boxesBarcodes,
+} from "../../utils/constants";
 
 // отпочковать массив товаров из данных от бека
 const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
 const cardListLength = cardList.length;
 
-const boxesList = convertToBoxArray(hardcodeData.carton);
+// eslint-disable-next-line no-undef
+const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
+
+console.log(newHardcodeData.cartons[0].barcode);
 
 function App() {
   const location = useLocation();
@@ -40,7 +47,6 @@ function App() {
   const [checkedCards, setCheckedCards] = useState([]);
   const [cardBarcodeDefect, setCardBarcodeDefect] = useState([]);
   const [checkedCardsDefect, setCheckedCardsDefeсt] = useState([]);
-
 
   const [InfoTooltipText, setInfoTooltipText] = useState(
     "Сканируйте маркировку",
@@ -70,13 +76,12 @@ function App() {
 
   function checkCards(value) {
     cardList.forEach((item) => {
-      if ( previousPath === "/main" ) {
+      if (previousPath === "/main") {
         if (item.barcode === Number(value)) {
           const newCardBarcode = [...cardBarcode, item.barcode];
           const newCheckedCards = [...checkedCards, item];
           setCheckedCards(newCheckedCards);
           setCardBarcode(newCardBarcode);
-
         }
       } else if (item.barcode === Number(value)) {
         const newCardBarcodeDefect = [...cardBarcodeDefect, item.barcode];
@@ -119,7 +124,7 @@ function App() {
     }
   }
 
-  function handleClickProblemButton(){
+  function handleClickProblemButton() {
     setCardBarcode([]);
     setCardBarcodeDefect([]);
   }
@@ -137,11 +142,11 @@ function App() {
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value)) &&
-      CardsArraysIsEqual(cards, checkedCards)
+    CardsArraysIsEqual(cards, checkedCards)
       ? // если да то, выполняется функция checkBoxes
-      checkBoxes(value)
+        checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-      checkCards(value);
+        checkCards(value);
 
   return (
     <div className="App">
