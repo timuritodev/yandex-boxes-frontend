@@ -10,7 +10,7 @@ function Homepage() {
         Сканируйте ячейку <br /> B-09
       </h2>
       <div className="homepage__button-box">
-        <UniButton currentPage="homepage" />
+        <UniButton currentPage="homepage" name="Начать" />
       </div>
     </section>
   );

@@ -16,8 +16,9 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
   return (
     <>
       <div className="nogoods__container">
-        <h2 className="nogoods__title">Какого товара нет?</h2>
+        <div className="main__left-column" />
         <div className="main__center-column">
+          <h2 className="nogoods__title">Какого товара нет?</h2>
           <CardList
             cards={cards}
             cardBarcode={cardBarcode}
@@ -26,7 +27,9 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
             setSelectedCards={setSelectedCards}
           />
         </div>
-        <UniButton />
+        <div className="main__right-column">
+          <UniButton currentPage="nogoodspage" name="Далее" />
+        </div>
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
     </>
