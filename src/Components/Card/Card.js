@@ -13,7 +13,7 @@ import Progressbar from "../Progressbar/Progressbar";
 
 function Card({
   name,
-  barcode,
+  barcodes,
   picture,
   packageType,
   amount,
@@ -21,7 +21,7 @@ function Card({
   cardBarcodeDefect,
   checkedCards,
   selectedCards,
-  setSelectedCards
+  setSelectedCards,
 }) {
   const location = useLocation();
 
@@ -32,15 +32,14 @@ function Card({
     if (location.pathname === "/nogoodspage") {
       setIsClicked(!isClicked);
       setSelectedCards((prevSelectedCards) => {
-        if (prevSelectedCards.includes(barcode)) {
-          return prevSelectedCards.filter((card) => card !== barcode);
+        if (prevSelectedCards.includes(barcodes[0])) {
+          return prevSelectedCards.filter((card) => !barcodes.includes(card));
         } else {
-          return [...prevSelectedCards, barcode];
+          return [...prevSelectedCards, ...barcodes];
         }
       });
     }
   };
-
 
   const handleExpand = () => {
     setExpanded(!expanded);
@@ -59,9 +58,13 @@ function Card({
   let isBarcodeMatched = false;
 
   if (location.pathname === "/defectpage") {
-    isBarcodeMatched = cardBarcodeDefect.includes(barcode);
+    isBarcodeMatched = cardBarcodeDefect.some((barcode) =>
+      barcodes.includes(barcode),
+    );
   } else {
-    isBarcodeMatched = cardBarcode.includes(barcode);
+    isBarcodeMatched = cardBarcode.some((barcode) =>
+      barcodes.includes(barcode),
+    );
   }
 
   // проверка для progressbar;
@@ -71,10 +74,14 @@ function Card({
   }
 
   return (
-    <section className={`card ${isClicked ? "card__container_green" : ""}`} onClick={handleClick}>
+    <section
+      className={`card ${isClicked ? "card__container_green" : ""}`}
+      onClick={handleClick}
+    >
       <div
-        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""
-          }`}
+        className={`card__container ${
+          isBarcodeMatched ? "card__container_green" : ""
+        }`}
       >
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
@@ -82,7 +89,7 @@ function Card({
           {amount === 1 && (
             <div className="barcode__container">
               <img className="barcode__img" alt="" src={barcodepic} />
-              <p className="barcode__text">{barcode}</p>
+              <p className="barcode__text">{barcodes[0]}</p>
             </div>
           )}
         </div>
@@ -95,15 +102,17 @@ function Card({
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${expanded ? "expanded__button_open" : ""
-              }`}
+            className={`expand__button ${
+              expanded ? "expanded__button_open" : ""
+            }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
-                }`}
+              className={`expand__button_icon ${
+                expanded ? "expanded__button_icon_open" : ""
+              }`}
             >
               ▼
             </span>
@@ -112,11 +121,11 @@ function Card({
       </div>
       {amount > 1 && expanded && (
         <div className="expanded__cards">
-          {[...Array(amount)].map((_, index) => (
+          {barcodes.map((barcode, index) => (
             <Card
               key={index}
               name={name}
-              barcode={barcode}
+              barcodes={[barcode]}
               picture={null}
               packageType={packageType}
               amount={1}
