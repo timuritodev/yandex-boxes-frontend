@@ -36,8 +36,6 @@ const cardListLength = cardList.length;
 // eslint-disable-next-line no-undef
 const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 
-console.log(newHardcodeData.cartons[0].barcode);
-
 function App() {
   const location = useLocation();
 
@@ -74,8 +72,42 @@ function App() {
     }
   }, [location.pathname]);
 
+  /* function checkCards(value) {
+    cardList.forEach((item) => {
+      if (previousPath === "/main") {
+        if (item.barcode === Number(value)) {
+          const newCardBarcode = [...cardBarcode, item.barcode];
+          const newCheckedCards = [...checkedCards, item];
+          setCheckedCards(newCheckedCards);
+          setCardBarcode(newCardBarcode);
+        }
+      } else if (item.barcode === Number(value)) {
+        const newCardBarcodeDefect = [...cardBarcodeDefect, item.barcode];
+        const newCheckedCardsDefect = [...checkedCardsDefect, item];
+        setCheckedCardsDefeсt(newCheckedCardsDefect);
+        setCardBarcodeDefect(newCardBarcodeDefect);
+      }
+    });
+  } */
+
   function checkCards(value) {
     cardList.forEach((item) => {
+      const data = item.multiplyBarcodes;
+      if (data) {
+        if (previousPath === "/main") {
+          if (data.includes(Number(value))) {
+            const newCardBarcode = [...cardBarcode, Number(value)];
+            const newCheckedCards = [...checkedCards, item];
+            setCheckedCards(newCheckedCards);
+            setCardBarcode(newCardBarcode);
+          }
+        } else if (data.includes(Number(value))) {
+          const newCardBarcodeDefect = [...cardBarcodeDefect, Number(value)];
+          const newCheckedCardsDefect = [...checkedCardsDefect, item];
+          setCheckedCardsDefeсt(newCheckedCardsDefect);
+          setCardBarcodeDefect(newCardBarcodeDefect);
+        }
+      }
       if (previousPath === "/main") {
         if (item.barcode === Number(value)) {
           const newCardBarcode = [...cardBarcode, item.barcode];
@@ -133,17 +165,17 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
-  const CardsArraysIsEqual = (a, b) =>
+  /* const CardsArraysIsEqual = (a, b) =>
     a.length === b.length &&
     a.every((item, index) =>
       Object.keys(item).every((key) => item[key] === b[index][key]),
-    );
+    ); */
 
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
-    boxesBarcodes.includes(Number(value)) &&
-    CardsArraysIsEqual(cards, checkedCards)
-      ? // если да то, выполняется функция checkBoxes
+    boxesBarcodes.includes(Number(value))
+      ? // && CardsArraysIsEqual(cards, checkedCards)
+        // если да то, выполняется функция checkBoxes
         checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
         checkCards(value);

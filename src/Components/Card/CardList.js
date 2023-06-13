@@ -1,4 +1,3 @@
-// import React from "react";
 import Card from "./Card";
 import "./CardList.css";
 
@@ -20,12 +19,12 @@ function CardList({
           picture={item.picture}
           packageType={item.packageType}
           amount={item.amount}
-          multiplyBarcodes={item.multiplyBarcodes || []}
           cardBarcode={cardBarcode}
           cardBarcodeDefect={cardBarcodeDefect}
           checkedCards={checkedCards}
           selectedCards={selectedCards}
           setSelectedCards={setSelectedCards}
+          dataForMultiplyBarcodes={item.multiplyBarcodes}
         />
       ))}
     </section>
