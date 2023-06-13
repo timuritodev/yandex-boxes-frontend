@@ -5,18 +5,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
 
-import "./Card.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import barcodepic from "../../images/barcode.svg";
 import Progressbar from "../Progressbar/Progressbar";
+import "./Card.css";
 
 function Card({
   name,
-  barcodes,
+  barcode,
   picture,
   packageType,
   amount,
+  multiplyBarcodes,
   cardBarcode,
   cardBarcodeDefect,
   checkedCards,
@@ -32,10 +33,10 @@ function Card({
     if (location.pathname === "/nogoodspage") {
       setIsClicked(!isClicked);
       setSelectedCards((prevSelectedCards) => {
-        if (prevSelectedCards.includes(barcodes[0])) {
-          return prevSelectedCards.filter((card) => !barcodes.includes(card));
+        if (prevSelectedCards.includes(barcode)) {
+          return prevSelectedCards.filter((card) => card !== barcode);
         } else {
-          return [...prevSelectedCards, ...barcodes];
+          return [...prevSelectedCards, barcode];
         }
       });
     }
@@ -45,7 +46,6 @@ function Card({
     setExpanded(!expanded);
   };
 
-  // меняем цвет упаковки для каждого товара
   let boxName = "";
   if (packageType === "Пакет") {
     boxName += "box__name_bag";
@@ -56,18 +56,12 @@ function Card({
   }
 
   let isBarcodeMatched = false;
-
   if (location.pathname === "/defectpage") {
-    isBarcodeMatched = cardBarcodeDefect.some((barcode) =>
-      barcodes.includes(barcode),
-    );
+    isBarcodeMatched = cardBarcodeDefect.includes(barcode);
   } else {
-    isBarcodeMatched = cardBarcode.some((barcode) =>
-      barcodes.includes(barcode),
-    );
+    isBarcodeMatched = cardBarcode.includes(barcode);
   }
 
-  // проверка для progressbar;
   let count = 0;
   if (isBarcodeMatched) {
     count += 1;
@@ -89,7 +83,7 @@ function Card({
           {amount === 1 && (
             <div className="barcode__container">
               <img className="barcode__img" alt="" src={barcodepic} />
-              <p className="barcode__text">{barcodes[0]}</p>
+              <p className="barcode__text">{barcode}</p>
             </div>
           )}
         </div>
@@ -121,14 +115,15 @@ function Card({
       </div>
       {amount > 1 && expanded && (
         <div className="expanded__cards">
-          {barcodes.map((barcode, index) => (
+          {multiplyBarcodes.map((barcodeItem) => (
             <Card
-              key={index}
+              key={barcodeItem}
               name={name}
-              barcodes={[barcode]}
+              barcode={barcodeItem}
               picture={null}
               packageType={packageType}
               amount={1}
+              multiplyBarcodes={[]}
               cardBarcode={cardBarcode}
               cardBarcodeDefect={cardBarcodeDefect}
               checkedCards={checkedCards}

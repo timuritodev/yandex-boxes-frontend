@@ -6,12 +6,12 @@ import "./Defectpage.css";
 import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 import UniButton from "../UniButton/UniButton";
+import boxPic from "../../images/defect_box_picture.png";
 
 function Defectpage({ cards, cardBarcode, cardBarcodeDefect, checkedCards }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
   const [isDefectProcessingFinished, setIsDefectProcessingFinished] =
     useState(false);
-  const boxPic = null;
 
   console.log(cardBarcodeDefect.length);
 

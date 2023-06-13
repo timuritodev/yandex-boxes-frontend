@@ -1,3 +1,4 @@
+// import React from "react";
 import Card from "./Card";
 import "./CardList.css";
 
@@ -9,19 +10,17 @@ function CardList({
   selectedCards,
   setSelectedCards,
 }) {
-  console.log(cards);
   return (
     <section className="cardList">
       {cards.map((item) => (
         <Card
           key={item.id}
           name={item.name}
-          barcodes={
-            item.multiplyBarcodes ? [...item.multiplyBarcodes] : [item.barcode]
-          }
+          barcode={item.barcode}
           picture={item.picture}
           packageType={item.packageType}
           amount={item.amount}
+          multiplyBarcodes={item.multiplyBarcodes || []}
           cardBarcode={cardBarcode}
           cardBarcodeDefect={cardBarcodeDefect}
           checkedCards={checkedCards}
