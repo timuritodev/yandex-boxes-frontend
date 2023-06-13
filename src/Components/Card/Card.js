@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
@@ -19,6 +20,8 @@ function Card({
   cardBarcode,
   cardBarcodeDefect,
   checkedCards,
+  selectedCards,
+  setSelectedCards
 }) {
   const location = useLocation();
 
@@ -28,6 +31,13 @@ function Card({
   const handleClick = () => {
     if (location.pathname === "/nogoodspage") {
       setIsClicked(!isClicked);
+      setSelectedCards((prevSelectedCards) => {
+        if (prevSelectedCards.includes(barcode)) {
+          return prevSelectedCards.filter((card) => card !== barcode);
+        } else {
+          return [...prevSelectedCards, barcode];
+        }
+      });
     }
   };
 
@@ -113,6 +123,8 @@ function Card({
               cardBarcode={cardBarcode}
               cardBarcodeDefect={cardBarcodeDefect}
               checkedCards={checkedCards}
+              selectedCards={selectedCards}
+              setSelectedCards={setSelectedCards}
             />
           ))}
         </div>

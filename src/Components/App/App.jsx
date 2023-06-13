@@ -60,6 +60,7 @@ function App() {
   const [currentPath, setCurrentPath] = useState(null);
   const [previousPath, setPreviousPath] = useState(null);
 
+  // логика для предыдущей страницы
   useEffect(() => {
     if (location.pathname !== currentPath) {
       setPreviousPath(currentPath);
@@ -118,6 +119,11 @@ function App() {
     }
   }
 
+  function handleClickProblemButton(){
+    setCardBarcode([]);
+    setCardBarcodeDefect([]);
+  }
+
   function closePopup() {
     setIsInfoTooltipPopupOpen(false);
   }
@@ -164,6 +170,7 @@ function App() {
               cards={cards}
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
+              handleClickProblemButton={handleClickProblemButton}
             />
           }
         />
