@@ -1,18 +1,11 @@
-/* eslint-disable no-else-return */
-/* eslint-disable prefer-const */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/no-array-index-key */
-
-import "./Card.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import barcodepic from "../../images/barcode.svg";
-import Progressbar from "../Progressbar/Progressbar";
-import ExpendedCard from "./ExpandedCard/ExpandedCard";
+import barcodepic from "../../../images/barcode.svg";
+import Progressbar from "../../Progressbar/Progressbar";
 
-function Card({
+function ExpandedCard({
   name,
   barcode,
   picture,
@@ -20,14 +13,10 @@ function Card({
   amount,
   cardBarcode,
   cardBarcodeDefect,
-  checkedCards,
-  selectedCards,
   setSelectedCards,
-  dataForMultiplyBarcodes,
 }) {
   const location = useLocation();
 
-  const [expanded, setExpanded] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -36,15 +25,10 @@ function Card({
       setSelectedCards((prevSelectedCards) => {
         if (prevSelectedCards.includes(barcode)) {
           return prevSelectedCards.filter((card) => card !== barcode);
-        } else {
-          return [...prevSelectedCards, barcode];
         }
+        return [...prevSelectedCards, barcode];
       });
     }
-  };
-
-  const handleExpand = () => {
-    setExpanded(!expanded);
   };
 
   // меняем цвет упаковки для каждого товара
@@ -70,6 +54,8 @@ function Card({
   if (isBarcodeMatched) {
     count += 1;
   }
+
+  console.log(cardBarcode);
 
   return (
     <section
@@ -98,58 +84,9 @@ function Card({
             <Progressbar count={count} amount={amount} />
           </div>
         </div>
-        {amount > 1 && (
-          <div
-            className={`expand__button ${
-              expanded ? "expanded__button_open" : ""
-            }`}
-            role="button"
-            onClick={handleExpand}
-            tabIndex={0}
-          >
-            <span
-              className={`expand__button_icon ${
-                expanded ? "expanded__button_icon_open" : ""
-              }`}
-            >
-              ▼
-            </span>
-          </div>
-        )}
       </div>
-      {amount > 1 && expanded && (
-        <div className="expanded__cards">
-          {dataForMultiplyBarcodes.map((i, index) => (
-            <ExpendedCard
-              key={index}
-              name={name}
-              barcode={i}
-              picture={null}
-              packageType={packageType}
-              amount={1}
-              cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcode}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            />
-            /* <Card
-              key={index}
-              name={name}
-              barcode={multiplyBarcodes[index]}
-              picture={null}
-              packageType={packageType}
-              amount={1}
-              cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcode}
-              checkedCards={checkedCards}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            /> */
-          ))}
-        </div>
-      )}
     </section>
   );
 }
 
-export default Card;
+export default ExpandedCard;
