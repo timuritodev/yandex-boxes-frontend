@@ -9,7 +9,7 @@ function ReadyPage() {
         Упакуйте товары и поставьте коробку на конвейер
       </p>
       <div className="main__right-column">
-        <UniButton currentPage="readypage" />
+        <UniButton currentPage="readypage" name="Готово" />
       </div>
     </main>
   );

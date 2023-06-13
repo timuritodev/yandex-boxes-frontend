@@ -1,7 +1,7 @@
 import "./UniButton.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Button({ currentPage }) {
+function Button({ currentPage, finishDefectprocessing, name }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,20 +15,10 @@ function Button({ currentPage }) {
     if (currentPage === "readypage") {
       navigate("/");
     }
-    return null;
-  };
-
-  const getText = () => {
-    if (currentPage === "homepage") {
-      return "Начать";
-    }
-    if (currentPage === "main") {
-      return "Закрыть заказ";
-    }
     if (currentPage === "defectpage") {
-      return "Далее";
+      finishDefectprocessing();
     }
-    return "Готово";
+    return null;
   };
 
   const getButtonClass = () => {
@@ -48,7 +38,7 @@ function Button({ currentPage }) {
       aria-label="button"
       onClick={handleClick}
     >
-      {getText()}
+      {name}
     </button>
   );
 }

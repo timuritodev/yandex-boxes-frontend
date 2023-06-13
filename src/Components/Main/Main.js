@@ -46,7 +46,7 @@ function Main({
         </div>
         <div className="main__right-column">
           {isUniButtonActive() && checkedBoxes.length >= 1 ? (
-            <UniButton currentPage="main" />
+            <UniButton currentPage="main" name="Закрыть заказ" />
           ) : (
             ""
           )}
