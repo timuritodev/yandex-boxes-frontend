@@ -2,7 +2,7 @@ import "./Homepage.css";
 import ProblemButton from "../ProblemButton/ProblemButton";
 import UniButton from "../UniButton/UniButton";
 
-function Homepage() {
+function Homepage({ getOrder }) {
   return (
     <section className="homepage">
       <ProblemButton />
@@ -10,7 +10,7 @@ function Homepage() {
         Сканируйте ячейку <br /> B-09
       </h2>
       <div className="homepage__button-box">
-        <UniButton currentPage="homepage" name="Начать" />
+        <UniButton currentPage="homepage" name="Начать" getOrder={getOrder} />
       </div>
     </section>
   );

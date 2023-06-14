@@ -21,17 +21,22 @@ import {
   generateUniqueKey,
   getBoxNameByBarcode,
   recommendedBoxes,
+  transformMultiplyBarcodes,
 } from "../../utils/utils";
 import {
   hardcodeData,
   newHardcodeData,
   boxesBarcodes,
 } from "../../utils/constants";
+import * as Api from "../../utils/Api";
 
 // отпочковать массив товаров из данных от бека
 const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
 const cardListLength = cardList.length;
+
+// массив всех приходящих с бека штрихкодов
+const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
 
 // eslint-disable-next-line no-undef
 const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
@@ -40,11 +45,12 @@ function App() {
   const location = useLocation();
   // работа с карточками(товарами)
   const [cards, setCards] = useState(cardList);
+  // все введенные с клавиатуры
   const [cardBarcode, setCardBarcode] = useState([]);
+  // массив всех объектов проверенных карточек
   const [checkedCards, setCheckedCards] = useState([]);
   const [cardBarcodeDefect, setCardBarcodeDefect] = useState([]);
   const [checkedCardsDefect, setCheckedCardsDefeсt] = useState([]);
-
   const [InfoTooltipText, setInfoTooltipText] = useState(
     "Сканируйте маркировку",
   );
@@ -161,20 +167,46 @@ function App() {
       Object.keys(item).every((key) => item[key] === b[index][key]),
     ); */
 
+  // это будет функция которая инициирует гет запрос данных заказа
+  function getOrder() {
+    console.log("получить заказ");
+    /* Api.getOrder()
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.log(err)) */
+  }
+
+  // это будет функция которая отправит собранный заказ на бекенд
+  function finishOrder() {
+    console.log("завершить заказ");
+    /* const data = {
+      id: 1232434,
+      is_completed: true,
+      user_id: '123231434',
+      comment: 'все ок',
+      used_cartons: [120,130],
+    }
+    Api.finishOrder(data).then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.log(err)) */
+  }
+
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
-    boxesBarcodes.includes(Number(value))
-      ? // && CardsArraysIsEqual(cards, checkedCards)
-      // если да то, выполняется функция checkBoxes
-      checkBoxes(value)
+    boxesBarcodes.includes(Number(value)) &&
+    allBarcodesFromBackend.length === cardBarcode.length
+      ? // если да то, выполняется функция checkBoxes
+        checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-      checkCards(value);
+        checkCards(value);
 
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage getOrder={getOrder} />} />
         <Route
           path="main"
           element={
@@ -187,6 +219,8 @@ function App() {
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
               cardBarcodeDefect={cardBarcodeDefect}
+              finishOrder={finishOrder}
+              allBarcodesFromBackend={allBarcodesFromBackend}
             />
           }
         />

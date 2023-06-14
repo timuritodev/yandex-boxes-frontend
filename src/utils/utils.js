@@ -49,10 +49,20 @@ function convertToBarcodeArray(data) {
   return boxes;
 }
 
+function transformMultiplyBarcodes(data) {
+  return data.flatMap((item) => {
+    if (item.amount === 1) {
+      return item.barcode;
+    }
+    return item.multiplyBarcodes;
+  });
+}
+
 export {
   getBoxNameByBarcode,
   convertToBoxArray,
   generateUniqueKey,
   convertToBarcodeArray,
   recommendedBoxes,
+  transformMultiplyBarcodes,
 };

@@ -110,15 +110,15 @@ const newHardcodeData = {
   ],
   payload: [
     {
-      id: 1,
+      item_id: 1,
       amount: 2,
     },
     {
-      id: 2,
+      item_id: 2,
       amount: 3,
     },
     {
-      id: 3,
+      item_id: 3,
       amount: 1,
     },
   ],
@@ -127,7 +127,7 @@ const newHardcodeData = {
 const convertData = (data) => {
   const amountMap = data.payload.reduce((map, payloadItem) => {
     // eslint-disable-next-line no-param-reassign
-    map[payloadItem.id] = payloadItem.amount;
+    map[payloadItem.item_id] = payloadItem.amount;
     return map;
   }, {});
 
