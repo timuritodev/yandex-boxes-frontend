@@ -21,6 +21,7 @@ import {
   generateUniqueKey,
   getBoxNameByBarcode,
   recommendedBoxes,
+  transformMultiplyBarcodes,
 } from "../../utils/utils";
 import {
   hardcodeData,
@@ -33,6 +34,13 @@ const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
 const cardListLength = cardList.length;
 
+console.log(clonedCardList);
+console.log(cardList);
+console.log(cardListLength);
+
+// массив всех приходящих с бека штрихкодов
+const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
+
 // eslint-disable-next-line no-undef
 const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 
@@ -40,11 +48,12 @@ function App() {
   const location = useLocation();
   // работа с карточками(товарами)
   const [cards, setCards] = useState(cardList);
+  // все введенные с клавиатуры
   const [cardBarcode, setCardBarcode] = useState([]);
+  // массив всех объектов проверенных карточек
   const [checkedCards, setCheckedCards] = useState([]);
   const [cardBarcodeDefect, setCardBarcodeDefect] = useState([]);
   const [checkedCardsDefect, setCheckedCardsDefeсt] = useState([]);
-
   const [InfoTooltipText, setInfoTooltipText] = useState(
     "Сканируйте маркировку",
   );
@@ -62,6 +71,8 @@ function App() {
   // переменные для отслеживания страницы
   const [currentPath, setCurrentPath] = useState(null);
   const [previousPath, setPreviousPath] = useState(null);
+
+  console.log(allBarcodesFromBackend);
 
   // логика для предыдущей страницы
   useEffect(() => {
@@ -161,11 +172,21 @@ function App() {
       Object.keys(item).every((key) => item[key] === b[index][key]),
     ); */
 
+  // это будет функция которая инициирует гет запрос данных заказа
+  function getOrder() {
+    console.log("получить заказ");
+  }
+
+  // это будет функция которая отправит собранный заказ на бекенд
+  function finishOrder() {
+    console.log("завершить заказ");
+  }
+
   const handleKeyboardResult = (value) =>
     // относится ли штрих код к коробкам
-    boxesBarcodes.includes(Number(value))
-      ? // && CardsArraysIsEqual(cards, checkedCards)
-        // если да то, выполняется функция checkBoxes
+    boxesBarcodes.includes(Number(value)) &&
+    allBarcodesFromBackend.length === cardBarcode.length
+      ? // если да то, выполняется функция checkBoxes
         checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
         checkCards(value);
@@ -174,7 +195,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage getOrder={getOrder} />} />
         <Route
           path="main"
           element={
@@ -187,6 +208,8 @@ function App() {
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
               cardBarcodeDefect={cardBarcodeDefect}
+              finishOrder={finishOrder}
+              allBarcodesFromBackend={allBarcodesFromBackend}
             />
           }
         />

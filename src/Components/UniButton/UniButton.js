@@ -1,15 +1,25 @@
 import "./UniButton.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Button({ currentPage, finishDefectprocessing, name }) {
+function Button({
+  currentPage,
+  finishDefectprocessing,
+  name,
+  getOrder,
+  finishOrder,
+}) {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleClick = () => {
     if (currentPage === "homepage") {
+      // это будет функция которая инициирует гет запрос данных заказа
+      getOrder();
       navigate("/main");
     }
     if (currentPage === "main") {
+      // это будет функция которая отправляет собранный заказ на бекенд
+      finishOrder();
       navigate("/readypage");
     }
     if (currentPage === "readypage") {
