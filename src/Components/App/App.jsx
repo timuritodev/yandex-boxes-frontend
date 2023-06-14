@@ -110,7 +110,7 @@ function App() {
   }
 
   function checkCards(value) {
-    cardList.forEach((item) => {
+    cards.forEach((item) => {
       const data = item.multiplyBarcodes;
       if (data) {
         checkMultiplyBarcodes(data, item, value);

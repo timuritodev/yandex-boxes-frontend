@@ -7,7 +7,9 @@ function Button({
   name,
   getOrder,
   finishOrder,
+  changeCards
 }) {
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +29,9 @@ function Button({
     }
     if (currentPage === "defectpage") {
       finishDefectprocessing();
+    }
+    if (currentPage === "nogoodspage") {
+      changeCards();
     }
     return null;
   };

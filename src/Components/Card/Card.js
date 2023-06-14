@@ -32,7 +32,7 @@ function Card({
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
-    if (location.pathname === "/nogoodspage") {
+    if (location.pathname === "/nogoodspage" && amount === 1) {
       setIsClicked(!isClicked);
       setSelectedCards((prevSelectedCards) => {
         if (prevSelectedCards.includes(barcode)) {
@@ -76,14 +76,10 @@ function Card({
   }, [expanded, name]);
 
   return (
-    <section
-      className={`card ${isClicked ? "card__container_green" : ""}`}
-      onClick={handleClick}
-    >
+    <section className="card">
       <div
-        className={`card__container ${
-          isBarcodeMatched ? "card__container_green" : ""
-        }`}
+        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""} ${isClicked ? "card__container_green" : ""}`}
+        onClick={handleClick}
       >
         <img className="img__card" alt="" src={picture} />
         <div className="name__container">
@@ -132,7 +128,7 @@ function Card({
               packageType={packageType}
               amount={1}
               cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcode}
+              cardBarcodeDefect={cardBarcodeDefect}
               selectedCards={selectedCards}
               setSelectedCards={setSelectedCards}
             />
