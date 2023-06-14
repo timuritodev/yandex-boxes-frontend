@@ -28,15 +28,12 @@ import {
   newHardcodeData,
   boxesBarcodes,
 } from "../../utils/constants";
+import * as Api from "../../utils/Api";
 
 // отпочковать массив товаров из данных от бека
 const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
 const cardListLength = cardList.length;
-
-console.log(clonedCardList);
-console.log(cardList);
-console.log(cardListLength);
 
 // массив всех приходящих с бека штрихкодов
 const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
@@ -71,8 +68,6 @@ function App() {
   // переменные для отслеживания страницы
   const [currentPath, setCurrentPath] = useState(null);
   const [previousPath, setPreviousPath] = useState(null);
-
-  console.log(allBarcodesFromBackend);
 
   // логика для предыдущей страницы
   useEffect(() => {
@@ -175,11 +170,27 @@ function App() {
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     console.log("получить заказ");
+    /* Api.getOrder()
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.log(err)) */
   }
 
   // это будет функция которая отправит собранный заказ на бекенд
   function finishOrder() {
     console.log("завершить заказ");
+    /* const data = {
+      id: 1232434,
+      is_completed: true,
+      user_id: 123231434,
+      comment: 'все ок',
+      used_cartons: [120,130],
+    }
+    Api.finishOrder(data).then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.log(err)) */
   }
 
   const handleKeyboardResult = (value) =>
