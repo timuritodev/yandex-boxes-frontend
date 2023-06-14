@@ -33,6 +33,7 @@ const clonedCardList = Object.assign({}, hardcodeData);
 const cardList = clonedCardList.items;
 const cardListLength = cardList.length;
 
+console.log(hardcodeData)
 // eslint-disable-next-line no-undef
 const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 

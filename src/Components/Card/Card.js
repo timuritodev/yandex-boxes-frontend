@@ -67,10 +67,18 @@ function Card({
 
   // проверка для progressbar;
   let count = 0;
+if (isBarcodeMatched) {
+  count += 1;
+  // Если условие выполняется, то мы добавляем 1 к count
   if (isBarcodeMatched) {
     count += 1;
+    // Если условие выполняется еще раз, то мы добавляем еще 1 к count
   }
+}
 
+
+  console.log("count", count)
+  console.log("amount", amount)
   return (
     <section className="card">
       <div

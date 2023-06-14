@@ -134,10 +134,25 @@ const convertData = (data) => {
   const uniqueItems = new Map();
 
   data.items.forEach((item) => {
-    if (!uniqueItems.has(item.id)) {
+    if (!uniqueItems.has(item.id) && amountMap[item.id] === 1) {
       const newItem = {
         name: item.name,
         barcode: item.barcode,
+        picture: item.image,
+        id: item.id,
+        packageType: item.package_type,
+        amount: amountMap[item.id] || 0,
+      };
+
+      if (newItem.amount > 1) {
+        newItem.multiplyBarcodes = data.items
+          .filter((i) => i.id === item.id)
+          .map((i) => i.barcode);
+      }
+      uniqueItems.set(item.id, newItem);
+    } if (!uniqueItems.has(item.id) && amountMap[item.id] > 1) {
+      const newItem = {
+        name: item.name,
         picture: item.image,
         id: item.id,
         packageType: item.package_type,
