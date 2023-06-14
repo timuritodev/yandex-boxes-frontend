@@ -37,7 +37,7 @@ import "./Footer.css";
 // import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import NdaBox from "./NdaBox/NdaFox";
-import ChangeCompositionButton from "./ChangeСompositionButton/ChangeCompositionButton";
+// import ChangeCompositionButton from "./ChangeСompositionButton/ChangeCompositionButton";
 import KeyboardButton from "./KeyboardButton/KeyboardButton";
 import BackButton from "./BackButton/BackButton";
 
@@ -56,10 +56,14 @@ function Footer({ IsKeyboardButtonActive }) {
       }`}
     >
       <div className="footer__box">
-        <div className="button__box">
+        <div
+          className={`button__box ${
+            location.pathname === "/main" ? "button__box_main" : ""
+          }`}
+        >
           {location.pathname === "/main" && (
             <>
-              <ChangeCompositionButton />
+              {/* <ChangeCompositionButton /> */}
               <KeyboardButton />
             </>
           )}
