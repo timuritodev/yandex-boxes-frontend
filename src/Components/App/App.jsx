@@ -38,7 +38,6 @@ const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 
 function App() {
   const location = useLocation();
-
   // работа с карточками(товарами)
   const [cards, setCards] = useState(cardList);
   const [cardBarcode, setCardBarcode] = useState([]);
@@ -72,54 +71,45 @@ function App() {
     }
   }, [location.pathname]);
 
-  /* function checkCards(value) {
-    cardList.forEach((item) => {
-      if (previousPath === "/main") {
-        if (item.barcode === Number(value)) {
-          const newCardBarcode = [...cardBarcode, item.barcode];
-          const newCheckedCards = [...checkedCards, item];
-          setCheckedCards(newCheckedCards);
-          setCardBarcode(newCardBarcode);
-        }
-      } else if (item.barcode === Number(value)) {
-        const newCardBarcodeDefect = [...cardBarcodeDefect, item.barcode];
-        const newCheckedCardsDefect = [...checkedCardsDefect, item];
-        setCheckedCardsDefeсt(newCheckedCardsDefect);
-        setCardBarcodeDefect(newCardBarcodeDefect);
+  function checkMultiplyBarcodes(data, item, value) {
+    if (previousPath === "/main") {
+      if (data.includes(Number(value))) {
+        const newCardBarcode = [...cardBarcode, Number(value)];
+        const newCheckedCards = [...checkedCards, item];
+        setCheckedCards(newCheckedCards);
+        setCardBarcode(newCardBarcode);
       }
-    });
-  } */
+    } else if (data.includes(Number(value))) {
+      const newCardBarcodeDefect = [...cardBarcodeDefect, Number(value)];
+      const newCheckedCardsDefect = [...checkedCardsDefect, item];
+      setCheckedCardsDefeсt(newCheckedCardsDefect);
+      setCardBarcodeDefect(newCardBarcodeDefect);
+    }
+  }
+
+  function checkBarcode(item, value) {
+    if (previousPath === "/main") {
+      if (item.barcode === Number(value)) {
+        const newCardBarcode = [...cardBarcode, item.barcode];
+        const newCheckedCards = [...checkedCards, item];
+        setCheckedCards(newCheckedCards);
+        setCardBarcode(newCardBarcode);
+      }
+    } else if (item.barcode === Number(value)) {
+      const newCardBarcodeDefect = [...cardBarcodeDefect, item.barcode];
+      const newCheckedCardsDefect = [...checkedCardsDefect, item];
+      setCheckedCardsDefeсt(newCheckedCardsDefect);
+      setCardBarcodeDefect(newCardBarcodeDefect);
+    }
+  }
 
   function checkCards(value) {
     cardList.forEach((item) => {
       const data = item.multiplyBarcodes;
       if (data) {
-        if (previousPath === "/main") {
-          if (data.includes(Number(value))) {
-            const newCardBarcode = [...cardBarcode, Number(value)];
-            const newCheckedCards = [...checkedCards, item];
-            setCheckedCards(newCheckedCards);
-            setCardBarcode(newCardBarcode);
-          }
-        } else if (data.includes(Number(value))) {
-          const newCardBarcodeDefect = [...cardBarcodeDefect, Number(value)];
-          const newCheckedCardsDefect = [...checkedCardsDefect, item];
-          setCheckedCardsDefeсt(newCheckedCardsDefect);
-          setCardBarcodeDefect(newCardBarcodeDefect);
-        }
-      }
-      if (previousPath === "/main") {
-        if (item.barcode === Number(value)) {
-          const newCardBarcode = [...cardBarcode, item.barcode];
-          const newCheckedCards = [...checkedCards, item];
-          setCheckedCards(newCheckedCards);
-          setCardBarcode(newCardBarcode);
-        }
-      } else if (item.barcode === Number(value)) {
-        const newCardBarcodeDefect = [...cardBarcodeDefect, item.barcode];
-        const newCheckedCardsDefect = [...checkedCardsDefect, item];
-        setCheckedCardsDefeсt(newCheckedCardsDefect);
-        setCardBarcodeDefect(newCardBarcodeDefect);
+        checkMultiplyBarcodes(data, item, value);
+      } else {
+        checkBarcode(item, value);
       }
     });
   }
