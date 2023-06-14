@@ -34,23 +34,28 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
       <div className="nogoods__container">
         <div className="main__left-column" />
         <div className="main__center-column">
-          <h2 className="nogoods__title">Какого товара нет?</h2>
           {flag ? (
-            <CardList
-              cards={fakeCards}
-              cardBarcode={cardBarcode}
-              checkedCards={checkedCards}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            />
+            <>
+              <h2 className="nogoods__title">Отсканируйте бейдж бригадира дляподтверждения</h2>
+              <CardList
+                cards={fakeCards}
+                cardBarcode={cardBarcode}
+                checkedCards={checkedCards}
+                selectedCards={selectedCards}
+                setSelectedCards={setSelectedCards}
+              />
+            </>
           ) : (
-            <CardList
-              cards={cards}
-              cardBarcode={cardBarcode}
-              checkedCards={checkedCards}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            />
+            <>
+              <h2 className="nogoods__title">Какого товара нет?</h2>
+              <CardList
+                cards={cards}
+                cardBarcode={cardBarcode}
+                checkedCards={checkedCards}
+                selectedCards={selectedCards}
+                setSelectedCards={setSelectedCards}
+              />
+            </>
           )}
         </div>
         <div className="main__right-column">
