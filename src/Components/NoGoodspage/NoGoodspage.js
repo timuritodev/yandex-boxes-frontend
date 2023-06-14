@@ -10,16 +10,23 @@ import UniButton from "../UniButton/UniButton";
 function NoGoodspage({ cards, cardBarcode, checkedCards }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
-  const [fakeCards, setFakeCards] = useState(cards);
+  const [fakeCards, setFakeCards] = useState([]);
+  const [flag, setFlag] = useState(false);
 
+  useEffect(() => {
+    const newFakeCards = [];
+    selectedCards.forEach((selectedCard) => {
+      cards.forEach((item) => {
+        if (item.barcode === selectedCard) {
+          newFakeCards.push(item);
+        }
+      });
+    });
+    setFakeCards(newFakeCards);
+  }, [selectedCards, cards, flag]);
 
-  console.log(selectedCards)
-  const handleNext = () => {
-    // Обновляем пропс cards на selectedCards
-
-    // console.log(123)
-    // Другие действия при нажатии на кнопку "Далее"
-    // ...
+  const changeCards = () => {
+    setFlag(true);
   };
 
   return (
@@ -28,16 +35,26 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
         <div className="main__left-column" />
         <div className="main__center-column">
           <h2 className="nogoods__title">Какого товара нет?</h2>
-          <CardList
-            cards={fakeCards}
-            cardBarcode={cardBarcode}
-            checkedCards={checkedCards}
-            selectedCards={selectedCards}
-            setSelectedCards={setSelectedCards}
-          />
+          {flag ? (
+            <CardList
+              cards={fakeCards}
+              cardBarcode={cardBarcode}
+              checkedCards={checkedCards}
+              selectedCards={selectedCards}
+              setSelectedCards={setSelectedCards}
+            />
+          ) : (
+            <CardList
+              cards={cards}
+              cardBarcode={cardBarcode}
+              checkedCards={checkedCards}
+              selectedCards={selectedCards}
+              setSelectedCards={setSelectedCards}
+            />
+          )}
         </div>
         <div className="main__right-column">
-          <UniButton currentPage="nogoodspage" name="Далее" onClick={handleNext} />
+          <UniButton currentPage="nogoodspage" name="Далее" changeCards={changeCards} />
         </div>
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />

@@ -175,10 +175,10 @@ function App() {
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
       ? // && CardsArraysIsEqual(cards, checkedCards)
-        // если да то, выполняется функция checkBoxes
-        checkBoxes(value)
+      // если да то, выполняется функция checkBoxes
+      checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-        checkCards(value);
+      checkCards(value);
 
   return (
     <div className="App">

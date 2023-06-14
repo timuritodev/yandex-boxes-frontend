@@ -31,7 +31,7 @@ function Card({
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
-    if (location.pathname === "/nogoodspage") {
+    if (location.pathname === "/nogoodspage" && amount === 1) {
       setIsClicked(!isClicked);
       setSelectedCards((prevSelectedCards) => {
         if (prevSelectedCards.includes(barcode)) {
