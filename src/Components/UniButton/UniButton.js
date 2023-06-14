@@ -1,7 +1,7 @@
 import "./UniButton.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Button({ currentPage, finishDefectprocessing, name }) {
+function Button({ currentPage, finishDefectprocessing, changeCards, name }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -17,6 +17,9 @@ function Button({ currentPage, finishDefectprocessing, name }) {
     }
     if (currentPage === "defectpage") {
       finishDefectprocessing();
+    }
+    if (currentPage === "nogoodspage") {
+      changeCards();
     }
     return null;
   };

@@ -104,7 +104,7 @@ function App() {
   }
 
   function checkCards(value) {
-    cardList.forEach((item) => {
+    cards.forEach((item) => {
       const data = item.multiplyBarcodes;
       if (data) {
         checkMultiplyBarcodes(data, item, value);
@@ -165,10 +165,10 @@ function App() {
     // относится ли штрих код к коробкам
     boxesBarcodes.includes(Number(value))
       ? // && CardsArraysIsEqual(cards, checkedCards)
-        // если да то, выполняется функция checkBoxes
-        checkBoxes(value)
+      // если да то, выполняется функция checkBoxes
+      checkBoxes(value)
       : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-        checkCards(value);
+      checkCards(value);
 
   return (
     <div className="App">
