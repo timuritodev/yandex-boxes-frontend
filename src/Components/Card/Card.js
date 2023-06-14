@@ -1,18 +1,17 @@
-/* eslint-disable no-else-return */
-/* eslint-disable prefer-const */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
 
 import "./Card.css";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import barcodepic from "../../images/barcode.svg";
 import Progressbar from "../Progressbar/Progressbar";
 import ExpendedCard from "./ExpandedCard/ExpandedCard";
 
 function Card({
+  id,
   name,
   barcode,
   picture,
@@ -27,7 +26,9 @@ function Card({
 }) {
   const location = useLocation();
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(
+    localStorage.getItem(`cardExpanded_${name}`) === "true",
+  );
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -36,18 +37,18 @@ function Card({
       setSelectedCards((prevSelectedCards) => {
         if (prevSelectedCards.includes(barcode)) {
           return prevSelectedCards.filter((card) => card !== barcode);
-        } else {
-          return [...prevSelectedCards, barcode];
         }
+        return [...prevSelectedCards, barcode];
       });
     }
   };
 
   const handleExpand = () => {
-    setExpanded(!expanded);
+    const newExpanded = !expanded;
+    setExpanded(newExpanded);
+    localStorage.setItem(`cardExpanded_${name}`, newExpanded.toString());
   };
 
-  // меняем цвет упаковки для каждого товара
   let boxName = "";
   if (packageType === "Пакет") {
     boxName += "box__name_bag";
@@ -65,11 +66,14 @@ function Card({
     isBarcodeMatched = cardBarcode.includes(barcode);
   }
 
-  // проверка для progressbar;
   let count = 0;
   if (isBarcodeMatched) {
     count += 1;
   }
+
+  useEffect(() => {
+    localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
+  }, [expanded, name]);
 
   return (
     <section
@@ -94,7 +98,7 @@ function Card({
         <div className="box__container">
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
-            <p className="box__amount">{amount}шт.</p>
+            <p className="box__amount">{amount} шт.</p>
             <Progressbar count={count} amount={amount} />
           </div>
         </div>
@@ -132,19 +136,6 @@ function Card({
               selectedCards={selectedCards}
               setSelectedCards={setSelectedCards}
             />
-            /* <Card
-              key={index}
-              name={name}
-              barcode={multiplyBarcodes[index]}
-              picture={null}
-              packageType={packageType}
-              amount={1}
-              cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcode}
-              checkedCards={checkedCards}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            /> */
           ))}
         </div>
       )}

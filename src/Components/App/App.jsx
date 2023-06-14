@@ -183,7 +183,7 @@ function App() {
     /* const data = {
       id: 1232434,
       is_completed: true,
-      user_id: 123231434,
+      user_id: '123231434',
       comment: 'все ок',
       used_cartons: [120,130],
     }
