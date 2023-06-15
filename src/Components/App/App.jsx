@@ -31,11 +31,6 @@ import {
 } from "../../utils/constants";
 import * as Api from "../../utils/Api";
 
-// отпочковать массив товаров из данных от бека
-const clonedCardList = Object.assign({}, hardcodeData);
-const cardList = clonedCardList.items;
-const cardListLength = cardList.length;
-
 // массив всех приходящих с бека штрихкодов
 // const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
 
@@ -47,7 +42,7 @@ function App() {
 
   /* работа с карточками(товарами) */
 
-  const [cards, setCards] = useState(cardList);
+  const [cards, setCards] = useState([]);
   // все введенные с клавиатуры
   const [cardBarcode, setCardBarcode] = useState([]);
   // массив всех объектов проверенных карточек
@@ -185,20 +180,26 @@ function App() {
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     console.log("получить заказ");
+    // отпочковать массив товаров из данных от бека
+    const dataFromBackend = convertData(newHardcodeData);
+    const clonedCardList = Object.assign({}, dataFromBackend);
+    const cardList = clonedCardList.items;
+    const cardListLength = cardList.length;
     // записываем рекомендуемую коробку
-    const reccomendedBox = convertToBoxArray(
-      newHardcodeData.cartons[0].barcode,
-    );
+    // вместо newHardcodeData будет res
+    const perfectBox = convertToBoxArray(newHardcodeData.cartons[0].barcode);
     // записываем в массив все штрихкоды коробок из бека для проверок
     const transformesApiData = convertData(newHardcodeData);
     // записываем в массив все штрихкоды коробок из бека для проверок
     const arrayBarcodesFromBackend = transformMultiplyBarcodes(
       transformesApiData.items,
     );
-    setBoxes(reccomendedBox);
+    setCards(cardList);
+    setBoxes(perfectBox);
     setAllBarcodesFromBackend(arrayBarcodesFromBackend);
     /* Api.getOrder()
     .then((res) => {
+      //весь код выше должен быть здесь
       console.log(res)
     })
     .catch((err) => console.log(err)) */
@@ -206,13 +207,14 @@ function App() {
 
   // это будет функция которая отправит собранный заказ на бекенд
   function finishOrder() {
+    setCheckedBoxes([]);
     console.log("завершить заказ");
     /* const data = {
       id: 1232434,
       is_completed: true,
       user_id: '123231434',
-      comment: 'все ок',
-      used_cartons: [120,130],
+      comment: '',
+      used_cartons: checkedBoxes,
     }
     Api.finishOrder(data).then((res) => {
       console.log(res)
@@ -244,6 +246,8 @@ function App() {
     }
   };
 
+  console.log(boxes);
+
   return (
     <div className="App">
       <Header />
@@ -253,7 +257,7 @@ function App() {
           path="main"
           element={
             <Main
-              cardListLength={cardListLength}
+              cardListLength={cards.length}
               boxes={boxes}
               boxBarcode={boxBarcode}
               checkedBoxes={checkedBoxes}

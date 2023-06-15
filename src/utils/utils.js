@@ -25,7 +25,7 @@ const getBoxNameByBarcode = (barcode) => {
 
 const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
 
-const recommendedBoxes = [];
+/* const recommendedBoxes = [];
 
 const convertToBoxArray = (barcodeData) => {
   recommendedBoxes.push({
@@ -33,6 +33,29 @@ const convertToBoxArray = (barcodeData) => {
     name: getBoxNameByBarcode(barcodeData),
     barcode: barcodeData,
   });
+  return recommendedBoxes;
+}; */
+
+const recommendedBoxes = [];
+
+const convertToBoxArray = (barcodeData) => {
+  // Проверка наличия объекта с таким же штрих-кодом в массиве recommendedBoxes
+  const existingIndex = recommendedBoxes.findIndex(
+    (box) => box.barcode === barcodeData,
+  );
+
+  // Если объект с таким же штрих-кодом уже существует, не добавляем его в массив
+  if (existingIndex !== -1) {
+    return recommendedBoxes;
+  }
+
+  // Добавление нового объекта в массив recommendedBoxes
+  recommendedBoxes.push({
+    id: generateUniqueKey(),
+    name: getBoxNameByBarcode(barcodeData),
+    barcode: barcodeData,
+  });
+
   return recommendedBoxes;
 };
 
