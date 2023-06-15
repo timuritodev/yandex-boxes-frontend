@@ -4,6 +4,9 @@ import "./Progressbar.css";
 function Progressbar({ count, amount }) {
 const progressPercentage = Math.round((count / amount) * 100);
 
+// console.log("count", count)
+// console.log("amount", amount)
+
   return (
     <div>
       <div className="progress-bar">

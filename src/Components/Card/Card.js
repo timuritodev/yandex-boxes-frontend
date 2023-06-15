@@ -66,19 +66,31 @@ function Card({
     isBarcodeMatched = cardBarcode.includes(barcode);
   }
 
+  const [totalMatchedCount, setTotalMatchedCount] = useState(0);
+
+  const updateMatchedCount = () => {
+    setTotalMatchedCount((prevCount) => prevCount + 0.5);
+  };
+
   let count = 0;
-  if (isBarcodeMatched) {
-    count += 1;
+  if(isBarcodeMatched){
+    count +=1;
   }
 
   useEffect(() => {
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
 
+  console.log(totalMatchedCount)
   return (
     <section className="card">
       <div
-        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""} ${isClicked ? "card__container_green" : ""}`}
+        className={`card__container
+          ${totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1 ? "card__container_yellow" : ""}
+          ${totalMatchedCount === amount && amount > 1 ? "card__container_green" : ""}
+          ${isBarcodeMatched ? "card__container_green" : ""}
+          ${isClicked ? "card__container_green" : ""}`
+        }
         onClick={handleClick}
       >
         <img className="img__card" alt="" src={picture} />
@@ -95,22 +107,20 @@ function Card({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
-            <Progressbar count={count} amount={amount} />
+            <Progressbar count={totalMatchedCount !== 0 ? totalMatchedCount : count} amount={amount} />
           </div>
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${
-              expanded ? "expanded__button_open" : ""
-            }`}
+            className={`expand__button ${expanded ? "expanded__button_open" : ""
+              }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${
-                expanded ? "expanded__button_icon_open" : ""
-              }`}
+              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
+                }`}
             >
               ▼
             </span>
@@ -131,6 +141,7 @@ function Card({
               cardBarcodeDefect={cardBarcodeDefect}
               selectedCards={selectedCards}
               setSelectedCards={setSelectedCards}
+              updateMatchedCount={updateMatchedCount}
             />
           ))}
         </div>

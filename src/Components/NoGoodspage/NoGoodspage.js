@@ -6,12 +6,19 @@ import "./NoGoodspage.css";
 import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 import UniButton from "../UniButton/UniButton";
+import ForemanTooltip from "../Problempage/ForemanTooltip/ForemanTooltip"
+
 
 function NoGoodspage({ cards, cardBarcode, checkedCards }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [fakeCards, setFakeCards] = useState([]);
   const [flag, setFlag] = useState(false);
+  const [isForemanTooltipOpen, setIsForemanTooltipOpen] = useState(false);
+
+  const handleCallBrigButton = () => {
+    setIsForemanTooltipOpen(true);
+  };
 
   useEffect(() => {
     const newFakeCards = [];
@@ -29,40 +36,47 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
     setFlag(true);
   };
 
+  // console.log(selectedCards)
   return (
     <>
-      <div className="nogoods__container">
-        <div className="main__left-column" />
-        <div className="main__center-column">
-          {flag ? (
-            <>
-              <h2 className="nogoods__title">Отсканируйте бейдж бригадира дляподтверждения</h2>
-              <CardList
-                cards={fakeCards}
-                cardBarcode={cardBarcode}
-                checkedCards={checkedCards}
-                selectedCards={selectedCards}
-                setSelectedCards={setSelectedCards}
-              />
-            </>
-          ) : (
-            <>
-              <h2 className="nogoods__title">Какого товара нет?</h2>
-              <CardList
-                cards={cards}
-                cardBarcode={cardBarcode}
-                checkedCards={checkedCards}
-                selectedCards={selectedCards}
-                setSelectedCards={setSelectedCards}
-              />
-            </>
-          )}
+      {flag ? (
+        <div className="nogoods__container">
+          <div className="main__left-column" />
+          <div className="main__center-column">
+            <h2 className="nogoods__title nogoods__title_plus">Отсканируйте бейдж бригадира дляподтверждения</h2>
+            <CardList
+              cards={fakeCards}
+              cardBarcode={cardBarcode}
+              checkedCards={checkedCards}
+              selectedCards={selectedCards}
+              setSelectedCards={setSelectedCards}
+            />
+          </div>
+          <div className="main__right-column">
+            <UniButton currentPage="nogoodspage" name="Позвать бригадира" changeCards={handleCallBrigButton} />
+          </div>
         </div>
-        <div className="main__right-column">
-          <UniButton currentPage="nogoodspage" name="Далее" changeCards={changeCards} />
+      ) : (
+        <div className="nogoods__container">
+          <div className="main__left-column" />
+          <div className="main__center-column">
+            <h2 className="nogoods__title">Какого товара нет?</h2>
+            <CardList
+              cards={cards}
+              cardBarcode={cardBarcode}
+              checkedCards={checkedCards}
+              selectedCards={selectedCards}
+              setSelectedCards={setSelectedCards}
+            />
+          </div>
+          <div className="main__right-column">
+            <UniButton currentPage="nogoodspage" name="Далее" changeCards={changeCards} />
+          </div>
         </div>
-      </div>
+      )}
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
+      <ForemanTooltip isOpen={isForemanTooltipOpen} />
+
     </>
   );
 }

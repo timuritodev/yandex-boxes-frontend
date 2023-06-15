@@ -39,6 +39,8 @@ import * as Api from "../../utils/Api";
 // const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 
 function App() {
+  // console.log(cardList)
+
   const location = useLocation();
 
   /* работа с карточками(товарами) */
@@ -304,6 +306,7 @@ function App() {
               cards={cards}
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
+              allBarcodesFromBackend={allBarcodesFromBackend}
             />
           }
         />
