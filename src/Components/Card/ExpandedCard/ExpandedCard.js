@@ -51,7 +51,6 @@ function ExpandedCard({
     isBarcodeMatched = cardBarcode.includes(barcode);
   }
 
-  console.log(isBarcodeMatched)
   useEffect(() => {
     if (isBarcodeMatched) {
       updateMatchedCount();
@@ -60,10 +59,10 @@ function ExpandedCard({
 
 
   // проверка для progressbar;
-  // let count = 0;
-  // if (isBarcodeMatched) {
-  //   count += 1;
-  // }
+  let count = 0;
+  if (isBarcodeMatched) {
+    count += 1;
+  }
 
   return (
     <section className="card">
@@ -85,7 +84,7 @@ function ExpandedCard({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount}шт.</p>
-            <Progressbar amount={amount} />
+            <Progressbar count={count} amount={amount} />
           </div>
         </div>
       </div>

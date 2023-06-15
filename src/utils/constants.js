@@ -1,4 +1,4 @@
-// import speaker from "../images/speaker.svg";
+import speaker from "../images/speaker.svg";
 import corgi from "../images/test.jpg";
 
 /* const hardcodeData = {
@@ -79,34 +79,34 @@ const newHardcodeData = {
       image: corgi,
       package_type: "Пакет",
     },
-    // {
-    //   id: 2,
-    //   name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    //   barcode: 1237871234,
-    //   image: speaker,
-    //   package_type: "Пузырчатая плёнка",
-    // },
-    // {
-    //   id: 2,
-    //   name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    //   barcode: 1237871235,
-    //   image: speaker,
-    //   package_type: "Пузырчатая плёнка",
-    // },
-    // {
-    //   id: 2,
-    //   name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-    //   barcode: 1237871236,
-    //   image: speaker,
-    //   package_type: "Пузырчатая плёнка",
-    // },
-    // {
-    //   id: 3,
-    //   name: "Тарелка",
-    //   barcode: 1237871212,
-    //   image: corgi,
-    //   package_type: "Стрейтч-плёнка",
-    // },
+    {
+      id: 2,
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871234,
+      image: speaker,
+      package_type: "Пузырчатая плёнка",
+    },
+    {
+      id: 2,
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871235,
+      image: speaker,
+      package_type: "Пузырчатая плёнка",
+    },
+    {
+      id: 2,
+      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
+      barcode: 1237871236,
+      image: speaker,
+      package_type: "Пузырчатая плёнка",
+    },
+    {
+      id: 3,
+      name: "Тарелка",
+      barcode: 1237871212,
+      image: corgi,
+      package_type: "Стрейтч-плёнка",
+    },
   ],
   payload: [
     {

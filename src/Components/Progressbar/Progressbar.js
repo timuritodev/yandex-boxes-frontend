@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import "./Progressbar.css";
 
-function Progressbar({ amount }) {
-const progressPercentage = Math.round((1 / amount) * 100);
+function Progressbar({ count, amount }) {
+const progressPercentage = Math.round((count / amount) * 100);
 
 // console.log("count", count)
 // console.log("amount", amount)

@@ -66,21 +66,12 @@ function Card({
     isBarcodeMatched = cardBarcode.includes(barcode);
   }
 
-  // let count = 0;
-  // if (isBarcodeMatched) {
-  //   count += 1;
-  //   if (isBarcodeMatched) {
-  //     count += 1;
-  //   }
-  // }
-
   const [totalMatchedCount, setTotalMatchedCount] = useState(0);
 
   const updateMatchedCount = () => {
-    setTotalMatchedCount((prevCount) => prevCount + 1);
+    setTotalMatchedCount((prevCount) => prevCount + 0.5);
   };
 
-  console.log(totalMatchedCount)
   useEffect(() => {
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
@@ -89,7 +80,8 @@ function Card({
     <section className="card">
       <div
         className={`card__container
-          ${isBarcodeMatched && amount > 1 ? "card__container_yellow" : ""}
+          ${totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1 ? "card__container_yellow" : ""}
+          ${totalMatchedCount === amount && amount > 1 ? "card__container_green" : ""}
           ${isBarcodeMatched ? "card__container_green" : ""}
           ${isClicked ? "card__container_green" : ""}`
         }
@@ -109,7 +101,7 @@ function Card({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
-            <Progressbar amount={amount} />
+            <Progressbar count={totalMatchedCount} amount={amount} />
           </div>
         </div>
         {amount > 1 && (
