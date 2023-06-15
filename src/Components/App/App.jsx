@@ -253,6 +253,7 @@ function App() {
               cards={cards}
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
+              allBarcodesFromBackend={allBarcodesFromBackend}
             />
           }
         />

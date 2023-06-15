@@ -18,6 +18,10 @@
   border: 5px solid #2aad2e;
 }
 
+.card__container_yellow {
+  border: 5px solid #FED42B;
+}
+
 .img__card {
   width: 187px;
   height: 187px;

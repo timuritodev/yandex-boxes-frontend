@@ -69,8 +69,10 @@ function Card({
   let count = 0;
   if (isBarcodeMatched) {
     count += 1;
+    if (isBarcodeMatched) {
+      count += 1;
+    }
   }
-
   useEffect(() => {
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
@@ -78,7 +80,12 @@ function Card({
   return (
     <section className="card">
       <div
-        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""} ${isClicked ? "card__container_green" : ""}`}
+        className={`card__container
+          ${count === amount ? "card__container_green" : ""}
+          ${isBarcodeMatched && amount > 1 ? "card__container_yellow" : ""}
+          ${isBarcodeMatched ? "card__container_green" : ""}
+          ${isClicked ? "card__container_green" : ""}`
+        }
         onClick={handleClick}
       >
         <img className="img__card" alt="" src={picture} />
@@ -100,17 +107,15 @@ function Card({
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${
-              expanded ? "expanded__button_open" : ""
-            }`}
+            className={`expand__button ${expanded ? "expanded__button_open" : ""
+              }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${
-                expanded ? "expanded__button_icon_open" : ""
-              }`}
+              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
+                }`}
             >
               ▼
             </span>
