@@ -229,17 +229,22 @@ function App() {
     const isDuplicateBarcode = cardBarcode.includes(Number(value));
     const isValidBarcode = allBarcodesFromBackend.includes(Number(value));
 
-    if (isBoxBarcode && allBarcodesFromBackend.length === cardBarcode.length) {
-      // Если штрих-код относится к коробкам и выполнено условие длины всех штрих-кодов
-      // манипулируем веткой про коробки
-      checkBoxes(value);
+    if (allBarcodesFromBackend.length === cardBarcode.length) {
+      if (isBoxBarcode) {
+        // Если штрих-код относится к коробкам и выполнено условие длины всех штрих-кодов
+        // манипулируем веткой про коробки
+        checkBoxes(value);
+      } else {
+        setInfoTooltipText("Нет коробок с таким штрих-кодом");
+        setIsInfoTooltipPopupOpen(true);
+      }
     } else if (isDuplicateBarcode) {
       // Если штрих-код уже присутствует в массиве
       setInfoTooltipText("Нельзя сканировать штрих-код дважды");
       setIsInfoTooltipPopupOpen(true);
     } else if (!isValidBarcode) {
       // Если штрих-код не существует в заказе
-      setInfoTooltipText("Такого штрих-кода в заказе нет");
+      setInfoTooltipText("Такого штрих-кода нет в заказе");
       setIsInfoTooltipPopupOpen(true);
     } else {
       // Выполняется проверка товаров
