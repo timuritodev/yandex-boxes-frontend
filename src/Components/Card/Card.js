@@ -72,10 +72,16 @@ function Card({
     setTotalMatchedCount((prevCount) => prevCount + 0.5);
   };
 
+  let count = 0;
+  if(isBarcodeMatched){
+    count +=1;
+  }
+
   useEffect(() => {
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
 
+  console.log(totalMatchedCount)
   return (
     <section className="card">
       <div
@@ -101,7 +107,7 @@ function Card({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
-            <Progressbar count={totalMatchedCount} amount={amount} />
+            <Progressbar count={totalMatchedCount !== 0 ? totalMatchedCount : count} amount={amount} />
           </div>
         </div>
         {amount > 1 && (
