@@ -27,6 +27,7 @@ import {
   hardcodeData,
   newHardcodeData,
   boxesBarcodes,
+  convertData,
 } from "../../utils/constants";
 import * as Api from "../../utils/Api";
 
@@ -36,36 +37,50 @@ const cardList = clonedCardList.items;
 const cardListLength = cardList.length;
 
 // массив всех приходящих с бека штрихкодов
-const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
+// const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
 
 // eslint-disable-next-line no-undef
-const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
+// const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 
 function App() {
   const location = useLocation();
-  // работа с карточками(товарами)
+
+  /* работа с карточками(товарами) */
+
   const [cards, setCards] = useState(cardList);
   // все введенные с клавиатуры
   const [cardBarcode, setCardBarcode] = useState([]);
   // массив всех объектов проверенных карточек
   const [checkedCards, setCheckedCards] = useState([]);
+  // что то для 'есть проблема
   const [cardBarcodeDefect, setCardBarcodeDefect] = useState([]);
+  // что то для 'есть проблема
   const [checkedCardsDefect, setCheckedCardsDefeсt] = useState([]);
+
+  /* работа с попапом */
+
   const [InfoTooltipText, setInfoTooltipText] = useState(
     "Сканируйте маркировку",
   );
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
+  /* пока непонятная переменная */
+
   const [KeyboardResult, setKeyboardResult] = useState("");
+
+  /* работа с коробками */
 
   // штрих код который отправляется в компонент коробки для выбора стиля
   const [boxBarcode, setBoxBarcode] = useState(0);
-  // список всех коробок
-  const [boxes, setBoxes] = useState(boxesList);
+  // рекомендуемые коробки, которые приходят с бека
+  const [boxes, setBoxes] = useState([]);
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
+  // массив всех приходящих с бека штрихкодов, переработанный в нужный нам формат
+  const [allBarcodesFromBackend, setAllBarcodesFromBackend] = useState([]);
 
-  // переменные для отслеживания страницы
+  /* переменные для отслеживания страницы */
+
   const [currentPath, setCurrentPath] = useState(null);
   const [previousPath, setPreviousPath] = useState(null);
 
@@ -170,6 +185,18 @@ function App() {
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     console.log("получить заказ");
+    // записываем рекомендуемую коробку
+    const reccomendedBox = convertToBoxArray(
+      newHardcodeData.cartons[0].barcode,
+    );
+    // записываем в массив все штрихкоды коробок из бека для проверок
+    const transformesApiData = convertData(newHardcodeData);
+    // записываем в массив все штрихкоды коробок из бека для проверок
+    const arrayBarcodesFromBackend = transformMultiplyBarcodes(
+      transformesApiData.items,
+    );
+    setBoxes(reccomendedBox);
+    setAllBarcodesFromBackend(arrayBarcodesFromBackend);
     /* Api.getOrder()
     .then((res) => {
       console.log(res)
