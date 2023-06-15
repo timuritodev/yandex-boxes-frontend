@@ -6,10 +6,13 @@ function HelpButton() {
   const location = useLocation();
 
   const handleClick = () => {
-    if (location.pathname === "/") {
+    if (location.pathname === "/main") {
       navigate("/problempage");
     }
-    navigate("/problempage-main");
+    if (location.pathname === "/") {
+      navigate("/problempage-main");
+    }
+    // navigate("/problempage-main");
   };
 
   return (
