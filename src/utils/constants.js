@@ -243,4 +243,11 @@ const styleBoxesMap = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export { boxData, styleBoxesMap, hardcodeData, newHardcodeData, boxesBarcodes };
+export {
+  boxData,
+  styleBoxesMap,
+  hardcodeData,
+  newHardcodeData,
+  boxesBarcodes,
+  convertData,
+};

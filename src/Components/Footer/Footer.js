@@ -49,6 +49,7 @@ function Footer({ IsKeyboardButtonActive }) {
     <footer
       className={`footer ${
         location.pathname === "/problempage" ||
+        location.pathname === "/problempage-main" ||
         location.pathname === "/defectpage" ||
         location.pathname === "/nogoodspage"
           ? "footer__anomaly"
@@ -68,6 +69,7 @@ function Footer({ IsKeyboardButtonActive }) {
             </>
           )}
           {location.pathname === "/keyboardpage" ||
+          location.pathname === "/problempage-main" ||
           location.pathname === "/problempage" ||
           location.pathname === "/defectpage" ||
           location.pathname === "/nogoodspage" ? (
