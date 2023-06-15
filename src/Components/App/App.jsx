@@ -193,14 +193,29 @@ function App() {
     .catch((err) => console.log(err)) */
   }
 
-  const handleKeyboardResult = (value) =>
-    // относится ли штрих код к коробкам
-    boxesBarcodes.includes(Number(value)) &&
-    allBarcodesFromBackend.length === cardBarcode.length
-      ? // если да то, выполняется функция checkBoxes
-        checkBoxes(value)
-      : // если нет то выполняется код ниже (тут будет вызов функции тимура)
-        checkCards(value);
+  const handleKeyboardResult = (value) => {
+    // Определение переменных для проверок
+    const isBoxBarcode = boxesBarcodes.includes(Number(value));
+    const isDuplicateBarcode = cardBarcode.includes(Number(value));
+    const isValidBarcode = allBarcodesFromBackend.includes(Number(value));
+
+    if (isBoxBarcode && allBarcodesFromBackend.length === cardBarcode.length) {
+      // Если штрих-код относится к коробкам и выполнено условие длины всех штрих-кодов
+      // манипулируем веткой про коробки
+      checkBoxes(value);
+    } else if (isDuplicateBarcode) {
+      // Если штрих-код уже присутствует в массиве
+      setInfoTooltipText("Нельзя сканировать штрих-код дважды");
+      setIsInfoTooltipPopupOpen(true);
+    } else if (!isValidBarcode) {
+      // Если штрих-код не существует в заказе
+      setInfoTooltipText("Такого штрих-кода в заказе нет");
+      setIsInfoTooltipPopupOpen(true);
+    } else {
+      // Выполняется проверка товаров
+      checkCards(value);
+    }
+  };
 
   return (
     <div className="App">
