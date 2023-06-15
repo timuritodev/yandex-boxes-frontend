@@ -7,7 +7,12 @@ import Footer from "../Footer/Footer";
 import ProblempageOptionButton from "./ProblempageOptionButton/ProblempageOptionButton";
 import ForemanTooltip from "./ForemanTooltip/ForemanTooltip";
 
-function Problempage({ cards, cardBarcode, checkedCards, handleClickProblemButton }) {
+function Problempage({
+  cards,
+  cardBarcode,
+  checkedCards,
+  handleClickProblemButton,
+}) {
   const navigate = useNavigate();
 
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);

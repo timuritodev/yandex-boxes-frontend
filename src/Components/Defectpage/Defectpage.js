@@ -17,6 +17,7 @@ function Defectpage({ cards, cardBarcode, cardBarcodeDefect, checkedCards }) {
 
   function finishDefectprocessing() {
     setIsDefectProcessingFinished(true);
+    setIsKeyboardButtonActive(false);
   }
 
   return (
