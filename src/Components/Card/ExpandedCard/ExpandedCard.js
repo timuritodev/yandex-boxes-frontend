@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import barcodepic from "../../../images/barcode.svg";
 import Progressbar from "../../Progressbar/Progressbar";
@@ -14,6 +15,7 @@ function ExpandedCard({
   cardBarcode,
   cardBarcodeDefect,
   setSelectedCards,
+  updateMatchedCount
 }) {
   const location = useLocation();
 
@@ -49,11 +51,19 @@ function ExpandedCard({
     isBarcodeMatched = cardBarcode.includes(barcode);
   }
 
+  console.log(isBarcodeMatched)
+  useEffect(() => {
+    if (isBarcodeMatched) {
+      updateMatchedCount();
+    }
+  }, [isBarcodeMatched]);
+
+
   // проверка для progressbar;
-  let count = 0;
-  if (isBarcodeMatched) {
-    count += 1;
-  }
+  // let count = 0;
+  // if (isBarcodeMatched) {
+  //   count += 1;
+  // }
 
   return (
     <section className="card">
@@ -75,7 +85,7 @@ function ExpandedCard({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount}шт.</p>
-            <Progressbar count={count} amount={amount} />
+            <Progressbar amount={amount} />
           </div>
         </div>
       </div>

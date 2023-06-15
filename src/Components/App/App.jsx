@@ -42,6 +42,8 @@ const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
 const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
 
 function App() {
+  // console.log(cardList)
+
   const location = useLocation();
   // работа с карточками(товарами)
   const [cards, setCards] = useState(cardList);
