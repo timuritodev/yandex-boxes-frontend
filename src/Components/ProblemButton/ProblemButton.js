@@ -1,17 +1,25 @@
 import "./ProblemButton.css";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
 function HelpButton() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleClick = () => {
-    navigate('/problempage');
+    if (location.pathname === "/") {
+      navigate("/problempage");
+    }
+    navigate("/problempage-main");
   };
+
   return (
     <div className="">
       <button
-        className={`button problemButton ${location.pathname === "/" ? "problemButton__home" : "problemButton__main"}`}
+        className={`button problemButton ${
+          location.pathname === "/"
+            ? "problemButton__home"
+            : "problemButton__main"
+        }`}
         type="button"
         aria-label="button"
         onClick={handleClick}

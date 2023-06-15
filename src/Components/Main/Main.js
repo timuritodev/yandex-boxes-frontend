@@ -7,7 +7,6 @@ import CardList from "../Card/CardList";
 import Boxes from "../Boxes/Boxes";
 
 function Main({
-  cardListLength,
   boxes,
   boxBarcode,
   checkedBoxes,
@@ -26,7 +25,7 @@ function Main({
     <>
       <main className="main">
         <div className="main__left-column">
-          <OrderInformation cardListLength={cardListLength} />
+          <OrderInformation allBarcodesFromBackend={allBarcodesFromBackend} />
           <ProblemButton />
         </div>
         <div className="main__center-column">

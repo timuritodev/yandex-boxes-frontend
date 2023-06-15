@@ -16,6 +16,7 @@ import NoGoodspage from "../NoGoodspage/NoGoodspage";
 import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import ReadyPage from "../ReadyPage/ReadyPage";
 import InfoToolTip from "../InfoTooltip/InfoTooltip";
+import ProblempageMain from "../Problempage/ProblempageMain/ProblempageMain";
 import {
   convertToBoxArray,
   generateUniqueKey,
@@ -78,6 +79,10 @@ function App() {
 
   const [currentPath, setCurrentPath] = useState(null);
   const [previousPath, setPreviousPath] = useState(null);
+
+  /* стейт для комментария, который отправится на бек */
+
+  const [comment, setComment] = useState("");
 
   // логика для предыдущей страницы
   useEffect(() => {
@@ -145,7 +150,7 @@ function App() {
       // если нет то
     } else if (checkedBoxes.length > 8) {
       setIsInfoTooltipPopupOpen(true);
-      setInfoTooltipText("нельзя отсканировать больше 9 коробок");
+      setInfoTooltipText("Нельзя отсканировать больше 9 коробок");
     } else {
       // записываем введенный штрих код для выбора цвета коробки
       setBoxBarcode(+value);
@@ -159,6 +164,7 @@ function App() {
       // и добавляем ее в массив отсканированных
       // checkedBoxes.push(+value);
       setCheckedBoxes([+value, ...checkedBoxes]);
+      setComment(`Выбрана другая упаковка, штрих-код(ы): ${checkedBoxes}`);
     }
   }
 
@@ -170,12 +176,6 @@ function App() {
   function closePopup() {
     setIsInfoTooltipPopupOpen(false);
   }
-
-  /* const CardsArraysIsEqual = (a, b) =>
-    a.length === b.length &&
-    a.every((item, index) =>
-      Object.keys(item).every((key) => item[key] === b[index][key]),
-    ); */
 
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
@@ -209,11 +209,12 @@ function App() {
   function finishOrder() {
     setCheckedBoxes([]);
     console.log("завершить заказ");
+    localStorage.clear();
     /* const data = {
       id: 1232434,
       is_completed: true,
       user_id: '123231434',
-      comment: '',
+      comment: comment,
       used_cartons: checkedBoxes,
     }
     Api.finishOrder(data).then((res) => {
@@ -245,8 +246,6 @@ function App() {
       checkCards(value);
     }
   };
-
-  console.log(boxes);
 
   return (
     <div className="App">
@@ -281,6 +280,7 @@ function App() {
             />
           }
         />
+        <Route path="problempage-main" element={<ProblempageMain />} />
         <Route
           path="defectpage"
           element={
