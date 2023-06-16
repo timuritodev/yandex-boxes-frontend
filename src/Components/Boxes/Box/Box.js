@@ -55,9 +55,10 @@ function Box({ name, boxBarcode, boxes }) {
 export default Box; */
 
 import "./Box.css";
+import { styleBoxesMap } from "../../../utils/constants";
 
 function Box({ name, boxBarcode, checkedBoxes }) {
-  const styleMap = {
+  /* const styleMap = {
     "Коробка YMA": {
       boxColor: "carton_blue",
       textColor: "carton__name_blue",
@@ -88,9 +89,9 @@ function Box({ name, boxBarcode, checkedBoxes }) {
       boxColor: "carton_darkyellow",
       textColor: "carton__name_darkyellow",
     },
-  };
+  }; */
 
-  const { boxColor, textColor } = styleMap[name] || {};
+  const { boxColor, textColor } = styleBoxesMap[name] || {};
 
   const isBarcodeMatched = checkedBoxes.includes(boxBarcode);
 

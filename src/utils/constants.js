@@ -150,7 +150,8 @@ const convertData = (data) => {
           .map((i) => i.barcode);
       }
       uniqueItems.set(item.id, newItem);
-    } if (!uniqueItems.has(item.id) && amountMap[item.id] > 1) {
+    }
+    if (!uniqueItems.has(item.id) && amountMap[item.id] > 1) {
       const newItem = {
         name: item.name,
         picture: item.image,
@@ -177,7 +178,6 @@ const convertData = (data) => {
 
   return result;
 };
-
 
 // const convertData = (data) => {
 //   const amountMap = data.payload.reduce((map, payloadItem) => {
@@ -224,56 +224,46 @@ const boxData = [
   {
     id: 1,
     name: "Коробка YMA",
-    barcode: 111,
+    barcode: 100,
   },
   {
     id: 2,
     name: "Коробка YMC",
-    barcode: 222,
+    barcode: 110,
   },
   {
     id: 3,
-    name: "Пакет MYC",
-    barcode: 333,
+    name: "Коробка YME",
+    barcode: 120,
   },
   {
     id: 4,
     name: "Коробка YMF",
-    barcode: 444,
+    barcode: 130,
   },
   {
     id: 5,
-    name: "Коробка MYF",
-    barcode: 555,
+    name: "Коробка YMG",
+    barcode: 140,
   },
   {
     id: 6,
-    name: "Пакет MYA",
-    barcode: 666,
+    name: "Коробка YMH",
+    barcode: 150,
   },
   {
     id: 7,
-    name: "Пакет MYD",
-    barcode: 777,
-  },
-  {
-    id: 8,
-    name: "Пакет MYB",
-    barcode: 888,
-  },
-  {
-    id: 9,
-    name: "Пакет MYE",
-    barcode: 999,
+    name: "NONPACK",
+    barcode: 250,
   },
 ];
 
-const boxesBarcodes = [111, 222, 333, 444, 555, 666, 777, 888, 999];
+const boxesBarcodes = [100, 110, 120, 130, 140, 150, 250];
 
 const styleBoxesMap = {
   "Коробка YMA": { boxColor: "carton_blue", textColor: "carton__name_blue" },
   "Коробка YMC": { boxColor: "carton_green", textColor: "carton__name_green" },
-  "Пакет MYC": {
+  "Коробка YME": {
     boxColor: "carton_lightblue",
     textColor: "carton__name_lightblue",
   },
@@ -281,17 +271,17 @@ const styleBoxesMap = {
     boxColor: "carton_orange",
     textColor: "carton__name_orange",
   },
-  "Коробка MYF": {
+  "Коробка YMG": {
     boxColor: "carton_purple",
     textColor: "carton__name_purple",
   },
-  "Пакет MYA": { boxColor: "carton_red", textColor: "carton__name_red" },
+  "Коробка YMH": { boxColor: "carton_red", textColor: "carton__name_red" },
   "Пакет MYD": { boxColor: "carton_gray", textColor: "carton__name_gray" },
   "Пакет MYB": {
     boxColor: "carton_darkred",
     textColor: "carton__name_darkred",
   },
-  "Пакет MYE": {
+  NONPACK: {
     boxColor: "carton_darkyellow",
     textColor: "carton__name_darkyellow",
   },

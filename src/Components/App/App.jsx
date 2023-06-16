@@ -173,7 +173,7 @@ function App() {
       // и добавляем ее в массив отсканированных
       // checkedBoxes.push(+value);
       setCheckedBoxes([+value, ...checkedBoxes]);
-      setComment(`Выбрана другая упаковка, штрих-код(ы): ${checkedBoxes}`);
+      setComment(`Выбрана нерекомендованная упаковка`);
     }
   }
 
@@ -189,64 +189,66 @@ function App() {
   function sendStatusAboutFail() {
     setComment(`бракованный товар`);
     setOrderIsCompleted(false);
-    /* const data = {
+    const data = {
       id: orderId,
       is_completed: orderIsCompleted,
-      user_id: '123231434',
-      comment: comment,
+      user_id: "123231434",
+      comment,
       used_cartons: checkedBoxes,
-    }
-    Api.finishOrder(data).then((res) => {
-      console.log(res)
-    })
-    .catch((err) => console.log(err)) */
+    };
+    Api.finishOrder(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   }
 
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     console.log("получить заказ");
     // отпочковать массив товаров из данных от бека
-    const dataFromBackend = convertData(newHardcodeData);
-    const clonedCardList = Object.assign({}, dataFromBackend);
-    const cardList = clonedCardList.items;
-    const cardListLength = cardList.length;
-    // записываем рекомендуемую коробку
-    // вместо newHardcodeData будет res
-    const perfectBox = convertToBoxArray(newHardcodeData.cartons[0].barcode);
-    // записываем в массив все штрихкоды коробок из бека для проверок
-    const transformesApiData = convertData(newHardcodeData);
-    // записываем в массив все штрихкоды коробок из бека для проверок
-    const arrayBarcodesFromBackend = transformMultiplyBarcodes(
-      transformesApiData.items,
-    );
-    setCards(cardList);
-    setBoxes(perfectBox);
-    setAllBarcodesFromBackend(arrayBarcodesFromBackend);
-    setOrderId(1323454);
-    /* Api.getOrder()
-    .then((res) => {
-      //весь код выше должен быть здесь
-      console.log(res)
-    })
-    .catch((err) => console.log(err)) */
+
+    Api.getOrder()
+      .then((res) => {
+        console.log(res);
+        const dataFromBackend = convertData(res);
+        const clonedCardList = Object.assign({}, dataFromBackend);
+        const cardList = clonedCardList.items;
+        const cardListLength = cardList.length;
+        // записываем рекомендуемую коробку
+        // вместо newHardcodeData будет res
+        const perfectBox = convertToBoxArray(res.cartons[0].barcode);
+        // записываем в массив все штрихкоды коробок из бека для проверок
+        const transformesApiData = convertData(res);
+        // записываем в массив все штрихкоды коробок из бека для проверок
+        const arrayBarcodesFromBackend = transformMultiplyBarcodes(
+          transformesApiData.items,
+        );
+        setCards(cardList);
+        setBoxes(perfectBox);
+        setAllBarcodesFromBackend(arrayBarcodesFromBackend);
+        setOrderId(res.order_id);
+      })
+      .catch((err) => console.log(err));
   }
 
   // это будет функция которая отправит собранный заказ на бекенд
   function finishOrder() {
-    setCheckedBoxes([]);
-    console.log("завершить заказ");
+    // setCheckedBoxes([]);
+    // console.log("завершить заказ");
     localStorage.clear();
-    /* const data = {
+    const data = {
       id: orderId,
       is_completed: orderIsCompleted,
-      user_id: '123231434',
-      comment: comment,
+      user_id: "123231434",
+      comment: "",
       used_cartons: checkedBoxes,
-    }
-    Api.finishOrder(data).then((res) => {
-      console.log(res)
-    })
-    .catch((err) => console.log(err)) */
+    };
+    Api.finishOrder(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   }
 
   const handleKeyboardResult = (value) => {
