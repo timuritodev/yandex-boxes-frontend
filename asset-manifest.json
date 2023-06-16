@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/yandex-boxes-frontend/static/css/main.53321da7.css",
-    "main.js": "/yandex-boxes-frontend/static/js/main.f0daf333.js",
+    "main.css": "/yandex-boxes-frontend/static/css/main.172efc8b.css",
+    "main.js": "/yandex-boxes-frontend/static/js/main.5d65b1f8.js",
     "static/media/speaker.svg": "/yandex-boxes-frontend/static/media/speaker.2f3c35525bca58c500ef9ec2d920191e.svg",
     "static/media/YandexSansText-RegularItalic.eot": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.8b47e91a40261bb8aca9.eot",
     "static/media/YandexSansText-RegularItalic.ttf": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.40ab454b96e2fe420bfd.ttf",
@@ -37,6 +37,7 @@
     "static/media/YandexSansDisplay-Thin.woff": "/yandex-boxes-frontend/static/media/YandexSansDisplay-Thin.4d581b5fba9c01eb9d70.woff",
     "static/media/YandexSansDisplay-Bold.woff": "/yandex-boxes-frontend/static/media/YandexSansDisplay-Bold.138d9a1c55f27a3b5486.woff",
     "static/media/YandexSansDisplay-Regular.woff": "/yandex-boxes-frontend/static/media/YandexSansDisplay-Regular.24a20857e5c6d4c4cfa0.woff",
+    "static/media/defect_box_picture.png": "/yandex-boxes-frontend/static/media/defect_box_picture.affa513737d8ea5fc32d.png",
     "static/media/YandexSansText-RegularItalic.woff2": "/yandex-boxes-frontend/static/media/YandexSansText-RegularItalic.15f69cefecc643b94140.woff2",
     "static/media/YandexSansText-Medium.woff2": "/yandex-boxes-frontend/static/media/YandexSansText-Medium.43fa0def7951e857f96c.woff2",
     "static/media/YandexSansText-Light.woff2": "/yandex-boxes-frontend/static/media/YandexSansText-Light.0852be1288b4229d1f1f.woff2",
@@ -60,11 +61,11 @@
     "static/media/burger.svg": "/yandex-boxes-frontend/static/media/burger.26d2f2c51be20074dbb8.svg",
     "static/media/cross_icon_tooltip.svg": "/yandex-boxes-frontend/static/media/cross_icon_tooltip.ea8175ebbe254e4d295a.svg",
     "static/media/arrow_icon_footer.svg": "/yandex-boxes-frontend/static/media/arrow_icon_footer.d81bb55fb5b99fa33f3e.svg",
-    "main.53321da7.css.map": "/yandex-boxes-frontend/static/css/main.53321da7.css.map",
-    "main.f0daf333.js.map": "/yandex-boxes-frontend/static/js/main.f0daf333.js.map"
+    "main.172efc8b.css.map": "/yandex-boxes-frontend/static/css/main.172efc8b.css.map",
+    "main.5d65b1f8.js.map": "/yandex-boxes-frontend/static/js/main.5d65b1f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.53321da7.css",
-    "static/js/main.f0daf333.js"
+    "static/css/main.172efc8b.css",
+    "static/js/main.5d65b1f8.js"
   ]
 }
