@@ -81,7 +81,6 @@ function Card({
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
 
-  console.log(totalMatchedCount)
   return (
     <section className="card">
       <div
