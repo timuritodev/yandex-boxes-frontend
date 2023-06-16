@@ -1,23 +1,19 @@
 const getBoxNameByBarcode = (barcode) => {
   switch (barcode) {
-    case 111:
+    case 100:
       return "Коробка YMA";
-    case 222:
+    case 110:
       return "Коробка YMC";
-    case 333:
-      return "Пакет MYC";
-    case 444:
+    case 120:
+      return "Коробка YME";
+    case 130:
       return "Коробка YMF";
-    case 555:
-      return "Коробка MYF";
-    case 666:
-      return "Пакет MYA";
-    case 777:
-      return "Пакет MYD";
-    case 888:
-      return "Пакет MYB";
-    case 999:
-      return "Пакет MYE";
+    case 140:
+      return "Коробка YMG";
+    case 150:
+      return "Коробка YMH";
+    case 250:
+      return "NONPACK";
     default:
       return "";
   }

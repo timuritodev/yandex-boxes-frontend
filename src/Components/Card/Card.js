@@ -73,8 +73,8 @@ function Card({
   };
 
   let count = 0;
-  if(isBarcodeMatched){
-    count +=1;
+  if (isBarcodeMatched) {
+    count += 1;
   }
 
   useEffect(() => {
@@ -85,14 +85,25 @@ function Card({
     <section className="card">
       <div
         className={`card__container
-          ${totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1 ? "card__container_yellow" : ""}
-          ${totalMatchedCount === amount && amount > 1 ? "card__container_green" : ""}
+          ${
+            totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1
+              ? "card__container_yellow"
+              : ""
+          }
+          ${
+            totalMatchedCount === amount && amount > 1
+              ? "card__container_green"
+              : ""
+          }
           ${isBarcodeMatched ? "card__container_green" : ""}
-          ${isClicked ? "card__container_green" : ""}`
-        }
+          ${isClicked ? "card__container_green" : ""}`}
         onClick={handleClick}
       >
-        <img className="img__card" alt="" src={picture} />
+        <img
+          className="img__card"
+          alt=""
+          src={`http://localhost:8000/static${picture}`}
+        />
         <div className="name__container">
           <p className="name__title">{name}</p>
           {amount === 1 && (
@@ -106,20 +117,25 @@ function Card({
           <p className={`box__name ${boxName}`}>{packageType}</p>
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
-            <Progressbar count={totalMatchedCount !== 0 ? totalMatchedCount : count} amount={amount} />
+            <Progressbar
+              count={totalMatchedCount !== 0 ? totalMatchedCount : count}
+              amount={amount}
+            />
           </div>
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${expanded ? "expanded__button_open" : ""
-              }`}
+            className={`expand__button ${
+              expanded ? "expanded__button_open" : ""
+            }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
-                }`}
+              className={`expand__button_icon ${
+                expanded ? "expanded__button_icon_open" : ""
+              }`}
             >
               ▼
             </span>
