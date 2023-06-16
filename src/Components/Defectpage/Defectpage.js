@@ -2,22 +2,35 @@
 /* eslint-disable no-unused-vars */
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Defectpage.css";
 import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 import UniButton from "../UniButton/UniButton";
 import boxPic from "../../images/defect_box_picture.png";
 
-function Defectpage({ cards, cardBarcode, cardBarcodeDefect, checkedCards }) {
+function Defectpage({
+  cards,
+  cardBarcode,
+  cardBarcodeDefect,
+  checkedCards,
+  sendStatusAboutFail,
+}) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(true);
   const [isDefectProcessingFinished, setIsDefectProcessingFinished] =
     useState(false);
+  const navigate = useNavigate();
 
   // console.log(cardBarcodeDefect.length);
 
   function finishDefectprocessing() {
     setIsDefectProcessingFinished(true);
     setIsKeyboardButtonActive(false);
+  }
+
+  function sendStatus() {
+    sendStatusAboutFail();
+    navigate("/");
   }
 
   return (
@@ -60,7 +73,9 @@ function Defectpage({ cards, cardBarcode, cardBarcodeDefect, checkedCards }) {
             <UniButton
               currentPage="defectpage"
               // eslint-disable-next-line react/jsx-no-bind
-              finishDefectprocessing={finishDefectprocessing}
+              finishDefectprocessing={
+                isDefectProcessingFinished ? sendStatus : finishDefectprocessing
+              }
               name={isDefectProcessingFinished ? "Готово" : "Далее"}
             />
           ) : null}

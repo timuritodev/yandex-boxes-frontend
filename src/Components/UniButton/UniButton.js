@@ -7,9 +7,8 @@ function Button({
   name,
   getOrder,
   finishOrder,
-  changeCards
+  changeCards,
 }) {
-
   const navigate = useNavigate();
   const location = useLocation();
 
