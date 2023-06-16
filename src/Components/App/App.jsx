@@ -252,7 +252,12 @@ function App() {
   const handleKeyboardResult = (value) => {
     // Определение переменных для проверок
     const isBoxBarcode = boxesBarcodes.includes(Number(value));
-    const isDuplicateBarcode = cardBarcode.includes(Number(value));
+    let isDuplicateBarcode = false;
+    if (previousPath === "/defectpage") {
+      isDuplicateBarcode = cardBarcodeDefect.includes(Number(value));
+    } else {
+      isDuplicateBarcode = cardBarcode.includes(Number(value));
+    }
     const isValidBarcode = allBarcodesFromBackend.includes(Number(value));
 
     if (allBarcodesFromBackend.length === cardBarcode.length) {
