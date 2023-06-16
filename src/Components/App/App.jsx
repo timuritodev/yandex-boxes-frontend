@@ -17,6 +17,7 @@ import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import ReadyPage from "../ReadyPage/ReadyPage";
 import InfoToolTip from "../InfoTooltip/InfoTooltip";
 import ProblempageMain from "../Problempage/ProblempageMain/ProblempageMain";
+import NotFound from "../NotFound/NotFound";
 import {
   convertToBoxArray,
   generateUniqueKey,
@@ -341,7 +342,7 @@ function App() {
           path="keyboardpage"
           element={<NumberKeyboard onResult={handleKeyboardResult} />}
         />
-        <Route path="*" element={<h2>Страницы не существует</h2>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <InfoToolTip
         onClose={closePopup}
