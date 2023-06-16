@@ -17,6 +17,7 @@ import NumberKeyboard from "../Keyboard/NumberKeyboard";
 import ReadyPage from "../ReadyPage/ReadyPage";
 import InfoToolTip from "../InfoTooltip/InfoTooltip";
 import ProblempageMain from "../Problempage/ProblempageMain/ProblempageMain";
+import NotFound from "../NotFound/NotFound";
 import {
   convertToBoxArray,
   generateUniqueKey,
@@ -57,9 +58,7 @@ function App() {
 
   /* работа с попапом */
 
-  const [InfoTooltipText, setInfoTooltipText] = useState(
-    "Сканируйте маркировку",
-  );
+  const [InfoTooltipText, setInfoTooltipText] = useState("Что-то пошло не так");
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
   /* пока непонятная переменная */
@@ -85,6 +84,14 @@ function App() {
   /* стейт для комментария, который отправится на бек */
 
   const [comment, setComment] = useState("");
+
+  /* стейт для айди заказа */
+
+  const [orderId, setOrderId] = useState(0);
+
+  /* стейт для бека — уокплектован заказ или возникла проблема */
+
+  const [orderIsCompleted, setOrderIsCompleted] = useState(true);
 
   // логика для предыдущей страницы
   useEffect(() => {
@@ -179,6 +186,22 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
+  function sendStatusAboutFail() {
+    setComment(`бракованный товар`);
+    setOrderIsCompleted(false);
+    /* const data = {
+      id: orderId,
+      is_completed: orderIsCompleted,
+      user_id: '123231434',
+      comment: comment,
+      used_cartons: checkedBoxes,
+    }
+    Api.finishOrder(data).then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.log(err)) */
+  }
+
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     console.log("получить заказ");
@@ -199,6 +222,7 @@ function App() {
     setCards(cardList);
     setBoxes(perfectBox);
     setAllBarcodesFromBackend(arrayBarcodesFromBackend);
+    setOrderId(1323454);
     /* Api.getOrder()
     .then((res) => {
       //весь код выше должен быть здесь
@@ -213,8 +237,8 @@ function App() {
     console.log("завершить заказ");
     localStorage.clear();
     /* const data = {
-      id: 1232434,
-      is_completed: true,
+      id: orderId,
+      is_completed: orderIsCompleted,
       user_id: '123231434',
       comment: comment,
       used_cartons: checkedBoxes,
@@ -296,6 +320,7 @@ function App() {
               checkedCards={checkedCards}
               cardBarcode={cardBarcode}
               cardBarcodeDefect={cardBarcodeDefect}
+              sendStatusAboutFail={sendStatusAboutFail}
             />
           }
         />
@@ -315,7 +340,7 @@ function App() {
           path="keyboardpage"
           element={<NumberKeyboard onResult={handleKeyboardResult} />}
         />
-        <Route path="*" element={<h2>Страницы не существует</h2>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <InfoToolTip
         onClose={closePopup}

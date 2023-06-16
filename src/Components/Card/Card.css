@@ -19,7 +19,7 @@
 }
 
 .card__container_yellow {
-  border: 5px solid #FED42B;
+  border: 5px solid #fed42b;
 }
 
 .img__card {
@@ -47,6 +47,8 @@
   line-height: 26px;
   color: #212121;
   font-feature-settings: "pnum" on, "lnum" on;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .barcode__container {
