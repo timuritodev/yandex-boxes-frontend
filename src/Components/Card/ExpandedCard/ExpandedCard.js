@@ -16,7 +16,9 @@ function ExpandedCard({
   cardBarcode,
   cardBarcodeDefect,
   setSelectedCards,
-  updateMatchedCount
+  updateMatchedCount,
+  flag,
+  plusFlag
 }) {
   const location = useLocation();
 
@@ -53,11 +55,11 @@ function ExpandedCard({
   }
 
   useEffect(() => {
-    if (isBarcodeMatched) {
+    if (isBarcodeMatched && flag === 0) {
       updateMatchedCount();
+      plusFlag();
     }
-  }, [isBarcodeMatched]);
-
+  }, [isBarcodeMatched]); // Пустой массив зависимостей
 
   // проверка для progressbar;
   let count = 0;

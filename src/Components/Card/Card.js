@@ -72,6 +72,12 @@ function Card({
     setTotalMatchedCount((prevCount) => prevCount + 0.5);
   };
 
+  const [flag, setFlag] = useState(0);
+
+  const plusFlag = () => {
+    setFlag((prevCount) => prevCount + 1);
+  }
+
   let count = 0;
   if(isBarcodeMatched){
     count +=1;
@@ -141,6 +147,8 @@ function Card({
               selectedCards={selectedCards}
               setSelectedCards={setSelectedCards}
               updateMatchedCount={updateMatchedCount}
+              flag={flag}
+              plusFlag={plusFlag}
             />
           ))}
         </div>
