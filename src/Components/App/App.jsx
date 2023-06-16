@@ -58,9 +58,7 @@ function App() {
 
   /* работа с попапом */
 
-  const [InfoTooltipText, setInfoTooltipText] = useState(
-    "Сканируйте маркировку",
-  );
+  const [InfoTooltipText, setInfoTooltipText] = useState("Что-то пошло не так");
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
   /* пока непонятная переменная */
