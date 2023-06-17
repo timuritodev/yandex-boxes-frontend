@@ -1,7 +1,8 @@
-FROM mhart/alpine-node:16 as build
+FROM node:16.17.0
 WORKDIR /app
-COPY package*.json ./
+COPY package.json package-lock.json /app/
 RUN npm install
-COPY . ./
+COPY . /app
 RUN npm run build
-CMD cp -r build result_build
+ENV PORT=3000
+CMD ["npm", "start"]

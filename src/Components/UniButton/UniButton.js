@@ -47,7 +47,7 @@ function Button({
 
   return (
     <button
-      className={`button uniButton ${getButtonClass()}`}
+      className={`uniButton ${getButtonClass()}`}
       type="button"
       aria-label="button"
       onClick={handleClick}

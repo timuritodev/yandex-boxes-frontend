@@ -42,6 +42,8 @@ function ExpandedCard({
     boxName += "box__name_bag";
   } else if (packageType === "Пузырчатая плёнка") {
     boxName += " box__name_buble";
+  } else if (packageType === null) {
+    boxName += " box__name_null";
   } else {
     boxName += " box__name_stretch";
   }
@@ -84,7 +86,11 @@ function ExpandedCard({
           )}
         </div>
         <div className="box__container">
-          <p className={`box__name ${boxName}`}>{packageType}</p>
+          {packageType === null ? (
+            <p className={`box__name ${boxName}`}>Нету</p>
+          ) : (
+            <p className={`box__name ${boxName}`}>{packageType}</p>
+          )}
           <div className="box__progress-container">
             <p className="box__amount">{amount}шт.</p>
             <Progressbar count={count} amount={amount} />

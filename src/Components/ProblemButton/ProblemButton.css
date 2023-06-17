@@ -12,6 +12,11 @@
   line-height: 60px;
   text-align: center;
   color: #212121;
+  cursor: pointer;
+}
+
+.problemButton:hover {
+  background-color: #DEDEDE;
 }
 
 .problemButton__home {

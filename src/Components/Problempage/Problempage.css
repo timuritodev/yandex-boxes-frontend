@@ -19,6 +19,11 @@
   text-align: center;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #212121;
+  cursor: pointer;
+}
+
+.problempage__button:hover {
+  background-color: #DEDEDE;
 }
 
 .problempage__container_another-problem {

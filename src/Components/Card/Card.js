@@ -54,6 +54,8 @@ function Card({
     boxName += "box__name_bag";
   } else if (packageType === "Пузырчатая плёнка") {
     boxName += " box__name_buble";
+  } else if (packageType === null) {
+    boxName += " box__name_null";
   } else {
     boxName += " box__name_stretch";
   }
@@ -83,6 +85,12 @@ function Card({
     count += 1;
   }
 
+  // записывает totalMatchedCount для каждой карточки отдельно, но totalMatchedCount все равно сбрасывается, если карточка закрыта при переходе на другую страницу
+
+  // useEffect(() => {
+  //   localStorage.setItem(`totalMatchedCount_${name}`, totalMatchedCount); // Сохранение в localStorage с использованием уникального идентификатора карточки
+  // }, [totalMatchedCount, name]);
+
   useEffect(() => {
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
@@ -91,15 +99,13 @@ function Card({
     <section className="card">
       <div
         className={`card__container
-          ${
-            totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1
-              ? "card__container_yellow"
-              : ""
+          ${totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1
+            ? "card__container_yellow"
+            : ""
           }
-          ${
-            totalMatchedCount === amount && amount > 1
-              ? "card__container_green"
-              : ""
+          ${totalMatchedCount === amount && amount > 1
+            ? "card__container_green"
+            : ""
           }
           ${isBarcodeMatched ? "card__container_green" : ""}
           ${isClicked ? "card__container_green" : ""}`}
@@ -120,7 +126,11 @@ function Card({
           )}
         </div>
         <div className="box__container">
+          {packageType === null ? (
+          <p className={`box__name ${boxName}`}>Нету</p>
+        ) : (
           <p className={`box__name ${boxName}`}>{packageType}</p>
+        )}
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
             <Progressbar
@@ -131,17 +141,15 @@ function Card({
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${
-              expanded ? "expanded__button_open" : ""
-            }`}
+            className={`expand__button ${expanded ? "expanded__button_open" : ""
+              }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${
-                expanded ? "expanded__button_icon_open" : ""
-              }`}
+              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
+                }`}
             >
               ▼
             </span>

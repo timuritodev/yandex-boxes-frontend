@@ -18,7 +18,7 @@ function HelpButton() {
   return (
     <div className="">
       <button
-        className={`button problemButton ${
+        className={`problemButton ${
           location.pathname === "/"
             ? "problemButton__home"
             : "problemButton__main"

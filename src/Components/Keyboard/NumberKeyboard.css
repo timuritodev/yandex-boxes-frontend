@@ -60,6 +60,11 @@
   color: #212121;
   width: 296px;
   height: 662px;
+  cursor: pointer;
+}
+
+.keyboard__submit-button:hover {
+  background-color: #F5C400;
 }
 
 .keyboard__button {

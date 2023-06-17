@@ -103,6 +103,10 @@
   background: #cee4ff;
 }
 
+.box__name_null {
+  background: #ee8b00;
+}
+
 .box__name_stretch {
   background: #fee374;
 }
