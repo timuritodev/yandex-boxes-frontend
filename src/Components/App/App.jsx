@@ -32,6 +32,7 @@ import {
   convertData,
 } from "../../utils/constants";
 import * as Api from "../../utils/Api";
+import Loader from "../Loader/Loader";
 
 // массив всех приходящих с бека штрихкодов
 // const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);

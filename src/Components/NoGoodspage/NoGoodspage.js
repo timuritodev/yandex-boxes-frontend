@@ -19,22 +19,27 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
 
   return (
     <>
-        <div className="nogoods__container">
-          <div className="main__left-column" />
-          <div className="main__center-column">
-            <h2 className="nogoods__title">Какого товара нет?</h2>
-            <CardList
-              cards={cards}
-              cardBarcode={cardBarcode}
-              checkedCards={checkedCards}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
-            />
-          </div>
+      <div className="nogoods__container">
+        <div className="main__left-column" />
+        <div className="main__center-column">
+          <h2 className="nogoods__title">Какого товара нет?</h2>
+          <CardList
+            cards={cards}
+            cardBarcode={cardBarcode}
+            checkedCards={checkedCards}
+            selectedCards={selectedCards}
+            setSelectedCards={setSelectedCards}
+          />
+        </div>
+        {selectedCards.length === 0 && (
+          <div className="main__right-column" />
+        )}
+        {selectedCards.length > 0 && (
           <div className="main__right-column">
             <UniButton currentPage="nogoodspage" name="Далее" changeCards={handleCallBrigButton} />
           </div>
-        </div>
+        )}
+      </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
       <ForemanTooltip isOpen={isForemanTooltipOpen} />
 
