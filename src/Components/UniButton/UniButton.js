@@ -14,12 +14,9 @@ function Button({
 
   const handleClick = () => {
     if (currentPage === "homepage") {
-      // это будет функция которая инициирует гет запрос данных заказа
       getOrder();
-      navigate("/main");
     }
     if (currentPage === "main") {
-      // это будет функция которая отправляет собранный заказ на бекенд
       finishOrder();
       navigate("/readypage");
     }

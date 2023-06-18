@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-vars */
 
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -25,30 +25,17 @@ import {
   recommendedBoxes,
   transformMultiplyBarcodes,
 } from "../../utils/utils";
-import {
-  hardcodeData,
-  newHardcodeData,
-  boxesBarcodes,
-  convertData,
-} from "../../utils/constants";
+import { boxesBarcodes, convertData } from "../../utils/constants";
 import * as Api from "../../utils/Api";
 import Loader from "../Loader/Loader";
 
-// массив всех приходящих с бека штрихкодов
-// const allBarcodesFromBackend = transformMultiplyBarcodes(hardcodeData.items);
-
-// eslint-disable-next-line no-undef
-// const boxesList = convertToBoxArray(newHardcodeData.cartons[0].barcode);
-
 function App() {
-  // console.log(cardList)
-
   const location = useLocation();
+  const navigate = useNavigate();
 
   /* работа с карточками(товарами) */
 
   const [cards, setCards] = useState([]);
-  // все введенные с клавиатуры
   const [cardBarcode, setCardBarcode] = useState([]);
   // массив всех объектов проверенных карточек
   const [checkedCards, setCheckedCards] = useState([]);
@@ -61,10 +48,6 @@ function App() {
 
   const [InfoTooltipText, setInfoTooltipText] = useState("Что-то пошло не так");
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
-
-  /* пока непонятная переменная */
-
-  const [KeyboardResult, setKeyboardResult] = useState("");
 
   /* работа с коробками */
 
@@ -93,6 +76,8 @@ function App() {
   /* стейт для бека — уокплектован заказ или возникла проблема */
 
   const [orderIsCompleted, setOrderIsCompleted] = useState(true);
+
+  const [isLoader, setIsLoader] = useState(false);
 
   // логика для предыдущей страницы
   useEffect(() => {
@@ -201,21 +186,23 @@ function App() {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setInfoTooltipText(`${err}`);
+        setIsInfoTooltipPopupOpen(true);
+      });
   }
 
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     console.log("получить заказ");
-    // отпочковать массив товаров из данных от бека
-
+    setIsLoader(true);
     Api.getOrder()
       .then((res) => {
         console.log(res);
         const dataFromBackend = convertData(res);
         const clonedCardList = Object.assign({}, dataFromBackend);
         const cardList = clonedCardList.items;
-        const cardListLength = cardList.length;
+        // const cardListLength = cardList.length;
         // записываем рекомендуемую коробку
         // вместо newHardcodeData будет res
         const perfectBox = convertToBoxArray(res.cartons[0].barcode);
@@ -229,14 +216,17 @@ function App() {
         setBoxes(perfectBox);
         setAllBarcodesFromBackend(arrayBarcodesFromBackend);
         setOrderId(res.order_id);
+        navigate("/main");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setInfoTooltipText(`${err}`);
+        setIsInfoTooltipPopupOpen(true);
+      })
+      .finally(() => setIsLoader(false));
   }
 
   // это будет функция которая отправит собранный заказ на бекенд
   function finishOrder() {
-    // setCheckedBoxes([]);
-    // console.log("завершить заказ");
     localStorage.clear();
     const data = {
       id: orderId,
@@ -249,7 +239,10 @@ function App() {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setInfoTooltipText(`${err}`);
+        setIsInfoTooltipPopupOpen(true);
+      });
   }
 
   const handleKeyboardResult = (value) => {
@@ -294,18 +287,22 @@ function App() {
         <Route
           path="main"
           element={
-            <Main
-              cardListLength={cards.length}
-              boxes={boxes}
-              boxBarcode={boxBarcode}
-              checkedBoxes={checkedBoxes}
-              cards={cards}
-              checkedCards={checkedCards}
-              cardBarcode={cardBarcode}
-              cardBarcodeDefect={cardBarcodeDefect}
-              finishOrder={finishOrder}
-              allBarcodesFromBackend={allBarcodesFromBackend}
-            />
+            isLoader ? (
+              <Loader />
+            ) : (
+              <Main
+                cardListLength={cards.length}
+                boxes={boxes}
+                boxBarcode={boxBarcode}
+                checkedBoxes={checkedBoxes}
+                cards={cards}
+                checkedCards={checkedCards}
+                cardBarcode={cardBarcode}
+                cardBarcodeDefect={cardBarcodeDefect}
+                finishOrder={finishOrder}
+                allBarcodesFromBackend={allBarcodesFromBackend}
+              />
+            )
           }
         />
         <Route

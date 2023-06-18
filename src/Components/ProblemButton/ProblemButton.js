@@ -12,7 +12,6 @@ function HelpButton() {
     if (location.pathname === "/") {
       navigate("/problempage-main");
     }
-    // navigate("/problempage-main");
   };
 
   return (

@@ -1,129 +1,3 @@
-import speaker from "../images/speaker.svg";
-import corgi from "../images/test.jpg";
-
-/* const hardcodeData = {
-  order_id: 54574564,
-  carton: 444,
-  items: [
-    {
-      name: "Очень важная собака, которая улыбается",
-      barcode: 1232973912,
-      picture: corgi,
-      id: 1,
-      packageType: "Пакет",
-      amount: 2,
-    },
-    {
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871234,
-      picture: speaker,
-      id: 2,
-      packageType: "Пузырчатая плёнка",
-      amount: 3,
-    },
-    {
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871212,
-      picture: speaker,
-      id: 3,
-      packageType: "Стрейтч-плёнка",
-      amount: 1,
-    },
-    {
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871278,
-      picture: speaker,
-      id: 4,
-      packageType: "Пузырчатая плёнка",
-      amount: 1,
-    },
-    {
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871290,
-      picture: speaker,
-      id: 5,
-      packageType: "Пузырчатая плёнка",
-      amount: 1,
-    },
-    {
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871261,
-      picture: speaker,
-      id: 6,
-      packageType: "Пузырчатая плёнка",
-      amount: 1,
-    },
-  ],
-}; */
-
-const newHardcodeData = {
-  order_id: 13243,
-  cartons: [
-    {
-      cartontype: "Коробка YMA",
-      barcode: 111,
-    },
-  ],
-  items: [
-    {
-      id: 1,
-      name: "Очень важная собака, которая улыбается",
-      barcode: 1232973912,
-      image: corgi,
-      package_type: "Пакет",
-    },
-    {
-      id: 1,
-      name: "Очень важная собака, которая улыбается",
-      barcode: 1232973913,
-      image: corgi,
-      package_type: "Пакет",
-    },
-    {
-      id: 2,
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871234,
-      image: speaker,
-      package_type: "Пузырчатая плёнка",
-    },
-    {
-      id: 2,
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871235,
-      image: speaker,
-      package_type: "Пузырчатая плёнка",
-    },
-    {
-      id: 2,
-      name: "Умная колонка Яндекс Станция Лайт, ультрафиолет",
-      barcode: 1237871236,
-      image: speaker,
-      package_type: "Пузырчатая плёнка",
-    },
-    {
-      id: 3,
-      name: "Тарелка",
-      barcode: 1237871212,
-      image: corgi,
-      package_type: "Стрейтч-плёнка",
-    },
-  ],
-  payload: [
-    {
-      item_id: 1,
-      amount: 2,
-    },
-    {
-      item_id: 2,
-      amount: 3,
-    },
-    {
-      item_id: 3,
-      amount: 1,
-    },
-  ],
-};
-
 const convertData = (data) => {
   const amountMap = data.payload.reduce((map, payloadItem) => {
     // eslint-disable-next-line no-param-reassign
@@ -179,47 +53,6 @@ const convertData = (data) => {
   return result;
 };
 
-// const convertData = (data) => {
-//   const amountMap = data.payload.reduce((map, payloadItem) => {
-//     // eslint-disable-next-line no-param-reassign
-//     map[payloadItem.item_id] = payloadItem.amount;
-//     return map;
-//   }, {});
-
-//   const uniqueItems = new Map();
-
-//   data.items.forEach((item) => {
-//     if (!uniqueItems.has(item.id)) {
-//       const newItem = {
-//         name: item.name,
-//         barcode: item.barcode,
-//         picture: item.image,
-//         id: item.id,
-//         packageType: item.package_type,
-//         amount: amountMap[item.id] || 0,
-//       };
-
-//       if (newItem.amount > 1) {
-//         newItem.multiplyBarcodes = data.items
-//           .filter((i) => i.id === item.id)
-//           .map((i) => i.barcode);
-//       }
-
-//       uniqueItems.set(item.id, newItem);
-//     }
-//   });
-
-//   const result = {
-//     order_id: data.order_id,
-//     cartons: data.cartons,
-//     items: Array.from(uniqueItems.values()),
-//   };
-
-//   return result;
-// };
-
-const hardcodeData = convertData(newHardcodeData);
-
 const boxData = [
   {
     id: 1,
@@ -248,22 +81,76 @@ const boxData = [
   },
   {
     id: 6,
-    name: "Коробка YMH",
-    barcode: 150,
+    name: "Пакет MYB",
+    barcode: 350,
   },
   {
     id: 7,
-    name: "NONPACK",
+    name: "Пакет MYC",
+    barcode: 360,
+  },
+  {
+    id: 8,
+    name: "Пакет MYA",
+    barcode: 340,
+  },
+  {
+    id: 9,
+    name: "Пакет MYD",
+    barcode: 370,
+  },
+  {
+    id: 10,
+    name: "Стретч-пленка",
+    barcode: 260,
+  },
+  {
+    id: 11,
+    name: "Пакет MYE",
+    barcode: 380,
+  },
+  {
+    id: 12,
+    name: "Коробка YMW",
+    barcode: 290,
+  },
+  {
+    id: 13,
+    name: "Коробка MYF",
+    barcode: 310,
+  },
+  {
+    id: 14,
+    name: "Коробка YMX",
+    barcode: 300,
+  },
+  {
+    id: 15,
+    name: "Коробка YML",
+    barcode: 180,
+  },
+  {
+    id: 20,
+    name: "Нет упаковки",
     barcode: 250,
   },
 ];
 
-const boxesBarcodes = [100, 110, 120, 130, 140, 150, 250];
+const boxesBarcodes = [
+  100, 110, 120, 130, 140, 350, 360, 340, 370, 260, 380, 290, 310, 300, 180,
+  250,
+];
 
 const styleBoxesMap = {
   "Коробка YMA": { boxColor: "carton_blue", textColor: "carton__name_blue" },
+  "Пакет MYA": { boxColor: "carton_blue", textColor: "carton__name_blue" },
   "Коробка YMC": { boxColor: "carton_green", textColor: "carton__name_green" },
+  "Коробка YML": { boxColor: "carton_green", textColor: "carton__name_green" },
   "Коробка YME": {
+    boxColor: "carton_lightblue",
+    textColor: "carton__name_lightblue",
+  },
+  "Стретч-пленка": {
     boxColor: "carton_lightblue",
     textColor: "carton__name_lightblue",
   },
@@ -271,28 +158,37 @@ const styleBoxesMap = {
     boxColor: "carton_orange",
     textColor: "carton__name_orange",
   },
+  "Коробка YMW": {
+    boxColor: "carton_orange",
+    textColor: "carton__name_orange",
+  },
   "Коробка YMG": {
     boxColor: "carton_purple",
     textColor: "carton__name_purple",
   },
-  "Коробка YMH": { boxColor: "carton_red", textColor: "carton__name_red" },
+  "Коробка MYF": {
+    boxColor: "carton_purple",
+    textColor: "carton__name_purple",
+  },
+  "Пакет MYC": { boxColor: "carton_red", textColor: "carton__name_red" },
   "Пакет MYD": { boxColor: "carton_gray", textColor: "carton__name_gray" },
   "Пакет MYB": {
     boxColor: "carton_darkred",
     textColor: "carton__name_darkred",
   },
-  NONPACK: {
+  "Пакет MYE": {
+    boxColor: "carton_darkred",
+    textColor: "carton__name_darkred",
+  },
+  "Нет упаковки": {
+    boxColor: "carton_darkyellow",
+    textColor: "carton__name_darkyellow",
+  },
+  "Коробка YMX": {
     boxColor: "carton_darkyellow",
     textColor: "carton__name_darkyellow",
   },
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export {
-  boxData,
-  styleBoxesMap,
-  hardcodeData,
-  newHardcodeData,
-  boxesBarcodes,
-  convertData,
-};
+export { boxData, styleBoxesMap, boxesBarcodes, convertData };
