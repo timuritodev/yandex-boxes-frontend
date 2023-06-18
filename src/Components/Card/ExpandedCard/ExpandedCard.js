@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import barcodepic from "../../../images/barcode.svg";
@@ -36,7 +35,6 @@ function ExpandedCard({
     }
   };
 
-  // меняем цвет упаковки для каждого товара
   let boxName = "";
   if (packageType === "Пакет") {
     boxName += "box__name_bag";
@@ -61,9 +59,8 @@ function ExpandedCard({
       updateMatchedCount();
       plusFlag();
     }
-  }, [isBarcodeMatched]); // Пустой массив зависимостей
+  }, [isBarcodeMatched]);
 
-  // проверка для progressbar;
   let count = 0;
   if (isBarcodeMatched) {
     count += 1;
