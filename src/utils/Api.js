@@ -12,7 +12,7 @@ const checkResponse = (res) => {
 };
 
 export const finishOrder = (order) =>
-  fetch(`http://localhost:8000/pack_order/${order.id}`, {
+  fetch(`http://localhost:8080/pack_order/${order.id}`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -27,7 +27,7 @@ export const finishOrder = (order) =>
   }).then(checkResponse);
 
 export const getOrder = () =>
-  fetch(`http://localhost:8000/pack_order`, {
+  fetch(`http://localhost:8080/pack_order`, {
     method: "GET",
     headers: {
       Accept: "application/json",

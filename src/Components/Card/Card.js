@@ -116,7 +116,7 @@ function Card({
         <img
           className="img__card"
           alt=""
-          src={`http://localhost:8000/static${picture}`}
+          src={`http://localhost:8080/static${picture}`}
         />
         <div className="name__container">
           <p className="name__title">{name}</p>
