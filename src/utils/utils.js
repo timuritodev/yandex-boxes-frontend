@@ -10,10 +10,28 @@ const getBoxNameByBarcode = (barcode) => {
       return "Коробка YMF";
     case 140:
       return "Коробка YMG";
-    case 150:
-      return "Коробка YMH";
+    case 350:
+      return "Пакет MYB";
+    case 360:
+      return "Пакет MYC";
+    case 340:
+      return "Пакет MYA";
+    case 370:
+      return "Пакет MYD";
+    case 260:
+      return "Стретч-пленка";
+    case 380:
+      return "Пакет MYE";
+    case 290:
+      return "Коробка YMW";
+    case 310:
+      return "Коробка MYF";
+    case 300:
+      return "Коробка YMX";
+    case 180:
+      return "Коробка YML";
     case 250:
-      return "NONPACK";
+      return "Нет упаковки";
     default:
       return "";
   }
@@ -21,31 +39,10 @@ const getBoxNameByBarcode = (barcode) => {
 
 const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
 
-/* const recommendedBoxes = [];
-
-const convertToBoxArray = (barcodeData) => {
-  recommendedBoxes.push({
-    id: generateUniqueKey(),
-    name: getBoxNameByBarcode(barcodeData),
-    barcode: barcodeData,
-  });
-  return recommendedBoxes;
-}; */
-
 const recommendedBoxes = [];
 
 const convertToBoxArray = (barcodeData) => {
-  // Проверка наличия объекта с таким же штрих-кодом в массиве recommendedBoxes
-  const existingIndex = recommendedBoxes.findIndex(
-    (box) => box.barcode === barcodeData,
-  );
-
-  // Если объект с таким же штрих-кодом уже существует, не добавляем его в массив
-  if (existingIndex !== -1) {
-    return recommendedBoxes;
-  }
-
-  // Добавление нового объекта в массив recommendedBoxes
+  recommendedBoxes.shift();
   recommendedBoxes.push({
     id: generateUniqueKey(),
     name: getBoxNameByBarcode(barcodeData),
