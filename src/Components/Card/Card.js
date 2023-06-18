@@ -128,10 +128,10 @@ function Card({
           )}
         </div>
         <div className="box__container">
-          {packageType === null ? (
-            <p className={`box__name ${boxName}`}>На выбор</p>
+          {packageType !== null ? (
+           <p className={`box__name ${boxName}`}>{packageType}</p>
           ) : (
-            <p className={`box__name ${boxName}`}>{packageType}</p>
+            <p className={`box__name ${boxName}`} />
           )}
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
