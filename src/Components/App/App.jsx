@@ -1,9 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-bind */
-/* eslint-disable prefer-object-spread */
-/* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
-
+/* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -33,53 +30,37 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  /* работа с карточками(товарами) */
+  /* карточки товаров */
 
   const [cards, setCards] = useState([]);
   const [cardBarcode, setCardBarcode] = useState([]);
-  // массив всех объектов проверенных карточек
   const [checkedCards, setCheckedCards] = useState([]);
-  // что то для 'есть проблема
   const [cardBarcodeDefect, setCardBarcodeDefect] = useState([]);
-  // что то для 'есть проблема
   const [checkedCardsDefect, setCheckedCardsDefeсt] = useState([]);
 
-  /* работа с попапом */
+  /* попап */
 
   const [InfoTooltipText, setInfoTooltipText] = useState("Что-то пошло не так");
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
-  /* работа с коробками */
-
-  // штрих код который отправляется в компонент коробки для выбора стиля
+  /* упаковка */
   const [boxBarcode, setBoxBarcode] = useState(0);
-  // коробки, которые рендерятся
   const [boxes, setBoxes] = useState([]);
-  // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
-  // массив всех приходящих с бека штрихкодов, переработанный в нужный нам формат
   const [allBarcodesFromBackend, setAllBarcodesFromBackend] = useState([]);
 
-  /* переменные для отслеживания страницы */
-
+  /* пути */
   const [currentPath, setCurrentPath] = useState(null);
   const [previousPath, setPreviousPath] = useState(null);
 
-  /* стейт для комментария, который отправится на бек */
-
-  const [comment, setComment] = useState("");
-
-  /* стейт для айди заказа */
-
+  /* данные заказа */
+  const [comment, setComment] = useState("Заказ собран");
   const [orderId, setOrderId] = useState(0);
-
-  /* стейт для бека — уокплектован заказ или возникла проблема */
-
   const [orderIsCompleted, setOrderIsCompleted] = useState(true);
 
+  /* лоадер */
   const [isLoader, setIsLoader] = useState(false);
 
-  // логика для предыдущей страницы
   useEffect(() => {
     if (location.pathname !== currentPath) {
       setPreviousPath(currentPath);
@@ -131,33 +112,23 @@ function App() {
   }
 
   function checkBoxes(value) {
-    // определяем является ли отсканированная только что коробка той что была порекомендована системой
     const foundItem = recommendedBoxes.find(
       (item) => item.barcode === Number(value),
     );
-    // если да то
     if (foundItem) {
-      // отправляем штрих код в ребенка для выбора цвета коробки
       setBoxBarcode(foundItem.barcode);
-      // добавляем штрих код в список отсканированных
-      // checkedBoxes.push(+foundItem);
       setCheckedBoxes([foundItem.barcode, ...checkedBoxes]);
-      // если нет то
     } else if (checkedBoxes.length > 8) {
       setIsInfoTooltipPopupOpen(true);
       setInfoTooltipText("Нельзя отсканировать больше 9 коробок");
     } else {
-      // записываем введенный штрих код для выбора цвета коробки
       setBoxBarcode(+value);
-      // если коробка пришла от упаковщика, добалвяем ее в массив
       const newBox = {
         id: generateUniqueKey(),
         name: getBoxNameByBarcode(+value),
         barcode: +value,
       };
       setBoxes([newBox, ...boxes]);
-      // и добавляем ее в массив отсканированных
-      // checkedBoxes.push(+value);
       setCheckedBoxes([+value, ...checkedBoxes]);
       setComment(`Выбрана нерекомендованная упаковка`);
     }
@@ -183,21 +154,21 @@ function App() {
       used_cartons: checkedBoxes,
     };
     Api.finishOrder(data)
-      .then((res) => {})
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => {
         setInfoTooltipText(`${err}`);
         setIsInfoTooltipPopupOpen(true);
       });
   }
 
-  // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
     setIsLoader(true);
     Api.getOrder()
       .then((res) => {
-        console.log(res);
         const dataFromBackend = convertData(res);
-        const clonedCardList = Object.assign({}, dataFromBackend);
+        const clonedCardList = { ...dataFromBackend };
         const cardList = clonedCardList.items;
         const transformesApiData = convertData(res);
         const arrayBarcodesFromBackend = transformMultiplyBarcodes(
@@ -218,7 +189,6 @@ function App() {
       });
   }
 
-  // это будет функция которая отправит собранный заказ на бекенд
   function finishOrder() {
     localStorage.clear();
     const data = {
@@ -230,6 +200,7 @@ function App() {
     };
     Api.finishOrder(data)
       .then((res) => {
+        console.log(res);
         navigate("/readypage");
       })
       .catch((err) => {
@@ -239,7 +210,6 @@ function App() {
   }
 
   const handleKeyboardResult = (value) => {
-    // Определение переменных для проверок
     const isBoxBarcode = boxesBarcodes.includes(Number(value));
     let isDuplicateBarcode = false;
     if (previousPath === "/defectpage") {
@@ -251,23 +221,18 @@ function App() {
 
     if (allBarcodesFromBackend.length === cardBarcode.length) {
       if (isBoxBarcode) {
-        // Если штрих-код относится к коробкам и выполнено условие длины всех штрих-кодов
-        // манипулируем веткой про коробки
         checkBoxes(value);
       } else {
         setInfoTooltipText("Нет коробок с таким штрих-кодом");
         setIsInfoTooltipPopupOpen(true);
       }
     } else if (isDuplicateBarcode) {
-      // Если штрих-код уже присутствует в массиве
       setInfoTooltipText("Нельзя сканировать штрих-код дважды");
       setIsInfoTooltipPopupOpen(true);
     } else if (!isValidBarcode) {
-      // Если штрих-код не существует в заказе
       setInfoTooltipText("Такого штрих-кода нет в заказе");
       setIsInfoTooltipPopupOpen(true);
     } else {
-      // Выполняется проверка товаров
       checkCards(value);
     }
   };

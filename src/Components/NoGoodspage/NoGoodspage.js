@@ -1,12 +1,10 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./NoGoodspage.css";
 import Footer from "../Footer/Footer";
 import CardList from "../Card/CardList";
 import UniButton from "../UniButton/UniButton";
-import ForemanTooltip from "../Problempage/ForemanTooltip/ForemanTooltip"
-
+import ForemanTooltip from "../Problempage/ForemanTooltip/ForemanTooltip";
 
 function NoGoodspage({ cards, cardBarcode, checkedCards }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
@@ -31,24 +29,24 @@ function NoGoodspage({ cards, cardBarcode, checkedCards }) {
             setSelectedCards={setSelectedCards}
           />
         </div>
-        {selectedCards.length === 0 && (
-          <div className="main__right-column" />
-        )}
+        {selectedCards.length === 0 && <div className="main__right-column" />}
         {selectedCards.length > 0 && (
           <div className="main__right-column">
-            <UniButton currentPage="nogoodspage" name="Далее" changeCards={handleCallBrigButton} />
+            <UniButton
+              currentPage="nogoodspage"
+              name="Далее"
+              changeCards={handleCallBrigButton}
+            />
           </div>
         )}
       </div>
       <Footer IsKeyboardButtonActive={IsKeyboardButtonActive} />
       <ForemanTooltip isOpen={isForemanTooltipOpen} />
-
     </>
   );
 }
 
 export default NoGoodspage;
-
 
 // /* eslint-disable no-param-reassign */
 // /* eslint-disable no-unused-vars */
@@ -59,7 +57,6 @@ export default NoGoodspage;
 // import CardList from "../Card/CardList";
 // import UniButton from "../UniButton/UniButton";
 // import ForemanTooltip from "../Problempage/ForemanTooltip/ForemanTooltip"
-
 
 // function NoGoodspage({ cards, cardBarcode, checkedCards }) {
 //   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import failedPicture from "../../images/error_icon_tooltip.svg";
 import "./InfoTooltip.css";
 

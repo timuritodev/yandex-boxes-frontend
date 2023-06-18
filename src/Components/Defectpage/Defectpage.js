@@ -1,7 +1,4 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-unused-vars */
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Defectpage.css";
 import Footer from "../Footer/Footer";
@@ -20,8 +17,6 @@ function Defectpage({
   const [isDefectProcessingFinished, setIsDefectProcessingFinished] =
     useState(false);
   const navigate = useNavigate();
-
-  // console.log(cardBarcodeDefect.length);
 
   function finishDefectprocessing() {
     setIsDefectProcessingFinished(true);
@@ -72,7 +67,6 @@ function Defectpage({
           {cardBarcodeDefect.length !== 0 ? (
             <UniButton
               currentPage="defectpage"
-              // eslint-disable-next-line react/jsx-no-bind
               finishDefectprocessing={
                 isDefectProcessingFinished ? sendStatus : finishDefectprocessing
               }
