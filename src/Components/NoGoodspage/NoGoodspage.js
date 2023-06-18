@@ -6,13 +6,14 @@ import CardList from "../Card/CardList";
 import UniButton from "../UniButton/UniButton";
 import ForemanTooltip from "../Problempage/ForemanTooltip/ForemanTooltip";
 
-function NoGoodspage({ cards, cardBarcode, checkedCards }) {
+function NoGoodspage({ cards, cardBarcode, checkedCards, sendStatusAboutNoGoods }) {
   const [IsKeyboardButtonActive, setIsKeyboardButtonActive] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [isForemanTooltipOpen, setIsForemanTooltipOpen] = useState(false);
 
   const handleCallBrigButton = () => {
     setIsForemanTooltipOpen(true);
+    sendStatusAboutNoGoods();
   };
 
   return (
