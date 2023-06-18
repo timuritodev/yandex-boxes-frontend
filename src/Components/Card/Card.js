@@ -129,7 +129,7 @@ function Card({
         </div>
         <div className="box__container">
           {packageType === null ? (
-            <p className={`box__name ${boxName}`}>Нет упаковки</p>
+            <p className={`box__name ${boxName}`}>На выбор</p>
           ) : (
             <p className={`box__name ${boxName}`}>{packageType}</p>
           )}
