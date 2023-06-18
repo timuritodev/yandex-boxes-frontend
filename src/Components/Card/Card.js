@@ -85,12 +85,6 @@ function Card({
     count += 1;
   }
 
-  // записывает totalMatchedCount для каждой карточки отдельно, но totalMatchedCount все равно сбрасывается, если карточка закрыта при переходе на другую страницу
-
-  // useEffect(() => {
-  //   localStorage.setItem(`totalMatchedCount_${name}`, totalMatchedCount); // Сохранение в localStorage с использованием уникального идентификатора карточки
-  // }, [totalMatchedCount, name]);
-
   useEffect(() => {
     localStorage.setItem(`cardExpanded_${name}`, expanded.toString());
   }, [expanded, name]);
