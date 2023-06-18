@@ -53,7 +53,7 @@ function App() {
 
   // штрих код который отправляется в компонент коробки для выбора стиля
   const [boxBarcode, setBoxBarcode] = useState(0);
-  // рекомендуемые коробки, которые приходят с бека
+  // коробки, которые рендерятся
   const [boxes, setBoxes] = useState([]);
   // список отсканированных коробок
   const [checkedBoxes, setCheckedBoxes] = useState([]);
@@ -183,9 +183,7 @@ function App() {
       used_cartons: checkedBoxes,
     };
     Api.finishOrder(data)
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((err) => {
         setInfoTooltipText(`${err}`);
         setIsInfoTooltipPopupOpen(true);
@@ -194,7 +192,6 @@ function App() {
 
   // это будет функция которая инициирует гет запрос данных заказа
   function getOrder() {
-    console.log("получить заказ");
     setIsLoader(true);
     Api.getOrder()
       .then((res) => {
@@ -202,18 +199,12 @@ function App() {
         const dataFromBackend = convertData(res);
         const clonedCardList = Object.assign({}, dataFromBackend);
         const cardList = clonedCardList.items;
-        // const cardListLength = cardList.length;
-        // записываем рекомендуемую коробку
-        // вместо newHardcodeData будет res
-        const perfectBox = convertToBoxArray(res.cartons[0].barcode);
-        // записываем в массив все штрихкоды коробок из бека для проверок
         const transformesApiData = convertData(res);
-        // записываем в массив все штрихкоды коробок из бека для проверок
         const arrayBarcodesFromBackend = transformMultiplyBarcodes(
           transformesApiData.items,
         );
         setCards(cardList);
-        setBoxes(perfectBox);
+        setBoxes(convertToBoxArray(res.cartons[0].barcode));
         setAllBarcodesFromBackend(arrayBarcodesFromBackend);
         setOrderId(res.order_id);
         navigate("/main");
@@ -222,7 +213,9 @@ function App() {
         setInfoTooltipText(`${err}`);
         setIsInfoTooltipPopupOpen(true);
       })
-      .finally(() => setIsLoader(false));
+      .finally(() => {
+        setIsLoader(false);
+      });
   }
 
   // это будет функция которая отправит собранный заказ на бекенд
@@ -237,7 +230,7 @@ function App() {
     };
     Api.finishOrder(data)
       .then((res) => {
-        console.log(res);
+        navigate("/readypage");
       })
       .catch((err) => {
         setInfoTooltipText(`${err}`);
@@ -278,6 +271,14 @@ function App() {
       checkCards(value);
     }
   };
+
+  function clearState() {
+    setCheckedBoxes([]);
+    setAllBarcodesFromBackend([]);
+    setAllBarcodesFromBackend([]);
+    setCardBarcode([]);
+    setCheckedCards([]);
+  }
 
   return (
     <div className="App">
@@ -340,7 +341,10 @@ function App() {
             />
           }
         />
-        <Route path="readypage" element={<ReadyPage />} />
+        <Route
+          path="readypage"
+          element={<ReadyPage clearState={clearState} />}
+        />
         <Route
           path="keyboardpage"
           element={<NumberKeyboard onResult={handleKeyboardResult} />}

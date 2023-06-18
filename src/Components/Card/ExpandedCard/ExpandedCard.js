@@ -18,7 +18,7 @@ function ExpandedCard({
   setSelectedCards,
   updateMatchedCount,
   flag,
-  plusFlag
+  plusFlag,
 }) {
   const location = useLocation();
 
@@ -72,7 +72,9 @@ function ExpandedCard({
   return (
     <section className="card">
       <div
-        className={`card__container ${isBarcodeMatched ? "card__container_green" : ""} ${isClicked ? "card__container_green" : ""}`}
+        className={`card__container ${
+          isBarcodeMatched ? "card__container_green" : ""
+        } ${isClicked ? "card__container_green" : ""}`}
         onClick={handleClick}
       >
         <img className="img__card" alt="" src={picture} />
@@ -87,7 +89,7 @@ function ExpandedCard({
         </div>
         <div className="box__container">
           {packageType === null ? (
-            <p className={`box__name ${boxName}`}>Нету</p>
+            <p className={`box__name ${boxName}`}>Нет упаковки</p>
           ) : (
             <p className={`box__name ${boxName}`}>{packageType}</p>
           )}

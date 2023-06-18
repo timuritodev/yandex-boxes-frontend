@@ -42,14 +42,7 @@ const generateUniqueKey = () => Math.random().toString(36).substring(2, 9);
 const recommendedBoxes = [];
 
 const convertToBoxArray = (barcodeData) => {
-  const existingIndex = recommendedBoxes.findIndex(
-    (box) => box.barcode === barcodeData,
-  );
-
-  if (existingIndex !== -1) {
-    return recommendedBoxes;
-  }
-
+  recommendedBoxes.shift();
   recommendedBoxes.push({
     id: generateUniqueKey(),
     name: getBoxNameByBarcode(barcodeData),

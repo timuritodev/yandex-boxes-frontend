@@ -1,7 +1,7 @@
 import "./ReadyPage.css";
 import UniButton from "../UniButton/UniButton";
 
-function ReadyPage() {
+function ReadyPage({ clearState }) {
   return (
     <main className="readypage">
       <div className="main__left-column" />
@@ -9,7 +9,11 @@ function ReadyPage() {
         Упакуйте товары и поставьте коробку на конвейер
       </p>
       <div className="main__right-column">
-        <UniButton currentPage="readypage" name="Готово" />
+        <UniButton
+          currentPage="readypage"
+          name="Готово"
+          clearState={clearState}
+        />
       </div>
     </main>
   );

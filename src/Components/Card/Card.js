@@ -78,7 +78,7 @@ function Card({
 
   const plusFlag = () => {
     setFlag((prevCount) => prevCount + 1);
-  }
+  };
 
   let count = 0;
   if (isBarcodeMatched) {
@@ -99,13 +99,15 @@ function Card({
     <section className="card">
       <div
         className={`card__container
-          ${totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1
-            ? "card__container_yellow"
-            : ""
+          ${
+            totalMatchedCount > 0 && totalMatchedCount !== amount && amount > 1
+              ? "card__container_yellow"
+              : ""
           }
-          ${totalMatchedCount === amount && amount > 1
-            ? "card__container_green"
-            : ""
+          ${
+            totalMatchedCount === amount && amount > 1
+              ? "card__container_green"
+              : ""
           }
           ${isBarcodeMatched ? "card__container_green" : ""}
           ${isClicked ? "card__container_green" : ""}`}
@@ -114,7 +116,7 @@ function Card({
         <img
           className="img__card"
           alt=""
-          src={`http://localhost:8000/static${picture}`}
+          src={`http://localhost:8080/static${picture}`}
         />
         <div className="name__container">
           <p className="name__title">{name}</p>
@@ -127,10 +129,10 @@ function Card({
         </div>
         <div className="box__container">
           {packageType === null ? (
-          <p className={`box__name ${boxName}`}>Нету</p>
-        ) : (
-          <p className={`box__name ${boxName}`}>{packageType}</p>
-        )}
+            <p className={`box__name ${boxName}`}>Нет упаковки</p>
+          ) : (
+            <p className={`box__name ${boxName}`}>{packageType}</p>
+          )}
           <div className="box__progress-container">
             <p className="box__amount">{amount} шт.</p>
             <Progressbar
@@ -141,15 +143,17 @@ function Card({
         </div>
         {amount > 1 && (
           <div
-            className={`expand__button ${expanded ? "expanded__button_open" : ""
-              }`}
+            className={`expand__button ${
+              expanded ? "expanded__button_open" : ""
+            }`}
             role="button"
             onClick={handleExpand}
             tabIndex={0}
           >
             <span
-              className={`expand__button_icon ${expanded ? "expanded__button_icon_open" : ""
-                }`}
+              className={`expand__button_icon ${
+                expanded ? "expanded__button_icon_open" : ""
+              }`}
             >
               ▼
             </span>

@@ -8,6 +8,7 @@ function Button({
   getOrder,
   finishOrder,
   changeCards,
+  clearState,
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,9 +19,9 @@ function Button({
     }
     if (currentPage === "main") {
       finishOrder();
-      navigate("/readypage");
     }
     if (currentPage === "readypage") {
+      clearState();
       navigate("/");
     }
     if (currentPage === "defectpage") {
